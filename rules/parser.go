@@ -2,6 +2,7 @@ package rules
 
 import (
 	"fmt"
+	"strings"
 
 	C "github.com/metacubex/mihomo/constant"
 	RC "github.com/metacubex/mihomo/rules/common"
@@ -78,6 +79,13 @@ func ParseRule(tp, payload, target string, params []string, subRules map[string]
 	case "RULE-SET":
 		isSrc, noResolve := RC.ParseParams(params)
 		parsed, parseErr = RP.NewRuleSet(payload, target, isSrc, noResolve)
+	case "HTTP-HEADER":
+		parts := strings.SplitN(payload, ":", 2)
+		if len(parts) == 1 {
+			parsed, parseErr = RC.NewHTTPHeader(parts[0], "", target)
+		} else {
+			parsed, parseErr = RC.NewHTTPHeader(parts[0], parts[1], target)
+		}
 	case "MATCH":
 		parsed = RC.NewMatch(target)
 		parseErr = nil

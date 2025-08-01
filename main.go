@@ -44,6 +44,7 @@ var (
 )
 
 func init() {
+	fmt.Println("使用狗蛋特质规则,规则文件为: " + os.Getenv("CLASH_CONFIG_FILE"))
 	flag.StringVar(&homeDir, "d", os.Getenv("CLASH_HOME_DIR"), "set configuration directory")
 	flag.StringVar(&configFile, "f", os.Getenv("CLASH_CONFIG_FILE"), "specify configuration file")
 	flag.StringVar(&configString, "config", os.Getenv("CLASH_CONFIG_STRING"), "specify base64-encoded configuration string")

@@ -191,6 +191,8 @@ type Metadata struct {
 	RawDstAddr net.Addr `json:"-"`
 	// Only domain rule
 	SniffHost string `json:"sniffHost"`
+	// HTTP headers for custom routing
+	HTTPHeaders map[string]string `json:"httpHeaders,omitempty"`
 }
 
 func (m *Metadata) RemoteAddress() string {

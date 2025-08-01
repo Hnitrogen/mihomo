@@ -34,6 +34,7 @@ const (
 	AND
 	OR
 	NOT
+	HTTPHeader
 )
 
 type RuleType int
@@ -104,6 +105,8 @@ func (rt RuleType) String() string {
 		return "OR"
 	case NOT:
 		return "NOT"
+	case HTTPHeader:
+		return "HTTPHeader"
 	default:
 		return "Unknown"
 	}

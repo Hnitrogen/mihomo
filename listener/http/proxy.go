@@ -33,8 +33,12 @@ func (b *bodyWrapper) Read(p []byte) (n int, err error) {
 func HandleConn(c net.Conn, tunnel C.Tunnel, store auth.AuthStore, additions ...inbound.Addition) {
 	additions = append(additions, inbound.Placeholder) // Add a placeholder for InUser
 	inUserIdx := len(additions) - 1
-	client := newClient(c, tunnel, additions)
-	defer client.CloseIdleConnections()
+	var client *http.Client
+	defer func() {
+		if client != nil {
+			client.CloseIdleConnections()
+		}
+	}()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	peekMutex := sync.Mutex{}
@@ -92,8 +96,11 @@ func HandleConn(c net.Conn, tunnel C.Tunnel, store auth.AuthStore, additions ...
 
 			// ensure there is a client with correct additions
 			// when the authenticated user changed, outbound client should close idle connections
-			if user != lastUser {
-				client.CloseIdleConnections()
+			if user != lastUser || client == nil {
+				if client != nil {
+					client.CloseIdleConnections()
+				}
+				client = newClientWithHeaders(c, tunnel, additions, request.Header)
 				lastUser = user
 			}
 
