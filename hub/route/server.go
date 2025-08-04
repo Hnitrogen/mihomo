@@ -115,6 +115,7 @@ func router(isDebug bool, secret string, dohServer string, cors Cors) *chi.Mux {
 		if secret != "" {
 			r.Use(authentication(secret))
 		}
+		// Clash-Meta 对外Web接口
 		r.Get("/", hello)
 		r.Get("/logs", getLogs)
 		r.Get("/traffic", traffic)

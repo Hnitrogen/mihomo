@@ -87,6 +87,7 @@ func ApplyConfig(cfg *config.Config, force bool) {
 	defer mux.Unlock()
 	log.SetLevel(cfg.General.LogLevel)
 
+	// 挂起隧道
 	tunnel.OnSuspend()
 
 	ca.ResetCertificate()
@@ -97,6 +98,7 @@ func ApplyConfig(cfg *config.Config, force bool) {
 	}
 
 	updateExperimental(cfg.Experimental)
+	// 更新客户端鉴权配置
 	updateUsers(cfg.Users)
 	updateProxies(cfg.Proxies, cfg.Providers)
 	updateRules(cfg.Rules, cfg.SubRules, cfg.RuleProviders)
@@ -105,8 +107,10 @@ func ApplyConfig(cfg *config.Config, force bool) {
 	updateGeneral(cfg.General, true)
 	updateNTP(cfg.NTP)
 	updateDNS(cfg.DNS, cfg.General.IPv6)
+	// 重启监听Listener 和 Tun网卡
 	updateListeners(cfg.General, cfg.Listeners, force)
 	updateTun(cfg.General) // tun should not care "force"
+
 	updateIPTables(cfg)
 	updateTunnels(cfg.Tunnels)
 

@@ -31,6 +31,7 @@ func proxyRouter() http.Handler {
 		r.Get("/delay", getProxyDelay)
 		r.Put("/", updateProxy)
 		r.Delete("/", unfixedProxy)
+		// TODO 返回所有订阅和用户Rule
 	})
 	return r
 }

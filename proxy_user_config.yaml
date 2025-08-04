@@ -1,0 +1,31 @@
+mixed-port: 7891
+allow-lan: true
+external-controller: 0.0.0.0:9093
+bind-address: '*'
+mode: rule
+log-level: debug
+
+proxies:
+  - { name: 'US-01', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '20001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
+  - { name: 'HK-01', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
+
+proxy-groups:
+  - { name: 'VIP_PROXY', type: select, proxies: ['US-01'] }
+  - { name: 'NORMAL_PROXY', type: select, proxies: ['HK-01'] }
+
+rules:
+  # 基于代理认证用户名的路由规则 - 必须放在最前面
+  - 'PROXY-USER,feifeimao,VIP_PROXY'
+  - 'PROXY-USER,vipuser/premium,VIP_PROXY'
+  
+  # 测试域名
+  - 'DOMAIN-SUFFIX,httpbin.org,NORMAL_PROXY'
+  - 'DOMAIN-SUFFIX,google.com,NORMAL_PROXY'
+  
+  # 本地直连
+  - 'IP-CIDR,127.0.0.0/8,DIRECT'
+  - 'IP-CIDR,192.168.0.0/16,DIRECT'
+  - 'IP-CIDR,10.0.0.0/8,DIRECT'
+  
+  # 默认规则
+  - 'MATCH,NORMAL_PROXY'

@@ -10,6 +10,7 @@ import (
 	RP "github.com/metacubex/mihomo/rules/provider"
 )
 
+// ParseRule在服务启动是静态生产，如果需要改变配置文件，需要调用UpdateRules或者重启服务
 func ParseRule(tp, payload, target string, params []string, subRules map[string][]C.Rule) (parsed C.Rule, parseErr error) {
 	switch tp {
 	case "DOMAIN":
@@ -86,6 +87,9 @@ func ParseRule(tp, payload, target string, params []string, subRules map[string]
 		} else {
 			parsed, parseErr = RC.NewHTTPHeader(parts[0], parts[1], target)
 		}
+	case "PROXY-USER":
+		// 使用PROXY-USer完成匹配 https://username:password@www.example.com/
+		parsed, parseErr = RC.NewProxyUser(payload, target)
 	case "MATCH":
 		parsed = RC.NewMatch(target)
 		parseErr = nil

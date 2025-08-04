@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash.Meta 请求生命周期交互式流程图</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals with Subtle Accents -->
+    <!-- Application Structure Plan: The application is designed as a vertical, interactive flowchart to guide the user through the complex lifecycle of a network request via Clash.Meta. This linear, step-by-step structure is the most intuitive way to represent a sequential process. Each stage of the flowchart is a collapsible card, presenting a high-level summary first and allowing users to click to reveal detailed technical information. This progressive disclosure prevents information overload. The structure includes: 1. A clear header. 2. An introductory paragraph explaining the purpose. 3. The core flowchart, built with HTML/Tailwind, visually connecting each stage. 4. An interactive protocol comparison section with a chart, which transforms the report's static table into a more engaging and digestible format. This structure was chosen to make a dense, technical report accessible and explorable for a wider audience, prioritizing clarity and user-guided learning over a static text dump. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Entire request lifecycle. -> Goal: Explain a process. -> Viz/Presentation: Interactive Flowchart (HTML/Tailwind). -> Interaction: Clickable cards to expand/collapse details. -> Justification: Breaks down a complex process into manageable, sequential steps, improving comprehension.
+        - Report Info: System Interception (Proxy vs. TUN). -> Goal: Compare two methods. -> Viz/Presentation: Side-by-side text blocks within a flowchart step. -> Interaction: Click to expand details for each. -> Justification: Allows direct comparison of the two core interception mechanisms.
+        - Report Info: Rule Matching Logic. -> Goal: Organize and inform. -> Viz/Presentation: Styled list of rule types (e.g., DOMAIN-SUFFIX, GEOSITE). -> Interaction: Hover tooltips or clickable pop-ups (implemented as expand/collapse for simplicity). -> Justification: Clearly presents the various rule types that form the core of Clash.Meta's routing logic.
+        - Report Info: Protocol Comparison Table (VMess, Trojan, Shadowsocks). -> Goal: Compare multiple entities. -> Viz/Presentation: Bar Chart (Chart.js) and an interactive tabbed view. -> Interaction: Tabs to switch between protocol details, chart provides a quick visual summary. -> Justification: Chart.js offers a quick visual comparison of qualitative features (like stealth or performance), while the tabbed interface organizes detailed textual comparisons neatly, making the information more engaging than a static table.
+        - Library/Method: Chart.js for the bar chart; Vanilla JS for all interactions (toggles, tabs); Tailwind CSS for all styling and layout.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #fdfbf8;
+            color: #4a4a4a;
+        }
+        .flow-line {
+            width: 2px;
+            background-color: #d1d5db;
+            margin: 0 auto;
+        }
+        .flow-dot {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            border: 3px solid #fdfbf8;
+        }
+        .details-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .details-panel.open {
+            max-height: 1000px; /* Large enough to fit content */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .tab-btn.active {
+            border-color: #818cf8;
+            background-color: #eef2ff;
+            color: #4338ca;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-8 md:py-12">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Clash.Meta 请求生命周期</h1>
+            <p class="text-lg text-gray-600">在中国内地通过Clash.Meta访问Google.com的交互式解析</p>
+        </header>
+
+        <main>
+            <!-- Introduction -->
+            <section id="intro" class="max-w-3xl mx-auto text-center mb-12">
+                <p class="text-gray-700 leading-relaxed">
+                    本应用将复杂的技术报告转化为一个直观的交互式流程图。它详细剖析了当您在中国内地使用Clash.Meta访问`google.com`时，一个网络请求从您的设备出发，穿越复杂的网络环境，最终获取响应并返回的全过程。请点击各个阶段的“查看详情”以深入了解其工作原理。
+                </p>
+            </section>
+
+            <!-- Flowchart -->
+            <section id="flowchart" class="relative">
+                <div class="space-y-4">
+
+                    <!-- Step 1: Request Initiation -->
+                    <div class="flow-item flex items-center flex-col">
+                        <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 text-center">
+                            <div class="flex items-center justify-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xl mr-4">1</div>
+                                <h3 class="text-xl font-semibold text-gray-800">请求发起与系统拦截</h3>
+                            </div>
+                            <p class="text-gray-600">用户在浏览器中输入 `google.com`，操作系统准备发起网络请求。</p>
+                            <button data-target="details-1" class="toggle-btn mt-4 text-indigo-600 hover:text-indigo-800 font-medium">查看详情 →</button>
+                            <div id="details-1" class="details-panel text-left mt-4 border-t pt-4">
+                                <p class="mb-4">Clash.Meta 必须首先拦截这个请求。它通过两种主要方式实现对系统网络流量的全面接管：</p>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-gray-50 p-4 rounded-lg border">
+                                        <h4 class="font-bold text-gray-700">系统代理模式</h4>
+                                        <p class="text-sm text-gray-600 mt-1">Clash将自身设置为系统的HTTP/SOCKS代理。所有遵循系统代理设置的应用程序（如浏览器）都会自动将流量发送到Clash的本地端口（如7890）。这是最常见、最简单的配置方式。</p>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded-lg border">
+                                        <h4 class="font-bold text-gray-700">TUN 模式</h4>
+                                        <p class="text-sm text-gray-600 mt-1">Clash创建一个虚拟网卡（TUN设备），在网络层直接接管所有进出设备的IP数据包。这种模式更底层、更强大，可以强制所有应用（即使不支持代理的应用）的流量都通过Clash，实现真正的“全局代理”。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flow-line h-12"></div>
+                        <div class="flow-dot"></div>
+                        <div class="flow-line h-12"></div>
+                    </div>
+
+                    <!-- Step 2: DNS Handling -->
+                    <div class="flow-item flex items-center flex-col">
+                        <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 text-center">
+                             <div class="flex items-center justify-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xl mr-4">2</div>
+                                <h3 class="text-xl font-semibold text-gray-800">DNS 处理</h3>
+                            </div>
+                            <p class="text-gray-600">Clash.Meta处理DNS查询，以防止污染并优化速度。</p>
+                            <button data-target="details-2" class="toggle-btn mt-4 text-indigo-600 hover:text-indigo-800 font-medium">查看详情 →</button>
+                            <div id="details-2" class="details-panel text-left mt-4 border-t pt-4">
+                                <p class="mb-4">在中国内地，直接向公共DNS服务器查询 `google.com` 的IP地址很可能会收到一个被污染（错误）的结果。Clash.Meta通过其内置的DNS服务器解决此问题：</p>
+                                <ul class="list-disc list-inside space-y-2 text-gray-600">
+                                    <li><strong class="text-gray-700">抵抗DNS污染：</strong> 它使用加密的DNS协议（如 DoH/DoT）向上游服务器查询，确保查询过程不被窃听或篡改。</li>
+                                    <li><strong class="text-gray-700">Fake-IP 模式：</strong> 这是一种高级优化。Clash不立即查询真实IP，而是先返回一个虚假的本地IP地址（如 198.18.0.0/16 网段）给应用程序，让连接过程几乎瞬时完成。真正的IP解析被推迟到后续步骤，由Clash在内部根据规则完成，极大地提升了网页加载的感知速度。</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flow-line h-12"></div>
+                        <div class="flow-dot"></div>
+                        <div class="flow-line h-12"></div>
+                    </div>
+
+                    <!-- Step 3: Rule Matching -->
+                    <div class="flow-item flex items-center flex-col">
+                        <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 text-center">
+                             <div class="flex items-center justify-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xl mr-4">3</div>
+                                <h3 class="text-xl font-semibold text-gray-800">规则匹配与策略选择</h3>
+                            </div>
+                            <p class="text-gray-600">"智能路由引擎"根据预设规则判断`google.com`请求的去向。</p>
+                            <button data-target="details-3" class="toggle-btn mt-4 text-indigo-600 hover:text-indigo-800 font-medium">查看详情 →</button>
+                            <div id="details-3" class="details-panel text-left mt-4 border-t pt-4">
+                                <p class="mb-2">对于 `google.com` 的请求，Clash 会按顺序匹配配置文件中的规则，常见的规则类型有：</p>
+                                <ul class="list-none space-y-1 text-sm mb-4">
+                                    <li class="bg-gray-50 p-2 rounded"><strong>DOMAIN-SUFFIX,google.com,PROXY:</strong> 匹配所有以 google.com 结尾的域名。</li>
+                                    <li class="bg-gray-50 p-2 rounded"><strong>GEOSITE,google,PROXY:</strong> 匹配一个预定义的Google相关域名列表。</li>
+                                    <li class="bg-gray-50 p-2 rounded"><strong>GEOIP,CN,DIRECT:</strong> 匹配目标IP在中国境内的流量，让其直连。</li>
+                                    <li class="bg-gray-50 p-2 rounded"><strong>MATCH,PROXY:</strong> 作为最后一道防线，将所有其他未匹配的流量都走代理。</li>
+                                </ul>
+                                <p>匹配成功后，请求被导向一个“策略组”（Proxy Group）。例如，一个名为 `PROXY` 的策略组可以是：</p>
+                                <ul class="list-disc list-inside space-y-2 text-gray-600 mt-2">
+                                    <li><strong class="text-gray-700">url-test:</strong> 自动选择延迟最低的服务器节点。</li>
+                                    <li><strong class="text-gray-700">fallback:</strong> 在首选节点不可用时，自动切换到备用节点。</li>
+                                    <li><strong class="text-gray-700">select:</strong> 允许用户手动选择一个节点。</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flow-line h-12"></div>
+                        <div class="flow-dot"></div>
+                        <div class="flow-line h-12"></div>
+                    </div>
+
+                    <!-- Step 4: Encrypted Connection -->
+                    <div class="flow-item flex items-center flex-col">
+                        <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 text-center">
+                            <div class="flex items-center justify-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xl mr-4">4</div>
+                                <h3 class="text-xl font-semibold text-gray-800">建立加密代理连接</h3>
+                            </div>
+                            <p class="text-gray-600">Clash使用选定的协议（如VMess, Trojan）将请求数据封装和加密。</p>
+                            <button data-target="details-4" class="toggle-btn mt-4 text-indigo-600 hover:text-indigo-800 font-medium">查看详情 →</button>
+                            <div id="details-4" class="details-panel text-left mt-4 border-t pt-4">
+                                <p>这是规避审查的核心步骤。原始的HTTP/HTTPS请求被包装在所选代理协议的“外套”里，并进行加密。这使得中间的网络设备（包括防火墙）无法识别其真实内容和目的地。</p>
+                                <p class="mt-2">Clash.Meta支持多种协议，每种都有不同的隐蔽性和性能特点。例如：</p>
+                                <ul class="list-disc list-inside space-y-2 text-gray-600 mt-2">
+                                    <li><strong class="text-gray-700">Trojan:</strong> 将代理流量伪装成正常的HTTPS流量，极难被识别。</li>
+                                    <li><strong class="text-gray-700">Shadowsocks:</strong> 使用AEAD加密，使流量看起来像无意义的随机数据，有效对抗DPI（深度包检测）。</li>
+                                    <li><strong class="text-gray-700">VMess:</strong> V2Ray的核心协议，特性丰富，认证机制复杂。</li>
+                                </ul>
+                                <p class="mt-3">点击下方标签页查看不同协议的详细对比。</p>
+                            </div>
+                        </div>
+                        <div class="flow-line h-12"></div>
+                        <div class="flow-dot"></div>
+                        <div class="flow-line h-12"></div>
+                    </div>
+
+                    <!-- Step 5: Data Forwarding -->
+                    <div class="flow-item flex items-center flex-col">
+                        <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 text-center">
+                             <div class="flex items-center justify-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xl mr-4">5</div>
+                                <h3 class="text-xl font-semibold text-gray-800">数据转发与远程处理</h3>
+                            </div>
+                            <p class="text-gray-600">加密数据流通过互联网发送到境外的代理服务器。</p>
+                            <button data-target="details-5" class="toggle-btn mt-4 text-indigo-600 hover:text-indigo-800 font-medium">查看详情 →</button>
+                            <div id="details-5" class="details-panel text-left mt-4 border-t pt-4">
+                                <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                                    <li><strong class="text-gray-700">解密与解封装：</strong> 远程代理服务器收到数据后，使用预共享的密钥和协议进行解密，还原出原始的 `google.com` 请求。</li>
+                                    <li><strong class="text-gray-700">匿名转发：</strong> 代理服务器用自己的IP地址，向 `google.com` 发起这个请求。此时，在Google看来，请求者是这个代理服务器，而非中国内地的原始用户，从而实现了IP地址的隐藏。</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="flow-line h-12"></div>
+                        <div class="flow-dot"></div>
+                        <div class="flow-line h-12"></div>
+                    </div>
+                    
+                    <!-- Step 6: Response Return -->
+                    <div class="flow-item flex items-center flex-col">
+                        <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 text-center">
+                            <div class="flex items-center justify-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xl mr-4">6</div>
+                                <h3 class="text-xl font-semibold text-gray-800">响应返回</h3>
+                            </div>
+                            <p class="text-gray-600">Google的响应数据沿着建立的加密隧道原路返回。</p>
+                            <button data-target="details-6" class="toggle-btn mt-4 text-indigo-600 hover:text-indigo-800 font-medium">查看详情 →</button>
+                            <div id="details-6" class="details-panel text-left mt-4 border-t pt-4">
+                                <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                                    <li><strong class="text-gray-700">远程加密：</strong> `google.com` 将网页内容返回给代理服务器。代理服务器再用同样的代理协议将其加密。</li>
+                                    <li><strong class="text-gray-700">返回客户端：</strong> 加密后的响应数据被发回给用户的Clash.Meta客户端。</li>
+                                    <li><strong class="text-gray-700">本地解密：</strong> Clash.Meta客户端解密数据，并将最终的网页内容交给浏览器进行渲染。</li>
+                                </ol>
+                                <p class="mt-4 bg-green-50 text-green-800 p-3 rounded-lg border border-green-200">至此，一次成功的规避访问完成。用户在浏览器上看到了Google的页面。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Protocol Comparison -->
+            <section id="protocol-comparison" class="mt-16 pt-12 border-t border-gray-200">
+                <header class="text-center mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">核心代理协议对比</h2>
+                    <p class="text-lg text-gray-600">不同的协议在隐蔽性、性能和工作原理上各有侧重。</p>
+                </header>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-8">
+                        <div class="chart-container">
+                            <canvas id="protocolChart"></canvas>
+                        </div>
+                         <p class="text-xs text-center text-gray-500 mt-2">注意：此图表基于报告中的定性描述，旨在提供一个相对的、概念性的比较，而非精确的量化指标。</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-6">
+                        <div class="flex flex-wrap border-b border-gray-200 mb-4">
+                            <button class="tab-btn flex-grow text-center py-2 px-4 font-medium text-gray-600 border-b-2 border-transparent hover:bg-gray-100 active" data-tab="vmess">VMess</button>
+                            <button class="tab-btn flex-grow text-center py-2 px-4 font-medium text-gray-600 border-b-2 border-transparent hover:bg-gray-100" data-tab="trojan">Trojan</button>
+                            <button class="tab-btn flex-grow text-center py-2 px-4 font-medium text-gray-600 border-b-2 border-transparent hover:bg-gray-100" data-tab="shadowsocks">Shadowsocks</button>
+                        </div>
+
+                        <div id="vmess" class="tab-content">
+                            <h4 class="font-bold text-lg text-gray-800 mb-2">VMess</h4>
+                            <p class="text-gray-600 mb-3">V2Ray项目的核心协议，设计复杂，功能全面。</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">✓</span><span><strong>认证机制:</strong> 基于用户ID (UUID) 和时间戳的HMAC认证，无传统握手。</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">✓</span><span><strong>加密:</strong> 指令和数据部分可分别使用不同加密方式（如AES-GCM, ChaCha20-Poly1305）。</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">✓</span><span><strong>隐蔽性:</strong> 格式非对称，增加检测难度，但协议特征相对明显。</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">✓</span><span><strong>优势:</strong> 灵活，支持多种传输方式（TCP, mKCP, WebSocket等），功能强大。</span></li>
+                            </ul>
+                        </div>
+                        <div id="trojan" class="tab-content hidden">
+                             <h4 class="font-bold text-lg text-gray-800 mb-2">Trojan</h4>
+                            <p class="text-gray-600 mb-3">“特洛伊木马”，将代理流量完美伪装成标准HTTPS流量的协议。</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">✓</span><span><strong>认证机制:</strong> 直接使用真实的TLS握手。认证密码在建立的TLS隧道内部传输。</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">✓</span><span><strong>加密:</strong> 完全依赖于TLS协议自身的加密，与访问普通HTTPS网站无异。</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">✓</span><span><strong>隐蔽性:</strong> 极高。对于网络审查系统，它看起来就是一个普通的HTTPS网站。如果密码错误，服务器会返回一个正常的网页，使其难以被主动探测发现。</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">✓</span><span><strong>优势:</strong> 隐蔽性顶级，不易被封锁，性能也较好。</span></li>
+                            </ul>
+                        </div>
+                        <div id="shadowsocks" class="tab-content hidden">
+                            <h4 class="font-bold text-lg text-gray-800 mb-2">Shadowsocks (SS)</h4>
+                            <p class="text-gray-600 mb-3">一个轻量、高效、专注于加密和混淆的代理协议。</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">✓</span><span><strong>认证机制:</strong> 依赖预共享密钥（PSK），没有复杂握手，简单高效。</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">✓</span><span><strong>加密:</strong> 现代版本（如Shadowsocks 2022）使用AEAD加密（如AES-GCM），安全性高。</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">✓</span><span><strong>隐蔽性:</strong> 流量被设计成与“随机字节流无法区分”，能有效对抗基于数据包特征的深度包检测（DPI）。</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">✓</span><span><strong>优势:</strong> 性能好，延迟低，抗DPI效果出色，配置简单。</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-200">
+            <p class="text-sm text-gray-500">此交互式应用根据提供的技术报告生成，仅用于教育和信息展示目的。</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButtons = document.querySelectorAll('.toggle-btn');
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.getAttribute('data-target');
+                    const targetPanel = document.getElementById(targetId);
+                    targetPanel.classList.toggle('open');
+                    
+                    if (targetPanel.classList.contains('open')) {
+                        button.innerHTML = '收起详情 &uarr;';
+                    } else {
+                        button.innerHTML = '查看详情 &rarr;';
+                    }
+                });
+            });
+            
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const tabId = button.getAttribute('data-tab');
+                    tabContents.forEach(content => {
+                        if (content.id === tabId) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const ctx = document.getElementById('protocolChart').getContext('2d');
+            const protocolChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['VMess', 'Trojan', 'Shadowsocks'],
+                    datasets: [{
+                        label: '隐蔽性 (越高越好)',
+                        data: [7, 10, 8],
+                        backgroundColor: 'rgba(129, 140, 248, 0.6)',
+                        borderColor: 'rgba(129, 140, 248, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: '性能/效率 (越高越好)',
+                        data: [8, 9, 10],
+                        backgroundColor: 'rgba(52, 211, 153, 0.6)',
+                        borderColor: 'rgba(52, 211, 153, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                             ticks: {
+                                stepSize: 2
+                            },
+                            title: {
+                                display: true,
+                                text: '相对评级 (1-10)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y + ' / 10';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -37,10 +37,22 @@ func (h *HTTPHeader) Match(metadata *C.Metadata, helper C.RuleMatchHelper) (bool
 
 	fmt.Printf("[DEBUG] HTTPHeader.Match: Available headers: %+v\n", metadata.HTTPHeaders)
 
-	// 检查指定的请求头是否存在且匹配
-	if value, exists := metadata.HTTPHeaders[h.headerKey]; exists {
-		fmt.Printf("[DEBUG] HTTPHeader.Match: Found header %s=%s\n", h.headerKey, value)
-		if h.headerValue == "" || strings.EqualFold(value, h.headerValue) {
+	// 检查指定的请求头是否存在且匹配 (case-insensitive header key matching)
+	var foundValue string
+	var found bool
+	
+	// 遍历所有headers进行大小写不敏感的匹配
+	for key, value := range metadata.HTTPHeaders {
+		if strings.EqualFold(key, h.headerKey) {
+			foundValue = value
+			found = true
+			fmt.Printf("[DEBUG] HTTPHeader.Match: Found header %s=%s (matched key: %s)\n", h.headerKey, value, key)
+			break
+		}
+	}
+	
+	if found {
+		if h.headerValue == "" || strings.EqualFold(foundValue, h.headerValue) {
 			fmt.Printf("[DEBUG] HTTPHeader.Match: MATCHED! Using adapter %s\n", h.adapter)
 			return true, h.adapter
 		}

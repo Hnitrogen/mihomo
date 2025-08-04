@@ -35,6 +35,7 @@ const (
 	OR
 	NOT
 	HTTPHeader
+	ProxyUser
 )
 
 type RuleType int
@@ -107,6 +108,8 @@ func (rt RuleType) String() string {
 		return "NOT"
 	case HTTPHeader:
 		return "HTTPHeader"
+	case ProxyUser:
+		return "ProxyUser"
 	default:
 		return "Unknown"
 	}

@@ -1,4 +1,4 @@
-mixed-port: 7891
+mixed-port: 7890
 allow-lan: true
 bind-address: '*'
 mode: rule
@@ -11,7 +11,7 @@ profile:
 unified-delay: true
 hosts:
     dnslog.cn: 47.244.138.18
-
+    
 dns:
     enable: true
     ipv6: false
@@ -25,8 +25,8 @@ dns:
     fallback: [1.1.1.1, 8.8.8.8]
     fallback-filter: { geoip: true, geoip-code: CN, ipcidr: [240.0.0.0/4] }
 proxies:
-    - { name: '18.26 GB | 150 GB', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: 'Traffic Reset: 21 Days Left', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
+    - { name: '20.63 GB | 150 GB', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
+    - { name: 'Traffic Reset: 17 Days Left', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
     - { name: 'Expire Date: 2025-08-21', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
     - { name: '🇭🇰 Hong Kong丨01', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
     - { name: '🇭🇰 Hong Kong丨02', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16002', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
@@ -63,9 +63,7 @@ proxies:
     - { name: '🇬🇧 Great Britain丨01', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '23001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
     - { name: 此地區屬於高級套餐, type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '10086', cipher: chacha20-ietf-poly1305, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
 proxy-groups:
-    # 添加 VIP 用户专用代理组
-    - { name: 'VIP_PROXY', type: select, proxies: [ '🇺🇸 United States丨01' ] }
-    - { name: SSRDOG, type: select, proxies: [Auto, '18.26 GB | 150 GB', 'Traffic Reset: 21 Days Left', 'Expire Date: 2025-08-21', '🇭🇰 Hong Kong丨01', '🇭🇰 Hong Kong丨02', '🇭🇰 Hong Kong丨03', '🇭🇰 Hong Kong丨04', '🇭🇰 Hong Kong丨05', '🇭🇰 Hong Kong丨06', '🇭🇰 Hong Kong丨07', '🇭🇰 Hong Kong丨08', '🇭🇰 Hong Kong丨09', '🇭🇰 Hong Kong丨10', '🇨🇳 Taiwan丨01', '🇨🇳 Taiwan丨02', '🇨🇳 Taiwan丨03', '🇨🇳 Taiwan丨04', '🇨🇳 Taiwan丨05', '🇸🇬 Singapore丨01', '🇸🇬 Singapore丨02', '🇸🇬 Singapore丨03', '🇸🇬 Singapore丨04', '🇸🇬 Singapore丨05', '🇯🇵 Japan丨01', '🇯🇵 Japan丨02', '🇯🇵 Japan丨03', '🇯🇵 Japan丨04', '🇯🇵 Japan丨05', '🇺🇸 United States丨01', '🇺🇸 United States丨02', '🇺🇸 United States丨03', '🇺🇸 United States丨04', '🇺🇸 United States丨05', '🇰🇷 South Korea丨01', '🇨🇦 Canada丨01', '🇬🇧 Great Britain丨01', 此地區屬於高級套餐] }
+    - { name: SSRDOG, type: select, proxies: [Auto, '20.63 GB | 150 GB', 'Traffic Reset: 17 Days Left', 'Expire Date: 2025-08-21', '🇭🇰 Hong Kong丨01', '🇭🇰 Hong Kong丨02', '🇭🇰 Hong Kong丨03', '🇭🇰 Hong Kong丨04', '🇭🇰 Hong Kong丨05', '🇭🇰 Hong Kong丨06', '🇭🇰 Hong Kong丨07', '🇭🇰 Hong Kong丨08', '🇭🇰 Hong Kong丨09', '🇭🇰 Hong Kong丨10', '🇨🇳 Taiwan丨01', '🇨🇳 Taiwan丨02', '🇨🇳 Taiwan丨03', '🇨🇳 Taiwan丨04', '🇨🇳 Taiwan丨05', '🇸🇬 Singapore丨01', '🇸🇬 Singapore丨02', '🇸🇬 Singapore丨03', '🇸🇬 Singapore丨04', '🇸🇬 Singapore丨05', '🇯🇵 Japan丨01', '🇯🇵 Japan丨02', '🇯🇵 Japan丨03', '🇯🇵 Japan丨04', '🇯🇵 Japan丨05', '🇺🇸 United States丨01', '🇺🇸 United States丨02', '🇺🇸 United States丨03', '🇺🇸 United States丨04', '🇺🇸 United States丨05', '🇰🇷 South Korea丨01', '🇨🇦 Canada丨01', '🇬🇧 Great Britain丨01', 此地區屬於高級套餐] }
     - { name: Auto, type: fallback, proxies: ['🇭🇰 Hong Kong', '🇨🇳 Taiwan', '🇯🇵 Japan', '🇰🇷 Korea', '🇸🇬 Singapore', '🇺🇸 United States', '🇨🇦 Canada', '🇬🇧 Great Britain', '🇹🇷 Turkey', '🇳🇱 Netherlands', '🇫🇷 France', '🇩🇪 Germany', '🇻🇳 Vietnam', '🇲🇾 Malaysia', '🇹🇭 Thailand', '🇮🇳 India', '🇵🇭 Philippines'], url: 'http://cp.cloudflare.com/generate_204', interval: 300 }
     - { name: '🇭🇰 Hong Kong', type: select, proxies: ['🇭🇰 Hong Kong丨01', '🇭🇰 Hong Kong丨02', '🇭🇰 Hong Kong丨03', '🇭🇰 Hong Kong丨04', '🇭🇰 Hong Kong丨05', '🇭🇰 Hong Kong丨06', '🇭🇰 Hong Kong丨07', '🇭🇰 Hong Kong丨08', '🇭🇰 Hong Kong丨09', '🇭🇰 Hong Kong丨10'] }
     - { name: '🇨🇳 Taiwan', type: select, proxies: ['🇨🇳 Taiwan丨01', '🇨🇳 Taiwan丨02', '🇨🇳 Taiwan丨03', '🇨🇳 Taiwan丨04', '🇨🇳 Taiwan丨05'] }
@@ -84,7 +82,6 @@ proxy-groups:
     - { name: '🇹🇭 Thailand', type: select, proxies: [此地區屬於高級套餐] }
     - { name: '🇮🇳 India', type: select, proxies: [此地區屬於高級套餐] }
     - { name: '🇵🇭 Philippines', type: select, proxies: [此地區屬於高級套餐] }
-
 rule-providers:
     YouTube: { type: http, behavior: classical, url: 'https://api-gz.hosbbq.com/nus74f89st1/Y.yml', interval: 86400, path: ./ruleset/YouTube.yml }
     SteamCN: { type: http, behavior: classical, url: 'https://api-gz.hosbbq.com/nus74f89st1/SC.yml', interval: 86400, path: ./ruleset/SteamCN.yml }
@@ -92,13 +89,8 @@ rule-providers:
     DMM: { type: http, behavior: classical, url: 'https://api-gz.hosbbq.com/nus74f89st1/DM.yml', interval: 86400, path: ./ruleset/DMM.yml }
     ChinaMax: { type: http, behavior: classical, url: 'https://api-gz.hosbbq.com/nus74f89st1/C.yml', interval: 86400, path: ./ruleset/ChinaMax.yml }
 rules:
-    # 基于 HTTP 请求头的路由规则 - 必须放在最前面
-    - 'HTTP-HEADER,proxy_user_id:VIP_PROXY,VIP_PROXY'
-    - 'HTTP-HEADER,proxy_user_id:premium_user,🇺🇸 United States'
-    - 'HTTP-HEADER,proxy_user_id,SSRDOG'
-    
     - 'DOMAIN,dog.ssrdog.com,SSRDOG'
-
+    
     - 'DOMAIN,ic.adobe.io,REJECT'
     - 'DOMAIN,dyzt55url8.adobe.io,REJECT'
     - 'DOMAIN,gw8gfjbs05.adobe.io,REJECT'
@@ -120,9 +112,6 @@ rules:
     - 'DOMAIN-SUFFIX,okex.com,SSRDOG'
     - 'DOMAIN-SUFFIX,oklink.com,SSRDOG'
     - 'DOMAIN-SUFFIX,okx.com,SSRDOG'
-    - 'DOMAIN-SUFFIX,google.com,SSRDOG'
-    - 'DOMAIN-SUFFIX,googleapis.com,SSRDOG'
-    - 'DOMAIN-SUFFIX,googleusercontent.com,SSRDOG'
     - 'RULE-SET,SteamCN,DIRECT'
     - 'RULE-SET,Bahamut,🇨🇳 Taiwan'
     - 'RULE-SET,DMM,🇯🇵 Japan'

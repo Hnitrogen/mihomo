@@ -1,0 +1,140 @@
+# Clash-Meta 生产环境配置示例
+# 支持基于代理认证用户名的路由
+
+mixed-port: 7891
+allow-lan: true
+external-controller: 0.0.0.0:9093
+secret: "your-secret-key"
+bind-address: '*'
+mode: rule
+log-level: info  # 生产环境建议使用 info 级别
+
+# 代理服务器配置
+proxies:
+  # 美国高速线路 (VIP专用)
+  - { name: 'US-Premium-01', type: ss, server: us1.example.com, port: '443', cipher: aes-256-gcm, password: your-password, udp: true }
+  - { name: 'US-Premium-02', type: ss, server: us2.example.com, port: '443', cipher: aes-256-gcm, password: your-password, udp: true }
+  
+  # 香港标准线路
+  - { name: 'HK-Standard-01', type: ss, server: hk1.example.com, port: '443', cipher: aes-256-gcm, password: your-password, udp: true }
+  - { name: 'HK-Standard-02', type: ss, server: hk2.example.com, port: '443', cipher: aes-256-gcm, password: your-password, udp: true }
+  
+  # 日本线路
+  - { name: 'JP-01', type: ss, server: jp1.example.com, port: '443', cipher: aes-256-gcm, password: your-password, udp: true }
+  
+  # 新加坡线路
+  - { name: 'SG-01', type: ss, server: sg1.example.com, port: '443', cipher: aes-256-gcm, password: your-password, udp: true }
+
+# 代理组配置
+proxy-groups:
+  # VIP用户专用组 - 美国高速线路
+  - name: 'VIP_US'
+    type: load-balance
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    proxies:
+      - 'US-Premium-01'
+      - 'US-Premium-02'
+  
+  # 标准用户组 - 香港线路
+  - name: 'STANDARD_HK'
+    type: load-balance
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    proxies:
+      - 'HK-Standard-01'
+      - 'HK-Standard-02'
+  
+  # 日本用户组
+  - name: 'JAPAN_GROUP'
+    type: select
+    proxies:
+      - 'JP-01'
+  
+  # 新加坡用户组
+  - name: 'SINGAPORE_GROUP'
+    type: select
+    proxies:
+      - 'SG-01'
+  
+  # 自动选择组
+  - name: 'AUTO_SELECT'
+    type: url-test
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    proxies:
+      - 'HK-Standard-01'
+      - 'HK-Standard-02'
+      - 'JP-01'
+      - 'SG-01'
+
+# 路由规则
+rules:
+  # === 基于代理认证用户名的路由规则 (最高优先级) ===
+  
+  # VIP用户 - 走美国高速线路
+  - 'PROXY-USER,vip001/vip002/vip003,VIP_US'
+  - 'PROXY-USER,premium/feifeimao,VIP_US'
+  
+  # 日本地区用户
+  - 'PROXY-USER,jp_user1/jp_user2,JAPAN_GROUP'
+  
+  # 新加坡地区用户  
+  - 'PROXY-USER,sg_user1/sg_user2,SINGAPORE_GROUP'
+  
+  # 企业用户 - 自动选择最优线路
+  - 'PROXY-USER,corp001/corp002/corp003,AUTO_SELECT'
+  
+  # === 基于域名的路由规则 ===
+  
+  # 流媒体服务 - 使用美国线路
+  - 'DOMAIN-SUFFIX,netflix.com,VIP_US'
+  - 'DOMAIN-SUFFIX,hulu.com,VIP_US'
+  - 'DOMAIN-SUFFIX,disney.com,VIP_US'
+  
+  # 社交媒体 - 使用香港线路
+  - 'DOMAIN-SUFFIX,facebook.com,STANDARD_HK'
+  - 'DOMAIN-SUFFIX,twitter.com,STANDARD_HK'
+  - 'DOMAIN-SUFFIX,instagram.com,STANDARD_HK'
+  
+  # 谷歌服务 - 自动选择
+  - 'DOMAIN-SUFFIX,google.com,AUTO_SELECT'
+  - 'DOMAIN-SUFFIX,googleapis.com,AUTO_SELECT'
+  - 'DOMAIN-SUFFIX,googleusercontent.com,AUTO_SELECT'
+  
+  # GitHub - 自动选择
+  - 'DOMAIN-SUFFIX,github.com,AUTO_SELECT'
+  - 'DOMAIN-SUFFIX,githubusercontent.com,AUTO_SELECT'
+  
+  # === 地理位置路由 ===
+  
+  # 中国大陆直连
+  - 'GEOIP,CN,DIRECT'
+  
+  # === 本地网络直连 ===
+  - 'IP-CIDR,127.0.0.0/8,DIRECT'
+  - 'IP-CIDR,192.168.0.0/16,DIRECT'
+  - 'IP-CIDR,10.0.0.0/8,DIRECT'
+  - 'IP-CIDR,172.16.0.0/12,DIRECT'
+  - 'IP-CIDR,169.254.0.0/16,DIRECT'
+  
+  # === 默认规则 ===
+  # 其他所有用户使用标准香港线路
+  - 'MATCH,STANDARD_HK'
+
+# DNS 配置
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+  fallback:
+    - 8.8.8.8
+    - 1.1.1.1
+
+# 实验性功能
+experimental:
+  ignore-resolve-fail: true

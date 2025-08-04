@@ -352,6 +352,7 @@ func patchConfigs(w http.ResponseWriter, r *http.Request) {
 	render.NoContent(w, r)
 }
 
+// 更新代理配置文件-支持热更新
 func updateConfigs(w http.ResponseWriter, r *http.Request) {
 	req := struct {
 		Path    string `json:"path"`
@@ -378,6 +379,7 @@ func updateConfigs(w http.ResponseWriter, r *http.Request) {
 		if req.Path == "" { // default path unneeded any safe check
 			req.Path = C.Path.Config()
 		} else {
+			// 传递配置文件路径要是 绝对路径
 			if !filepath.IsAbs(req.Path) {
 				render.Status(r, http.StatusBadRequest)
 				render.JSON(w, r, newError("path is not a absolute path"))
@@ -391,6 +393,7 @@ func updateConfigs(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
+		// 读取二进制config文件
 		cfg, err = executor.ParseWithPath(req.Path)
 		if err != nil {
 			render.Status(r, http.StatusBadRequest)
