@@ -1,0 +1,100 @@
+mixed-port: 7891
+allow-lan: true
+external-controller: 0.0.0.0:9093
+secret: "your-api-secret"
+bind-address: '*'
+mode: rule
+log-level: info
+
+# 部门密钥映射配置
+department-secrets:
+  "dept001_secret_key": "tech_dept"      # 技术部门
+  "dept002_secret_key": "sales_dept"     # 销售部门
+  "dept003_secret_key": "hr_dept"        # 人事部门
+  "dept004_secret_key": "finance_dept"   # 财务部门
+
+# 代理服务器配置
+proxies:
+  # 测试代理 (使用本地地址避免连接问题)
+  - name: 'US-Premium-01'
+    type: ss
+    server: 127.0.0.1
+    port: 1080
+    cipher: aes-256-gcm
+    password: test-password
+    udp: true
+    
+  - name: 'HK-Standard-01'
+    type: ss
+    server: 127.0.0.1
+    port: 1081
+    cipher: aes-256-gcm
+    password: test-password
+    udp: true
+    
+  - name: 'JP-01'
+    type: ss
+    server: 127.0.0.1
+    port: 1082
+    cipher: aes-256-gcm
+    password: test-password
+    udp: true
+
+# 代理组配置
+proxy-groups:
+  # VIP用户专用组 - 美国高速线路
+  - name: 'VIP_US'
+    type: select
+    proxies:
+      - 'US-Premium-01'
+      - 'DIRECT'
+
+  # 标准用户组 - 香港线路
+  - name: 'STANDARD_HK'
+    type: select
+    proxies:
+      - 'HK-Standard-01'
+      - 'DIRECT'
+
+  # 日本用户组
+  - name: 'JAPAN_GROUP'
+    type: select
+    proxies:
+      - 'JP-01'
+      - 'DIRECT'
+
+# 路由规则
+rules:
+  # === 基于代理认证用户名的路由规则 (最高优先级) ===
+
+  # 技术部门用户 - 走美国高速线路
+  - 'PROXY-USER,tech_user1/tech_user2/tech_admin,VIP_US'
+
+  # 销售部门用户 - 走香港线路
+  - 'PROXY-USER,sales_user1/sales_user2/sales_manager,STANDARD_HK'
+
+  # 人事部门用户 - 走日本线路
+  - 'PROXY-USER,hr_user1/hr_user2,JAPAN_GROUP'
+
+  # 财务部门用户 - 走香港线路
+  - 'PROXY-USER,finance_user1/finance_user2,STANDARD_HK'
+
+  # === 基于域名的路由规则 ===
+
+  # 流媒体服务 - 使用美国线路
+  - 'DOMAIN-SUFFIX,netflix.com,VIP_US'
+  - 'DOMAIN-SUFFIX,hulu.com,VIP_US'
+
+  # 社交媒体 - 使用香港线路
+  - 'DOMAIN-SUFFIX,facebook.com,STANDARD_HK'
+  - 'DOMAIN-SUFFIX,twitter.com,STANDARD_HK'
+
+  # === 本地网络直连 ===
+  - 'IP-CIDR,127.0.0.0/8,DIRECT'
+  - 'IP-CIDR,192.168.0.0/16,DIRECT'
+  - 'IP-CIDR,10.0.0.0/8,DIRECT'
+  - 'IP-CIDR,172.16.0.0/12,DIRECT'
+
+  # === 默认规则 ===
+  # 其他所有用户使用标准香港线路
+  - 'MATCH,STANDARD_HK'

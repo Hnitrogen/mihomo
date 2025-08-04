@@ -1,0 +1,73 @@
+mixed-port: 7891
+allow-lan: true
+external-controller: 0.0.0.0:9093
+secret: "test-secret-123"
+bind-address: '*'
+mode: rule
+log-level: debug
+
+# 部门密钥映射配置
+department-secrets:
+  "tech_secret_123": "tech_dept"
+  "sales_secret_456": "sales_dept"
+  "hr_secret_789": "hr_dept"
+
+# 简单的测试代理配置
+proxies:
+  - name: "US-VIP"
+    type: ss
+    server: 127.0.0.1
+    port: 1080
+    cipher: aes-256-gcm
+    password: test-password
+
+  - name: "HK-Standard"
+    type: ss
+    server: 127.0.0.1
+    port: 1081
+    cipher: aes-256-gcm
+    password: test-password
+
+  - name: "JP-Normal"
+    type: ss
+    server: 127.0.0.1
+    port: 1082
+    cipher: aes-256-gcm
+    password: test-password
+
+proxy-groups:
+  - name: "VIP_US"
+    type: select
+    proxies:
+      - US-VIP
+      - DIRECT
+  
+  - name: "STANDARD_HK"
+    type: select
+    proxies:
+      - HK-Standard
+      - DIRECT
+
+  - name: "JAPAN_GROUP"
+    type: select
+    proxies:
+      - JP-Normal
+      - DIRECT
+
+rules:
+  # 基于代理认证用户名的路由规则
+  - 'PROXY-USER,tech_user1/tech_user2/tech_admin,VIP_US'
+  - 'PROXY-USER,sales_user1/sales_user2/sales_manager,STANDARD_HK'
+  - 'PROXY-USER,hr_user1/hr_user2,JAPAN_GROUP'
+  
+  # 测试域名
+  - 'DOMAIN-SUFFIX,httpbin.org,VIP_US'
+  - 'DOMAIN-SUFFIX,google.com,STANDARD_HK'
+  
+  # 本地直连
+  - 'IP-CIDR,127.0.0.0/8,DIRECT'
+  - 'IP-CIDR,192.168.0.0/16,DIRECT'
+  - 'IP-CIDR,10.0.0.0/8,DIRECT'
+  
+  # 默认规则
+  - 'MATCH,STANDARD_HK'

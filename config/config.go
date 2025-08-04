@@ -9,6 +9,7 @@ import (
 	"net/url"
 	"path/filepath"
 	"strings"
+	"sync"
 	"time"
 	_ "unsafe"
 
@@ -41,6 +42,25 @@ import (
 	"golang.org/x/exp/slices"
 	"gopkg.in/yaml.v3"
 )
+
+var (
+	currentRawConfig *RawConfig
+	configMutex      sync.RWMutex
+)
+
+// GetRawConfig 获取当前的原始配置
+func GetRawConfig() *RawConfig {
+	configMutex.RLock()
+	defer configMutex.RUnlock()
+	return currentRawConfig
+}
+
+// SetRawConfig 设置当前的原始配置
+func SetRawConfig(cfg *RawConfig) {
+	configMutex.Lock()
+	defer configMutex.Unlock()
+	currentRawConfig = cfg
+}
 
 // General config
 type General struct {
@@ -414,24 +434,25 @@ type RawConfig struct {
 	KeepAliveInterval       int               `yaml:"keep-alive-interval" json:"keep-alive-interval"`
 	DisableKeepAlive        bool              `yaml:"disable-keep-alive" json:"disable-keep-alive"`
 
-	ProxyProvider map[string]map[string]any `yaml:"proxy-providers" json:"proxy-providers"`
-	RuleProvider  map[string]map[string]any `yaml:"rule-providers" json:"rule-providers"`
-	Proxy         []map[string]any          `yaml:"proxies" json:"proxies"`
-	ProxyGroup    []map[string]any          `yaml:"proxy-groups" json:"proxy-groups"`
-	Rule          []string                  `yaml:"rules" json:"rule"`
-	SubRules      map[string][]string       `yaml:"sub-rules" json:"sub-rules"`
-	Listeners     []map[string]any          `yaml:"listeners" json:"listeners"`
-	Hosts         map[string]any            `yaml:"hosts" json:"hosts"`
-	DNS           RawDNS                    `yaml:"dns" json:"dns"`
-	NTP           RawNTP                    `yaml:"ntp" json:"ntp"`
-	Tun           RawTun                    `yaml:"tun" json:"tun"`
-	TuicServer    RawTuicServer             `yaml:"tuic-server" json:"tuic-server"`
-	IPTables      RawIPTables               `yaml:"iptables" json:"iptables"`
-	Experimental  RawExperimental           `yaml:"experimental" json:"experimental"`
-	Profile       RawProfile                `yaml:"profile" json:"profile"`
-	GeoXUrl       RawGeoXUrl                `yaml:"geox-url" json:"geox-url"`
-	Sniffer       RawSniffer                `yaml:"sniffer" json:"sniffer"`
-	TLS           RawTLS                    `yaml:"tls" json:"tls"`
+	ProxyProvider     map[string]map[string]any `yaml:"proxy-providers" json:"proxy-providers"`
+	RuleProvider      map[string]map[string]any `yaml:"rule-providers" json:"rule-providers"`
+	Proxy             []map[string]any          `yaml:"proxies" json:"proxies"`
+	ProxyGroup        []map[string]any          `yaml:"proxy-groups" json:"proxy-groups"`
+	Rule              []string                  `yaml:"rules" json:"rule"`
+	SubRules          map[string][]string       `yaml:"sub-rules" json:"sub-rules"`
+	DepartmentSecrets map[string]string         `yaml:"department-secrets" json:"department-secrets"`
+	Listeners         []map[string]any          `yaml:"listeners" json:"listeners"`
+	Hosts             map[string]any            `yaml:"hosts" json:"hosts"`
+	DNS               RawDNS                    `yaml:"dns" json:"dns"`
+	NTP               RawNTP                    `yaml:"ntp" json:"ntp"`
+	Tun               RawTun                    `yaml:"tun" json:"tun"`
+	TuicServer        RawTuicServer             `yaml:"tuic-server" json:"tuic-server"`
+	IPTables          RawIPTables               `yaml:"iptables" json:"iptables"`
+	Experimental      RawExperimental           `yaml:"experimental" json:"experimental"`
+	Profile           RawProfile                `yaml:"profile" json:"profile"`
+	GeoXUrl           RawGeoXUrl                `yaml:"geox-url" json:"geox-url"`
+	Sniffer           RawSniffer                `yaml:"sniffer" json:"sniffer"`
+	TLS               RawTLS                    `yaml:"tls" json:"tls"`
 
 	ClashForAndroid RawClashForAndroid `yaml:"clash-for-android" json:"clash-for-android"`
 }
@@ -464,6 +485,7 @@ func DefaultRawConfig() *RawConfig {
 		Rule:              []string{},
 		Proxy:             []map[string]any{},
 		ProxyGroup:        []map[string]any{},
+		DepartmentSecrets: map[string]string{},
 		TCPConcurrent:     false,
 		FindProcessMode:   P.FindProcessStrict,
 		GlobalUA:          "clash.meta/" + C.Version,
@@ -578,6 +600,9 @@ func UnmarshalRawConfig(buf []byte) (*RawConfig, error) {
 }
 
 func ParseRawConfig(rawCfg *RawConfig) (*Config, error) {
+	// 设置全局配置
+	SetRawConfig(rawCfg)
+
 	config := &Config{}
 	log.Infoln("Start initial configuration in progress") //Segment finished in xxm
 	startTime := time.Now()

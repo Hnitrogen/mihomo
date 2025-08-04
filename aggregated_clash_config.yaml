@@ -35,6 +35,265 @@ dns:
     ipcidr:
     - 240.0.0.0/4
 proxies:
+- name: 20.63 GB | 150 GB
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 'Traffic Reset: 17 Days Left'
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 'Expire Date: 2025-08-21'
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨02
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16002'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨03
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16003'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨04
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16004'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨05
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16005'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨06
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16006'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨07
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16007'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨08
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16008'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨09
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16009'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨10
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16010'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇨🇳 Taiwan丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '17001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇨🇳 Taiwan丨02
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '17002'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇨🇳 Taiwan丨03
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '17003'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇨🇳 Taiwan丨04
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '17004'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇨🇳 Taiwan丨05
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '17005'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇸🇬 Singapore丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '18001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇸🇬 Singapore丨02
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '18002'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇸🇬 Singapore丨03
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '18003'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇸🇬 Singapore丨04
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '18004'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇸🇬 Singapore丨05
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '18005'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇯🇵 Japan丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '19001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇯🇵 Japan丨02
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '19002'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇯🇵 Japan丨03
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '19003'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇯🇵 Japan丨04
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '19004'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇯🇵 Japan丨05
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '19005'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇺🇸 United States丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '20001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇺🇸 United States丨02
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '20002'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇺🇸 United States丨03
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '20003'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇺🇸 United States丨04
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '20004'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇺🇸 United States丨05
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '20005'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇰🇷 South Korea丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '21001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇨🇦 Canada丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '22002'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇬🇧 Great Britain丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '23001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 此地區屬於高級套餐
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '10086'
+  cipher: chacha20-ietf-poly1305
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
 - name: 🤖 XXAI网址：xxai.info
   type: ss
   server: cmcc.xxality.cn
@@ -427,460 +686,201 @@ proxies:
   cipher: chacha20-ietf-poly1305
   password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
   udp: true
-- name: 20.63 GB | 150 GB
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16001'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 'Traffic Reset: 17 Days Left'
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16001'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 'Expire Date: 2025-08-21'
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16001'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇭🇰 Hong Kong丨01
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16001'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇭🇰 Hong Kong丨02
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16002'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇭🇰 Hong Kong丨03
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16003'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇭🇰 Hong Kong丨04
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16004'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇭🇰 Hong Kong丨05
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16005'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇭🇰 Hong Kong丨06
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16006'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇭🇰 Hong Kong丨07
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16007'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇭🇰 Hong Kong丨08
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16008'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇭🇰 Hong Kong丨09
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16009'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇭🇰 Hong Kong丨10
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '16010'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇨🇳 Taiwan丨01
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '17001'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇨🇳 Taiwan丨02
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '17002'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇨🇳 Taiwan丨03
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '17003'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇨🇳 Taiwan丨04
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '17004'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇨🇳 Taiwan丨05
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '17005'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇸🇬 Singapore丨01
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '18001'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇸🇬 Singapore丨02
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '18002'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇸🇬 Singapore丨03
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '18003'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇸🇬 Singapore丨04
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '18004'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇸🇬 Singapore丨05
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '18005'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇯🇵 Japan丨01
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '19001'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇯🇵 Japan丨02
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '19002'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇯🇵 Japan丨03
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '19003'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇯🇵 Japan丨04
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '19004'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇯🇵 Japan丨05
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '19005'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇺🇸 United States丨01
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '20001'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇺🇸 United States丨02
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '20002'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇺🇸 United States丨03
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '20003'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇺🇸 United States丨04
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '20004'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇺🇸 United States丨05
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '20005'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇰🇷 South Korea丨01
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '21001'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇨🇦 Canada丨01
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '22002'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 🇬🇧 Great Britain丨01
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '23001'
-  cipher: aes-256-gcm
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
-- name: 此地區屬於高級套餐
-  type: ss
-  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-  port: '10086'
-  cipher: chacha20-ietf-poly1305
-  password: 144ff133-0857-42dd-8daa-a00574220339
-  udp: true
 authentication:
-- cs12uorg:wujYnMlmG34SpWGf
-- 68jz33d0:O2gFfFdupd3pn7lU
-- ai7y26qz:MOm32BjqKGPuI08Y
-- 12zd5wxi:t0I7gyCA0unWtlyh
-- cfybd7ax:Ou5VmTYk6mHF9MXC
-- hovarnmy:V1ZiHYX5whHsvSRk
-- y3esnk6z:x36QjLzNu4XYucVy
-- r8dtlm9h:wg6fdLsoVuy5rSvo
-- 3slqu7s1:uHm4uBuGAXY5jJXz
-- 5q9daqk0:hD6cWKEYzYm6o7iT
-- e2teoonf:UJPNquTuompZA0c4
-- qu2ixj5i:iILUO5zjQb0XbuI2
-- rls84ii4:D38TWVAuU4ONKLpp
-- c18heebe:fssKYb0IPsfzikcu
-- orgy76yg:xUD6GPLfFm8SY3Yr
-- rwgm7fef:lNVc8m59QNnw9mAR
-- bz47jbcp:hGRlur3XRG8dBDl1
-- lxi9k6pr:MCoDoL3kp5JDhy53
-- phw20gft:XYfMyYmgRXSFArAN
-- 0olx6vfd:H9IEheGS7Pubukfu
-- 9t10d33o:n6SnwZGoTKHEiKBr
-- 4k2cvwp5:Ilad5c1VuldHntM5
-- 4hqdhymw:p9xcAl0SBkZEQQ6G
-- su4o017a:06dJcSdD6fTbwbcO
-- pdyn9d4g:slswtqtmAt2aAwCJ
-- p8my7l1h:Tmue09sMHdJLxBtb
-- 3ucyjkl1:cUqQsNJP2OVJU36e
-- 9g75nntq:9GnYOcWPYtRfzeoB
-- 5fmyen83:bhue1h5VW8L8RUod
-- a67v0pme:31Fl3BVXdlx9DiEr
-- zushp158:ArC0LFKm1h51Ptas
-- 4rotb9at:1PNmITZrNNsdFZxK
-- 4x4boud9:Of9k9SwGVu4Hm0Z6
-- dap1mgpb:W0Ph5uQi5D00QjBd
-- 27rpbbq9:hBT1751SeYHmEkV6
-- h8ha8qqp:NRGF8WxdR7at2Lfi
-- 16qcw8i2:ctbhBeMUN9FzTnho
-- 5hfos1de:RK53Lwrwoeujy4qA
-- 4mldy46u:17PghFAXUeh9f9Zr
-- 5mkg0lec:6CJfigbR5jxQFbD9
-- ff4vq173:pRYoRHiOsj617HGY
-- dyb1y2or:aEUJoXmZPCxLOwFs
-- 1o2efl03:E4I72s9esrdXHfy3
-- fzhms2ax:B6l0BkiELj9IgZF9
-- 51ujaulh:JJdRy0exJIP6TieV
-- 1ei5jk84:isQY2Ijl84UIF7oU
-- 56iooh4q:YvpWQkfZKbBkNqEQ
-- t3x8jzg4:GqgrTd8hffKsjvix
-- eggjbgzp:AZJJhQLZ47qAU64q
-- 6n6h5tde:oOIQnqvYl1shNMHy
-- btnms51c:yPh0X8orAtVEpffJ
-- mdduo8gy:a6Z10mQLavavcDFq
-- qgfd8b9e:cYxDvlnBtUiqY4wP
-- fukzesoh:QaIfj5jCRVx2DuzV
-- ffww7ve3:HJrFpe68DRQSADED
-- 2kpxksgi:6sVqSvXNNbminrdD
-- ykq7wt0j:5seiBtImVGul5vek
-- okigahvy:IkWoQMpxa7AqEZ4e
-- yjjjea0p:1OAaaS3fWpRrHh84
-- ditly2mn:kAsZYQwyYc4c3Vik
-- 2bhoe8yr:mgGU9eTYByljairc
-- 4jz6z78q:FjBfV3paQu2BPzVR
-- zfxz2xny:bilvTVTq5HARtrtD
-- y3z9rgnj:8sc0l2EUHeTOS9sF
-- 6yess25x:uzpRSV5ngZaGz5wd
-- 3a364u4o:X3bDdnzhR6im594C
-- gruwbsfq:MtC372pNB1KCF8Xt
-- 347bn7r2:ojX45UTqSnfPoMhz
-- o01hfmvv:mRQdDL1kvEmFsOlS
-- sk1n09zv:RKM3XI3ViqLwQpxi
-- 2vwjlbv7:4NkjdsJxSSBY7cCc
-- upizx2ml:98hR9XdtwM7dmRMU
-- 7jxqxp0z:e29tVhNqXI8F2Ukb
-- xaikxcij:N3retjobNBTlugTd
-- mrt3k8hn:BnsaitHOgdope1qO
-- fk6w8wgi:B4YR4eGp82BNG5nc
-- 8ulqilxk:nC6bPEFW60xKtJSN
-- yz2g3yhu:79geaTotFVqhtkGn
-- 98f3p86y:jGmiQzDQccAxwPKJ
-- w36u0i70:Tm18HrRzhhO8bPIq
-- auv1fwqm:lOZG6kXdj52ABLqd
-- 8jc5dypn:JK8rSERO1s5sovtN
-- hpuofiiu:FgAaEMe9f9UvsFMr
-- abpvy59m:j55hNafxiylfqU8I
-- 7s8imdru:p1NkJj3tKB4Z5nok
-- 7q1qy5rv:3XAvYljHuBo7ODyP
-- wtzorkfc:gHxIwvH1qzeBj8xO
-- 8u76j1ml:rxROHu4HaZnNbFrP
-- t64sci5s:CfGfSoEYUZUIft53
-- ihj6jglz:9Y9dYSiYYL4ABAwc
-- o0mg1775:q77o9f3Ab4a8k7nP
-- ockredqq:bEPll3q2U0BfFNtD
-- m8bcr10u:iVwXN8ybJa84IXJw
+- dp1_o849ej5j:5vVraS59gvf13MLr
+- dp1_lwjeh6k0:uTte8XtwkSzNyvNE
+- dp1_3l63lqp8:5FSjMb8uCMZIjw4n
+- dp1_8lullxvh:EFrzjrA64fAhJiFI
+- dp1_1jkquoi7:Mih6r7S2yqIt8pME
+- dp1_tgh63mtl:69sf3FjMIXDdjys6
+- dp1_l85ak1ra:rSMcSFUqTWwG7O3a
+- dp1_b6yuo05s:mtKDdGLVYODY6Abj
+- dp1_0wodmbc0:xf4mHHvOZy6SQrO6
+- dp1_w5th4c9y:nxCUqo82UxF7du5D
+- dp1_ihpmc6ct:ApEWpaVv1d6m93gA
+- dp1_h3uofmfe:ODZT5q3Z76C7IibV
+- dp1_og0uhzbk:GRCCAdZAU8Qy0O9I
+- dp1_r3s45h53:0q2CBvpVm3C3mpka
+- dp1_wh5k261h:B3192k6awMYvMurZ
+- dp1_o9jksfa4:B5pGIc0LlXkKwok9
+- dp1_h710e8c6:GFaPLOQixoGAnvcD
+- dp1_j5u7owmw:xMLaoKZdCyZGC6K4
+- dp1_j6rh8bw1:ilGTkQSi6vAVQu5v
+- dp1_8yo5opbu:xyJUTDZZgwTpTUVp
+- dp1_der0mapg:L6xHso4xPfCqBPMp
+- dp1_ieddj8th:fVv4gml80ZlHAM6m
+- dp1_q9rtshqw:CwOWb5mAEaAQvW2S
+- dp1_g71xznsl:Qac7f50frQbAQ7Vc
+- dp1_35u8bak0:Gw9xVEv0ZiQY3ldi
+- dp1_18etpggk:OMbH9FlfzQIH4Jul
+- dp1_286ytvup:UHlTk9x5GisFJwvq
+- dp1_yatvaju4:8U82Z6Dj9kzc85eT
+- dp1_z5vuvrp1:P7kHNEDTjT9GkAaG
+- dp1_cstmpt4o:rR7iTxe1SH7kEa4g
+- dp1_3l4xl9dq:Lyk9814TiytS3guI
+- dp1_iz1a5vxp:TuUj5YHePcaZPrTN
+- dp1_nqni76um:aUZgC5ovXDQTxANP
+- dp1_agds6ig4:d6th5zVC8BiOxN8w
+- dp1_9t6npg2k:yPLZMP3hVK2mttx1
+- dp1_szo6v3sr:rzQaqLlYCS464INv
+- dp1_gswvqfge:vf1gs9ibHIa7CZSd
+- dp1_w5ypqtat:CRZ2eM1NCHkI7p5r
+- dp1_1ar5hfwj:F0jixuAHHNTrU0Lc
+- dp1_bs8e8dhr:WkWBideB1ImQhpfG
+- dp1_ke8encuy:eFuxWG5zhJ3rltYQ
+- dp1_ssv7dnr0:KjtfKX6k83OirTjQ
+- dp1_8hr3xo0n:HdrcPBxDtGJPXXtI
+- dp1_rq4bsf1m:udzrjUvbc6xwLRiw
+- dp1_eee5df5y:RYSxfFXQ0yww00pE
+- dp1_fxcbfw5w:wtg5rNUTT8yCtaHH
+- dp1_4tu5f6zc:yuIX7PPGCdx6dGho
+- dp2_9g5ovd32:XBULrulmQrJF7hTo
+- dp2_f0d8oyj8:8Oy9B6ejjXycTg0y
+- dp2_axbbjr8e:fVfppTcbH94SMXWT
+- dp2_he8kk1k4:0GLX6Kz14X6WLO3v
+- dp2_igj1y8hp:XCslqCDHEJenN5lo
+- dp2_98bkznw6:LsR48TR1zgJS39d1
+- dp2_87zze9we:E6ZtzZHjpNN5hbyO
+- dp2_q0vmy9wm:lpJcThjjDFIaz77o
+- dp2_ipc6yxrx:Q3oiraaEh56QI9sI
+- dp2_3pmnpqgw:mXXXAUAupvD1aCMN
+- dp2_cttucd81:eEknkVPjpiPDmBa6
+- dp2_zmr1zpg8:BC0tFaUdqH2qdAGN
+- dp2_8tu7zhet:2FizTzLXQh86vZ84
+- dp2_rqct7khh:YpPpVX2fGsdWpIcN
+- dp2_0hpe4d27:WXHKxZ180NdeFbWv
+- dp2_jc5a8uqc:eOhDwJYeqNEa9oj9
+- dp2_ifhaci9a:mvNxUsw39SyM7QMR
+- dp2_qnxls08j:zI2OYZdNnYDbOdB3
+- dp2_skp51r06:SzevJkoXP4hz71QR
+- dp2_fzas6xpj:3wYEf6ZozyQA24gM
+- dp2_1yjv5icq:CHaZRddlO0q3xCBx
+- dp2_kybpr2pp:hyHeY7n54IdISt3w
+- dp2_gpynq82x:plJB7a5Wl2pVQtuy
+- dp2_2rzxukza:QbLjxY4ceoCWuN0I
+- dp2_muuidneu:6ZlEkdDt2cI5o62z
+- dp2_k8v1948w:1Wdrxq0ST36TzPUf
+- dp2_em7qmp95:NJma5QRODiWtxzNv
+- dp2_vrivyrvi:6Avnx7PUsZppCzxw
+- dp2_sje3i2md:DP7oesFPA5BN0O6S
+- dp2_w5dgcklf:WN3hSsmzs8PitITa
+- dp2_zn50qbof:TZUYrRDHgU8Xji1J
+- dp2_aypizy5g:zrv5GaszRRfHTo3F
+- dp2_djp2bcjo:Lwa5wgC2FkMZKQx2
+- dp2_8haolp3l:LUfm3tZrv67ZE6FQ
+- dp2_z2di6qu5:FBkLjH0rLvzRjHz6
+- dp2_8r4zsd32:6m93ooyRvxUZIqbu
+- dp2_5jbw5y3h:HSUzQ0WiXBf9YzLt
+- dp2_gf90vpci:mO4vlLSHrONy8q5V
+- dp2_qoxz9no1:sZvEi4H1FhwzYqbK
+- dp2_qk2bvxli:0K2dEDNm2RIpOpTr
+- dp2_dl7h4hsv:2wfe8dBZQcPle52d
+- dp2_0ogb3no8:D7qepx6PO5GB3X7l
+- dp2_liyzvze0:9we6Mtnp3wGEb1ch
+- dp2_5uu59njl:KoU2xJtdln0dZDpH
+- dp2_gmkbet69:52GKQVAKl2tEqX9d
+- dp2_pivq9ebk:suMrYImiPDRHVzt6
 rules:
 - '# 基于代理用户认证的路由规则 - 必须放在最前面'
-- PROXY-USER,cs12uorg,🤖 XXAI网址：xxai.info
-- PROXY-USER,68jz33d0,剩余流量：279.27 GB
-- PROXY-USER,ai7y26qz,距离下次重置剩余：19 天
-- PROXY-USER,12zd5wxi,套餐到期：2025-08-23
-- PROXY-USER,cfybd7ax,Asia 01 | Mix IEPL
-- PROXY-USER,hovarnmy,Asia 02 | Mix IEPL
-- PROXY-USER,y3esnk6z,🇭🇰Hong Kong 01 | IEPL
-- PROXY-USER,r8dtlm9h,🇭🇰Hong Kong 02 | IEPL
-- PROXY-USER,3slqu7s1,🇭🇰Hong Kong 03 | IEPL + UDP
-- PROXY-USER,5q9daqk0,🇭🇰Hong Kong [BGP] | Direct 02
-- PROXY-USER,e2teoonf,🇸🇬Singapore 01 | IEPL
-- PROXY-USER,qu2ixj5i,🇸🇬Singapore 03 | IEPL + UDP
-- PROXY-USER,rls84ii4,🇸🇬Singapore 04 | IEPL + UDP | BGP
-- PROXY-USER,c18heebe,🇸🇬Singapore 05 | Direct
-- PROXY-USER,orgy76yg,🇨🇳Taiwan 01 | IEPL
-- PROXY-USER,rwgm7fef,🇨🇳Taiwan 03 | IEPL + UDP
-- PROXY-USER,bz47jbcp,🇨🇳Taiwan 04 | IEPL + UDP | BGP
-- PROXY-USER,lxi9k6pr,🇨🇳Taiwan 05 | Direct
-- PROXY-USER,phw20gft,🇯🇵Japan 01 | IEPL
-- PROXY-USER,0olx6vfd,🇯🇵Japan 03 | IEPL + UDP
-- PROXY-USER,9t10d33o,🇯🇵Japan 04 | IEPL + UDP | BGP
-- PROXY-USER,4k2cvwp5,🇯🇵Japan 05 | Direct
-- PROXY-USER,4hqdhymw,🇰🇷Korea  01 | IEPL
-- PROXY-USER,su4o017a,🇰🇷Korea  02 | IEPL
-- PROXY-USER,pdyn9d4g,🇰🇷Korea  05 | IEPL + UDP
-- PROXY-USER,p8my7l1h,🇰🇷Korea  06 | IEPL + UDP
-- PROXY-USER,3ucyjkl1,🇰🇷Korea  07 | IEPL + UDP | BGP
-- PROXY-USER,9g75nntq,🇰🇷Korea  08 | IEPL + UDP | BGP
-- PROXY-USER,5fmyen83,🇰🇷Korea  09 | Direct
-- PROXY-USER,a67v0pme,🇰🇷Korea  10 | Direct
-- PROXY-USER,zushp158,🇹🇭Thailand 01
-- PROXY-USER,4rotb9at,🇹🇭Thailand 02
-- PROXY-USER,4x4boud9,🇺🇸United States 01 | IEPL
-- PROXY-USER,dap1mgpb,🇺🇸United States 03 | IEPL + UDP
-- PROXY-USER,27rpbbq9,🇺🇸United States 04 | IEPL + UDP | BGP
-- PROXY-USER,h8ha8qqp,🇺🇸United States 05 | Direct
-- PROXY-USER,16qcw8i2,🇬🇧United Kingdom 01 | IEPL
-- PROXY-USER,5hfos1de,🇬🇧United Kingdom 03 | IEPL | BGP
-- PROXY-USER,4mldy46u,🇬🇧United Kingdom 04 | Direct
-- PROXY-USER,5mkg0lec,🇨🇦Canada 01 | IEPL
-- PROXY-USER,ff4vq173,🇨🇦Canada 03 | IPLC | BGP
-- PROXY-USER,dyb1y2or,🇨🇦Canada 04 | Direct
-- PROXY-USER,1o2efl03,🇩🇪Germany 01 | IEPL
-- PROXY-USER,fzhms2ax,🇩🇪Germany 03 | IPLC | BGP
-- PROXY-USER,51ujaulh,🇷🇺Russia 01 | IEPL
-- PROXY-USER,1ei5jk84,🇷🇺Russia 03 | IPLC | BGP
-- PROXY-USER,56iooh4q,🇮🇪Ireland 01 | IEPL
-- PROXY-USER,t3x8jzg4,🇮🇪Ireland 03 | IPLC | BGP
-- PROXY-USER,eggjbgzp,🇿🇦South Africa 01 | IEPL
-- PROXY-USER,6n6h5tde,🇿🇦South Africa 03 | IPLC | BGP
-- PROXY-USER,btnms51c,🇳🇱Netherlands 01 | IEPL
-- PROXY-USER,mdduo8gy,🇳🇱Netherlands 03 | IPLC | BGP
-- PROXY-USER,qgfd8b9e,🇫🇷France 01 | IEPL
-- PROXY-USER,fukzesoh,🇫🇷France 03 | IPLC | BGP
-- PROXY-USER,ffww7ve3,🇹🇷Türkiye 01
-- PROXY-USER,2kpxksgi,🇹🇷Türkiye 02
-- PROXY-USER,ykq7wt0j,20.63 GB | 150 GB
-- 'PROXY-USER,okigahvy,Traffic Reset: 17 Days Left'
-- 'PROXY-USER,yjjjea0p,Expire Date: 2025-08-21'
-- PROXY-USER,ditly2mn,🇭🇰 Hong Kong丨01
-- PROXY-USER,2bhoe8yr,🇭🇰 Hong Kong丨02
-- PROXY-USER,4jz6z78q,🇭🇰 Hong Kong丨03
-- PROXY-USER,zfxz2xny,🇭🇰 Hong Kong丨04
-- PROXY-USER,y3z9rgnj,🇭🇰 Hong Kong丨05
-- PROXY-USER,6yess25x,🇭🇰 Hong Kong丨06
-- PROXY-USER,3a364u4o,🇭🇰 Hong Kong丨07
-- PROXY-USER,gruwbsfq,🇭🇰 Hong Kong丨08
-- PROXY-USER,347bn7r2,🇭🇰 Hong Kong丨09
-- PROXY-USER,o01hfmvv,🇭🇰 Hong Kong丨10
-- PROXY-USER,sk1n09zv,🇨🇳 Taiwan丨01
-- PROXY-USER,2vwjlbv7,🇨🇳 Taiwan丨02
-- PROXY-USER,upizx2ml,🇨🇳 Taiwan丨03
-- PROXY-USER,7jxqxp0z,🇨🇳 Taiwan丨04
-- PROXY-USER,xaikxcij,🇨🇳 Taiwan丨05
-- PROXY-USER,mrt3k8hn,🇸🇬 Singapore丨01
-- PROXY-USER,fk6w8wgi,🇸🇬 Singapore丨02
-- PROXY-USER,8ulqilxk,🇸🇬 Singapore丨03
-- PROXY-USER,yz2g3yhu,🇸🇬 Singapore丨04
-- PROXY-USER,98f3p86y,🇸🇬 Singapore丨05
-- PROXY-USER,w36u0i70,🇯🇵 Japan丨01
-- PROXY-USER,auv1fwqm,🇯🇵 Japan丨02
-- PROXY-USER,8jc5dypn,🇯🇵 Japan丨03
-- PROXY-USER,hpuofiiu,🇯🇵 Japan丨04
-- PROXY-USER,abpvy59m,🇯🇵 Japan丨05
-- PROXY-USER,7s8imdru,🇺🇸 United States丨01
-- PROXY-USER,7q1qy5rv,🇺🇸 United States丨02
-- PROXY-USER,wtzorkfc,🇺🇸 United States丨03
-- PROXY-USER,8u76j1ml,🇺🇸 United States丨04
-- PROXY-USER,t64sci5s,🇺🇸 United States丨05
-- PROXY-USER,ihj6jglz,🇰🇷 South Korea丨01
-- PROXY-USER,o0mg1775,🇨🇦 Canada丨01
-- PROXY-USER,ockredqq,🇬🇧 Great Britain丨01
-- PROXY-USER,m8bcr10u,此地區屬於高級套餐
+- PROXY-USER,dp1_o849ej5j,20.63 GB | 150 GB
+- 'PROXY-USER,dp1_lwjeh6k0,Traffic Reset: 17 Days Left'
+- 'PROXY-USER,dp1_3l63lqp8,Expire Date: 2025-08-21'
+- PROXY-USER,dp1_8lullxvh,🇭🇰 Hong Kong丨01
+- PROXY-USER,dp1_1jkquoi7,🇭🇰 Hong Kong丨02
+- PROXY-USER,dp1_tgh63mtl,🇭🇰 Hong Kong丨03
+- PROXY-USER,dp1_l85ak1ra,🇭🇰 Hong Kong丨04
+- PROXY-USER,dp1_b6yuo05s,🇭🇰 Hong Kong丨05
+- PROXY-USER,dp1_0wodmbc0,🇭🇰 Hong Kong丨06
+- PROXY-USER,dp1_w5th4c9y,🇭🇰 Hong Kong丨07
+- PROXY-USER,dp1_ihpmc6ct,🇭🇰 Hong Kong丨08
+- PROXY-USER,dp1_h3uofmfe,🇭🇰 Hong Kong丨09
+- PROXY-USER,dp1_og0uhzbk,🇭🇰 Hong Kong丨10
+- PROXY-USER,dp1_r3s45h53,🇨🇳 Taiwan丨01
+- PROXY-USER,dp1_wh5k261h,🇨🇳 Taiwan丨02
+- PROXY-USER,dp1_o9jksfa4,🇨🇳 Taiwan丨03
+- PROXY-USER,dp1_h710e8c6,🇨🇳 Taiwan丨04
+- PROXY-USER,dp1_j5u7owmw,🇨🇳 Taiwan丨05
+- PROXY-USER,dp1_j6rh8bw1,🇸🇬 Singapore丨01
+- PROXY-USER,dp1_8yo5opbu,🇸🇬 Singapore丨02
+- PROXY-USER,dp1_der0mapg,🇸🇬 Singapore丨03
+- PROXY-USER,dp1_ieddj8th,🇸🇬 Singapore丨04
+- PROXY-USER,dp1_q9rtshqw,🇸🇬 Singapore丨05
+- PROXY-USER,dp1_g71xznsl,🇯🇵 Japan丨01
+- PROXY-USER,dp1_35u8bak0,🇯🇵 Japan丨02
+- PROXY-USER,dp1_18etpggk,🇯🇵 Japan丨03
+- PROXY-USER,dp1_286ytvup,🇯🇵 Japan丨04
+- PROXY-USER,dp1_yatvaju4,🇯🇵 Japan丨05
+- PROXY-USER,dp1_z5vuvrp1,🇺🇸 United States丨01
+- PROXY-USER,dp1_cstmpt4o,🇺🇸 United States丨02
+- PROXY-USER,dp1_3l4xl9dq,🇺🇸 United States丨03
+- PROXY-USER,dp1_iz1a5vxp,🇺🇸 United States丨04
+- PROXY-USER,dp1_nqni76um,🇺🇸 United States丨05
+- PROXY-USER,dp1_agds6ig4,🇰🇷 South Korea丨01
+- PROXY-USER,dp1_9t6npg2k,🇨🇦 Canada丨01
+- PROXY-USER,dp1_szo6v3sr,🇬🇧 Great Britain丨01
+- PROXY-USER,dp1_gswvqfge,此地區屬於高級套餐
+- PROXY-USER,dp1_w5ypqtat,🤖 XXAI网址：xxai.info
+- PROXY-USER,dp1_1ar5hfwj,剩余流量：279.27 GB
+- PROXY-USER,dp1_bs8e8dhr,距离下次重置剩余：19 天
+- PROXY-USER,dp1_ke8encuy,套餐到期：2025-08-23
+- PROXY-USER,dp1_ssv7dnr0,Asia 01 | Mix IEPL
+- PROXY-USER,dp1_8hr3xo0n,Asia 02 | Mix IEPL
+- PROXY-USER,dp1_rq4bsf1m,🇭🇰Hong Kong 01 | IEPL
+- PROXY-USER,dp1_eee5df5y,🇭🇰Hong Kong 02 | IEPL
+- PROXY-USER,dp1_fxcbfw5w,🇭🇰Hong Kong 03 | IEPL + UDP
+- PROXY-USER,dp1_4tu5f6zc,🇭🇰Hong Kong [BGP] | Direct 02
+- PROXY-USER,dp2_9g5ovd32,🇸🇬Singapore 01 | IEPL
+- PROXY-USER,dp2_f0d8oyj8,🇸🇬Singapore 03 | IEPL + UDP
+- PROXY-USER,dp2_axbbjr8e,🇸🇬Singapore 04 | IEPL + UDP | BGP
+- PROXY-USER,dp2_he8kk1k4,🇸🇬Singapore 05 | Direct
+- PROXY-USER,dp2_igj1y8hp,🇨🇳Taiwan 01 | IEPL
+- PROXY-USER,dp2_98bkznw6,🇨🇳Taiwan 03 | IEPL + UDP
+- PROXY-USER,dp2_87zze9we,🇨🇳Taiwan 04 | IEPL + UDP | BGP
+- PROXY-USER,dp2_q0vmy9wm,🇨🇳Taiwan 05 | Direct
+- PROXY-USER,dp2_ipc6yxrx,🇯🇵Japan 01 | IEPL
+- PROXY-USER,dp2_3pmnpqgw,🇯🇵Japan 03 | IEPL + UDP
+- PROXY-USER,dp2_cttucd81,🇯🇵Japan 04 | IEPL + UDP | BGP
+- PROXY-USER,dp2_zmr1zpg8,🇯🇵Japan 05 | Direct
+- PROXY-USER,dp2_8tu7zhet,🇰🇷Korea  01 | IEPL
+- PROXY-USER,dp2_rqct7khh,🇰🇷Korea  02 | IEPL
+- PROXY-USER,dp2_0hpe4d27,🇰🇷Korea  05 | IEPL + UDP
+- PROXY-USER,dp2_jc5a8uqc,🇰🇷Korea  06 | IEPL + UDP
+- PROXY-USER,dp2_ifhaci9a,🇰🇷Korea  07 | IEPL + UDP | BGP
+- PROXY-USER,dp2_qnxls08j,🇰🇷Korea  08 | IEPL + UDP | BGP
+- PROXY-USER,dp2_skp51r06,🇰🇷Korea  09 | Direct
+- PROXY-USER,dp2_fzas6xpj,🇰🇷Korea  10 | Direct
+- PROXY-USER,dp2_1yjv5icq,🇹🇭Thailand 01
+- PROXY-USER,dp2_kybpr2pp,🇹🇭Thailand 02
+- PROXY-USER,dp2_gpynq82x,🇺🇸United States 01 | IEPL
+- PROXY-USER,dp2_2rzxukza,🇺🇸United States 03 | IEPL + UDP
+- PROXY-USER,dp2_muuidneu,🇺🇸United States 04 | IEPL + UDP | BGP
+- PROXY-USER,dp2_k8v1948w,🇺🇸United States 05 | Direct
+- PROXY-USER,dp2_em7qmp95,🇬🇧United Kingdom 01 | IEPL
+- PROXY-USER,dp2_vrivyrvi,🇬🇧United Kingdom 03 | IEPL | BGP
+- PROXY-USER,dp2_sje3i2md,🇬🇧United Kingdom 04 | Direct
+- PROXY-USER,dp2_w5dgcklf,🇨🇦Canada 01 | IEPL
+- PROXY-USER,dp2_zn50qbof,🇨🇦Canada 03 | IPLC | BGP
+- PROXY-USER,dp2_aypizy5g,🇨🇦Canada 04 | Direct
+- PROXY-USER,dp2_djp2bcjo,🇩🇪Germany 01 | IEPL
+- PROXY-USER,dp2_8haolp3l,🇩🇪Germany 03 | IPLC | BGP
+- PROXY-USER,dp2_z2di6qu5,🇷🇺Russia 01 | IEPL
+- PROXY-USER,dp2_8r4zsd32,🇷🇺Russia 03 | IPLC | BGP
+- PROXY-USER,dp2_5jbw5y3h,🇮🇪Ireland 01 | IEPL
+- PROXY-USER,dp2_gf90vpci,🇮🇪Ireland 03 | IPLC | BGP
+- PROXY-USER,dp2_qoxz9no1,🇿🇦South Africa 01 | IEPL
+- PROXY-USER,dp2_qk2bvxli,🇿🇦South Africa 03 | IPLC | BGP
+- PROXY-USER,dp2_dl7h4hsv,🇳🇱Netherlands 01 | IEPL
+- PROXY-USER,dp2_0ogb3no8,🇳🇱Netherlands 03 | IPLC | BGP
+- PROXY-USER,dp2_liyzvze0,🇫🇷France 01 | IEPL
+- PROXY-USER,dp2_5uu59njl,🇫🇷France 03 | IPLC | BGP
+- PROXY-USER,dp2_gmkbet69,🇹🇷Türkiye 01
+- PROXY-USER,dp2_pivq9ebk,🇹🇷Türkiye 02
 - '# 测试域名'
-- DOMAIN-SUFFIX,httpbin.org,🤖 XXAI网址：xxai.info
-- DOMAIN-SUFFIX,google.com,🤖 XXAI网址：xxai.info
+- DOMAIN-SUFFIX,httpbin.org,20.63 GB | 150 GB
+- DOMAIN-SUFFIX,google.com,20.63 GB | 150 GB
 - '# 本地直连'
 - IP-CIDR,127.0.0.0/8,DIRECT
 - IP-CIDR,192.168.0.0/16,DIRECT
 - IP-CIDR,10.0.0.0/8,DIRECT
 - '# 默认规则'
-- MATCH,🤖 XXAI网址：xxai.info
+- MATCH,20.63 GB | 150 GB

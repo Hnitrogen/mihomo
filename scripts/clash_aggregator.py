@@ -19,15 +19,17 @@ from collections import OrderedDict
 
 
 class ClashAggregator:
-    def __init__(self):
+    def __init__(self, department_count=1):
         self.aggregated_proxies = []
         self.existing_proxy_users = set()
         self.generated_users = []
         self.proxy_groups = []
+        self.department_count = department_count
         
-    def generate_random_credentials(self, username_length=8):
-        """生成随机用户名和密码，密码长度是用户名长度的两倍"""
-        username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=username_length))
+    def generate_random_credentials(self, department_id, username_length=8):
+        """生成随机用户名和密码，用户名包含部门前缀，密码长度是用户名长度的两倍"""
+        base_username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=username_length))
+        username = f"dp{department_id}_{base_username}"
         password_length = username_length * 2
         password = ''.join(random.choices(string.ascii_letters + string.digits, k=password_length))
         return username, password
@@ -87,29 +89,59 @@ class ClashAggregator:
         return existing_proxy_user_rules
     
     def generate_user_rules_for_proxies(self) -> List[str]:
-        """为每个代理生成用户认证规则"""
+        """为每个代理生成用户认证规则，按部门分配"""
         user_rules = []
         
-        for i, proxy in enumerate(self.aggregated_proxies):
-            proxy_name = proxy.get('name', f'proxy_{i}')
+        # 计算每个部门应该分配的代理数量
+        total_proxies = len(self.aggregated_proxies)
+        proxies_per_department = total_proxies // self.department_count
+        remaining_proxies = total_proxies % self.department_count
+        
+        print(f"\n代理分配信息:")
+        print(f"总代理数量: {total_proxies}")
+        print(f"部门数量: {self.department_count}")
+        print(f"每个部门基础分配: {proxies_per_department} 个代理")
+        if remaining_proxies > 0:
+            print(f"剩余 {remaining_proxies} 个代理将分配给前 {remaining_proxies} 个部门")
+        
+        proxy_index = 0
+        
+        for dept_id in range(1, self.department_count + 1):
+            # 计算当前部门的代理数量（前几个部门可能多分配一个）
+            current_dept_proxies = proxies_per_department
+            if dept_id <= remaining_proxies:
+                current_dept_proxies += 1
             
-            # 生成唯一的用户名
-            while True:
-                username, password = self.generate_random_credentials()
-                if username not in self.existing_proxy_users:
-                    self.existing_proxy_users.add(username)
+            print(f"\n部门 {dept_id} 分配 {current_dept_proxies} 个代理:")
+            
+            for i in range(current_dept_proxies):
+                if proxy_index >= total_proxies:
                     break
-            
-            # 直接匹配到具体的代理名称
-            rule = f"PROXY-USER,{username},{proxy_name}"
-            user_rules.append(rule)
-            
-            self.generated_users.append({
-                'username': username,
-                'password': password,
-                'proxy_name': proxy_name,
-                'target_proxy': proxy_name
-            })
+                    
+                proxy = self.aggregated_proxies[proxy_index]
+                proxy_name = proxy.get('name', f'proxy_{proxy_index}')
+                
+                # 生成唯一的用户名（带部门前缀）
+                while True:
+                    username, password = self.generate_random_credentials(dept_id)
+                    if username not in self.existing_proxy_users:
+                        self.existing_proxy_users.add(username)
+                        break
+                
+                # 直接匹配到具体的代理名称
+                rule = f"PROXY-USER,{username},{proxy_name}"
+                user_rules.append(rule)
+                
+                self.generated_users.append({
+                    'username': username,
+                    'password': password,
+                    'proxy_name': proxy_name,
+                    'target_proxy': proxy_name,
+                    'department_id': dept_id
+                })
+                
+                print(f"  - {username} -> {proxy_name}")
+                proxy_index += 1
         
         return user_rules
     
@@ -203,14 +235,25 @@ class ClashAggregator:
         # 保存用户凭据信息
         credentials_file = output_file.replace('.yaml', '_credentials.txt').replace('.yml', '_credentials.txt')
         with open(credentials_file, 'w', encoding='utf-8') as f:
-            f.write("生成的用户凭据信息 (直接匹配代理订阅):\n")
+            f.write("生成的用户凭据信息 (按部门分配的代理订阅):\n")
             f.write("=" * 60 + "\n")
-            for user in self.generated_users:
-                f.write(f"用户名: {user['username']}\n")
-                f.write(f"密码: {user['password']}\n") 
-                f.write(f"直接匹配代理: {user['proxy_name']}\n")
-                f.write(f"规则: PROXY-USER,{user['username']},{user['proxy_name']}\n")
-                f.write("-" * 40 + "\n")
+            f.write(f"部门总数: {self.department_count}\n")
+            f.write(f"总代理数: {len(self.aggregated_proxies)}\n")
+            f.write("=" * 60 + "\n\n")
+            
+            # 按部门分组显示
+            for dept_id in range(1, self.department_count + 1):
+                dept_users = [user for user in self.generated_users if user.get('department_id') == dept_id]
+                if dept_users:
+                    f.write(f"部门 {dept_id} ({len(dept_users)} 个代理):\n")
+                    f.write("-" * 40 + "\n")
+                    for user in dept_users:
+                        f.write(f"用户名: {user['username']}\n")
+                        f.write(f"密码: {user['password']}\n") 
+                        f.write(f"直接匹配代理: {user['proxy_name']}\n")
+                        f.write(f"规则: PROXY-USER,{user['username']},{user['proxy_name']}\n")
+                        f.write("-" * 20 + "\n")
+                    f.write("\n")
         
         print(f"用户凭据信息已保存到: {credentials_file}")
 
@@ -220,14 +263,17 @@ def main():
     parser.add_argument('files', nargs='+', help='要聚合的Clash配置文件路径')
     parser.add_argument('-o', '--output', default='aggregated_clash_config.yaml', 
                        help='输出文件名 (默认: aggregated_clash_config.yaml)')
+    parser.add_argument('-d', '--departments', type=int, default=1,
+                       help='部门数量，决定订阅分成多少份 (默认: 1)')
     
     args = parser.parse_args()
     
-    aggregator = ClashAggregator()
+    aggregator = ClashAggregator(department_count=args.departments)
     
     print("开始聚合Clash配置文件...")
     print(f"输入文件: {', '.join(args.files)}")
     print(f"输出文件: {args.output}")
+    print(f"部门数量: {args.departments}")
     print("-" * 50)
     
     # 聚合文件
@@ -240,7 +286,9 @@ def main():
     print(f"- 总代理数量: {len(aggregator.aggregated_proxies)}")
     print(f"- 生成用户数量: {len(aggregator.generated_users)}")
     print(f"- 保留现有规则: {len(existing_proxy_user_rules)}")
+    print(f"- 部门数量: {args.departments}")
 
 
 if __name__ == '__main__':
     main()
+    # python scripts/clash_aggregator.py config1.yaml config2.yaml -d 2
