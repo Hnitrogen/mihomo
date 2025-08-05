@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代理数据管理</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+        }
+        input, select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #495057;
+        }
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+        .proxy-config {
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-family: monospace;
+            font-size: 12px;
+            background-color: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 3px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        .page-info {
+            color: #666;
+            font-size: 14px;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 120px;
+        }
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 代理数据管理界面</h1>
+        
+        <div class="nav-buttons">
+            <button onclick="window.location.href='/'" class="btn-secondary">
+                ⬅️ 返回上传页面
+            </button>
+            <button onclick="loadData()" class="btn-secondary">
+                🔄 刷新数据
+            </button>
+            <button onclick="generateConfig()" style="background-color: #28a745;">
+                📄 生成配置文件
+            </button>
+            <button onclick="downloadConfig()" style="background-color: #17a2b8;">
+                ⬇️ 下载配置文件
+            </button>
+            <button onclick="updateClashConfig()" style="background-color: #fd7e14;">
+                🔄 更新Clash配置
+            </button>
+        </div>
+        
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalCount">-</div>
+                <div class="stat-label">总代理数</div>
+            </div>
+        </div>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label>机场名称:</label>
+                <input type="text" id="sourceTypeFilter" placeholder="过滤机场名称">
+            </div>
+            <div class="filter-group">
+                <label>部门ID:</label>
+                <select id="departmentFilter">
+                    <option value="">全部部门</option>
+                    <option value="1">技术部门 (1)</option>
+                    <option value="2">销售部门 (2)</option>
+                    <option value="3">人事部门 (3)</option>
+                    <option value="4">财务部门 (4)</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>每页显示:</label>
+                <select id="pageSize">
+                    <option value="10">10条</option>
+                    <option value="20">20条</option>
+                    <option value="50">50条</option>
+                    <option value="100">100条</option>
+                </select>
+            </div>
+            <button onclick="loadData()">🔍 筛选</button>
+        </div>
+        
+        <div id="loading" class="loading" style="display: none;">
+            ⏳ 加载中...
+        </div>
+        
+        <table id="proxyTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>节点名称</th>
+                    <th>代理配置</th>
+                    <th>机场名称</th>
+                    <th>用户名</th>
+                    <th>密码</th>
+                    <th>部门ID</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="proxyTableBody">
+            </tbody>
+        </table>
+        
+        <div class="pagination" id="pagination" style="display: none;">
+            <button onclick="changePage(currentPage - 1)" id="prevBtn">⬅️ 上一页</button>
+            <span class="page-info" id="pageInfo">第 1 页</span>
+            <button onclick="changePage(currentPage + 1)" id="nextBtn">下一页 ➡️</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        let totalCount = 0;
+        let pageSize = 10;
+
+        async function loadData() {
+            const sourceType = document.getElementById('sourceTypeFilter').value;
+            const departmentId = document.getElementById('departmentFilter').value;
+            pageSize = parseInt(document.getElementById('pageSize').value);
+            
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('proxyTable').style.display = 'none';
+            document.getElementById('pagination').style.display = 'none';
+            
+            try {
+                // 获取总数
+                const countParams = new URLSearchParams();
+                if (sourceType) countParams.append('source_type', sourceType);
+                if (departmentId) countParams.append('department_id', departmentId);
+                
+                const countResponse = await fetch(`/proxies/count?${countParams}`);
+                const countData = await countResponse.json();
+                totalCount = countData.count;
+                
+                document.getElementById('totalCount').textContent = totalCount;
+                
+                // 获取数据
+                const params = new URLSearchParams({
+                    page: currentPage,
+                    size: pageSize
+                });
+                if (sourceType) params.append('source_type', sourceType);
+                if (departmentId) params.append('department_id', departmentId);
+                
+                const response = await fetch(`/proxies/?${params}`);
+                const data = await response.json();
+                
+                displayData(data);
+                updatePagination();
+                
+            } catch (error) {
+                console.error('加载数据失败:', error);
+                alert('加载数据失败: ' + error.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        function displayData(proxies) {
+            const tbody = document.getElementById('proxyTableBody');
+            tbody.innerHTML = '';
+            
+            proxies.forEach(proxy => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${proxy.id}</td>
+                    <td>${proxy.proxy_name}</td>
+                    <td><div class="proxy-config" title="${proxy.proxy}">${proxy.proxy}</div></td>
+                    <td>${proxy.source_type}</td>
+                    <td><strong>${proxy.username}</strong></td>
+                    <td><strong>${proxy.password}</strong></td>
+                    <td>${proxy.department_id}</td>
+                    <td>${new Date(proxy.createtime).toLocaleString()}</td>
+                    <td>
+                        <button class="btn-danger" onclick="deleteProxy(${proxy.id})">🗑️ 删除</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            document.getElementById('proxyTable').style.display = 'table';
+        }
+
+        function updatePagination() {
+            const totalPages = Math.ceil(totalCount / pageSize);
+            const pageInfo = document.getElementById('pageInfo');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            pageInfo.textContent = `第 ${currentPage} 页 / 共 ${totalPages} 页 (总计 ${totalCount} 条)`;
+            prevBtn.disabled = currentPage <= 1;
+            nextBtn.disabled = currentPage >= totalPages;
+            
+            document.getElementById('pagination').style.display = 'flex';
+        }
+
+        function changePage(page) {
+            const totalPages = Math.ceil(totalCount / pageSize);
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                loadData();
+            }
+        }
+
+        async function deleteProxy(id) {
+            if (!confirm('确定要删除这个代理吗？')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/proxies/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    alert('删除成功');
+                    loadData();
+                } else {
+                    const error = await response.json();
+                    alert('删除失败: ' + error.detail);
+                }
+            } catch (error) {
+                alert('删除失败: ' + error.message);
+            }
+        }
+
+        async function generateConfig() {
+            try {
+                document.getElementById('loading').style.display = 'block';
+                
+                const response = await fetch('/generate-config');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // 创建一个模态框显示配置内容
+                    const modal = document.createElement('div');
+                    modal.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0,0,0,0.5);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        z-index: 1000;
+                    `;
+                    
+                    const modalContent = document.createElement('div');
+                    modalContent.style.cssText = `
+                        background: white;
+                        padding: 20px;
+                        border-radius: 10px;
+                        max-width: 80%;
+                        max-height: 80%;
+                        overflow: auto;
+                        position: relative;
+                    `;
+                    
+                    modalContent.innerHTML = `
+                        <h3>生成的Clash配置文件</h3>
+                        <p><strong>代理节点数:</strong> ${data.proxy_count}</p>
+                        <p><strong>用户账号数:</strong> ${data.user_count}</p>
+                        <textarea readonly style="width: 100%; height: 400px; font-family: monospace; font-size: 12px; border: 1px solid #ddd; padding: 10px;">${data.config}</textarea>
+                        <div style="margin-top: 15px; text-align: center;">
+                            <button onclick="copyToClipboard('${data.config.replace(/'/g, "\\'")}')">📋 复制到剪贴板</button>
+                            <button onclick="document.body.removeChild(this.closest('div').parentElement)" class="btn-secondary">关闭</button>
+                        </div>
+                    `;
+                    
+                    modal.appendChild(modalContent);
+                    document.body.appendChild(modal);
+                    
+                    // 点击背景关闭模态框
+                    modal.addEventListener('click', function(e) {
+                        if (e.target === modal) {
+                            document.body.removeChild(modal);
+                        }
+                    });
+                    
+                } else {
+                    alert('生成配置文件失败: ' + data.detail);
+                }
+                
+            } catch (error) {
+                console.error('生成配置文件失败:', error);
+                alert('生成配置文件失败: ' + error.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        async function downloadConfig() {
+            try {
+                const response = await fetch('/download-config');
+                
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'clash_config.yaml';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                    
+                    alert('配置文件下载成功！');
+                } else {
+                    const error = await response.json();
+                    alert('下载配置文件失败: ' + error.detail);
+                }
+                
+            } catch (error) {
+                console.error('下载配置文件失败:', error);
+                alert('下载配置文件失败: ' + error.message);
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('配置文件已复制到剪贴板！');
+            }, function(err) {
+                console.error('复制失败:', err);
+                alert('复制失败，请手动复制');
+            });
+        }
+
+        async function updateClashConfig() {
+            if (!confirm('确定要更新Clash配置吗？这将使用新生成的配置文件更新clash-meta内存中的规则。')) {
+                return;
+            }
+            
+            try {
+                document.getElementById('loading').style.display = 'block';
+                
+                // 调用后端API来更新Clash配置
+                const response = await fetch('/update-clash-config', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    alert(`✅ Clash配置更新成功！\n` +
+                          `📄 配置文件路径: ${data.config_path}\n` +
+                          `🔗 代理节点数: ${data.proxy_count}\n` +
+                          `👥 用户账号数: ${data.user_count}\n` +
+                          `新的规则已生效！`);
+                } else {
+                    alert('❌ 更新Clash配置失败: ' + data.detail);
+                }
+                
+            } catch (error) {
+                console.error('更新Clash配置失败:', error);
+                alert('❌ 更新Clash配置失败: ' + error.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        // 页面加载时自动加载数据
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+        });
+    </script>
+</body>
+</html>

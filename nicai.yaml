@@ -1,144 +1,68 @@
 mixed-port: 7891
 allow-lan: true
+external-controller: 0.0.0.0:9093
+secret: "seo-pinkman"
 bind-address: '*'
 mode: rule
 log-level: info
 ipv6: false
+
+
+department-secrets:
+  "1": "tech_dept"      # 技术部门
+  "2": "sales_dept"     # 销售部门
+  "3": "hr_dept"        # 人事部门
+  "4": "finance_dept"   # 财务部门
+
 profile:
-    store-selected: true
-    tracing: false
-    store-fake-ip: false
+  store-selected: true
+  tracing: false
+  store-fake-ip: false
 unified-delay: true
-hosts:
-    dnslog.cn: 47.244.138.18
-
 dns:
-    enable: true
-    ipv6: false
-    listen: '0.0.0.0:1053'
-    enhanced-mode: fake-ip
-    fake-ip-range: 198.18.0.1/16
-    use-hosts: true
-    default-nameserver: [223.5.5.5]
-    nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
-    fake-ip-filter: ['*.lan', localhost.ptlogin2.qq.com, dns.msftncsi.com, '*.srv.nintendo.net', '*.stun.playstation.net', 'xbox.*.microsoft.com', '*.xboxlive.com']
-    fallback: [1.1.1.1, 8.8.8.8]
-    fallback-filter: { geoip: true, geoip-code: CN, ipcidr: [240.0.0.0/4] }
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  default-nameserver:
+    - 223.5.5.5
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fake-ip-filter:
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
+    - dns.msftncsi.com
+  fallback:
+    - 1.1.1.1
+    - 8.8.8.8
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
 proxies:
-    - { name: '18.26 GB | 150 GB', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: 'Traffic Reset: 21 Days Left', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: 'Expire Date: 2025-08-21', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇭🇰 Hong Kong丨01', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇭🇰 Hong Kong丨02', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16002', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇭🇰 Hong Kong丨03', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16003', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇭🇰 Hong Kong丨04', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16004', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇭🇰 Hong Kong丨05', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16005', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇭🇰 Hong Kong丨06', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16006', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇭🇰 Hong Kong丨07', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16007', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇭🇰 Hong Kong丨08', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16008', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇭🇰 Hong Kong丨09', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16009', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇭🇰 Hong Kong丨10', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '16010', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇨🇳 Taiwan丨01', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '17001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇨🇳 Taiwan丨02', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '17002', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇨🇳 Taiwan丨03', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '17003', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇨🇳 Taiwan丨04', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '17004', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇨🇳 Taiwan丨05', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '17005', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇸🇬 Singapore丨01', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '18001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇸🇬 Singapore丨02', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '18002', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇸🇬 Singapore丨03', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '18003', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇸🇬 Singapore丨04', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '18004', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇸🇬 Singapore丨05', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '18005', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇯🇵 Japan丨01', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '19001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇯🇵 Japan丨02', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '19002', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇯🇵 Japan丨03', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '19003', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇯🇵 Japan丨04', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '19004', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇯🇵 Japan丨05', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '19005', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇺🇸 United States丨01', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '20001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇺🇸 United States丨02', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '20002', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇺🇸 United States丨03', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '20003', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇺🇸 United States丨04', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '20004', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇺🇸 United States丨05', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '20005', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇰🇷 South Korea丨01', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '21001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇨🇦 Canada丨01', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '22002', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: '🇬🇧 Great Britain丨01', type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '23001', cipher: aes-256-gcm, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-    - { name: 此地區屬於高級套餐, type: ss, server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs, port: '10086', cipher: chacha20-ietf-poly1305, password: 144ff133-0857-42dd-8daa-a00574220339, udp: true }
-proxy-groups:
-    # 添加 VIP 用户专用代理组
-    - { name: 'VIP_PROXY', type: select, proxies: [ '🇺🇸 United States丨01' ] }
-    - { name: SSRDOG, type: select, proxies: [Auto, '18.26 GB | 150 GB', 'Traffic Reset: 21 Days Left', 'Expire Date: 2025-08-21', '🇭🇰 Hong Kong丨01', '🇭🇰 Hong Kong丨02', '🇭🇰 Hong Kong丨03', '🇭🇰 Hong Kong丨04', '🇭🇰 Hong Kong丨05', '🇭🇰 Hong Kong丨06', '🇭🇰 Hong Kong丨07', '🇭🇰 Hong Kong丨08', '🇭🇰 Hong Kong丨09', '🇭🇰 Hong Kong丨10', '🇨🇳 Taiwan丨01', '🇨🇳 Taiwan丨02', '🇨🇳 Taiwan丨03', '🇨🇳 Taiwan丨04', '🇨🇳 Taiwan丨05', '🇸🇬 Singapore丨01', '🇸🇬 Singapore丨02', '🇸🇬 Singapore丨03', '🇸🇬 Singapore丨04', '🇸🇬 Singapore丨05', '🇯🇵 Japan丨01', '🇯🇵 Japan丨02', '🇯🇵 Japan丨03', '🇯🇵 Japan丨04', '🇯🇵 Japan丨05', '🇺🇸 United States丨01', '🇺🇸 United States丨02', '🇺🇸 United States丨03', '🇺🇸 United States丨04', '🇺🇸 United States丨05', '🇰🇷 South Korea丨01', '🇨🇦 Canada丨01', '🇬🇧 Great Britain丨01', 此地區屬於高級套餐] }
-    - { name: Auto, type: fallback, proxies: ['🇭🇰 Hong Kong', '🇨🇳 Taiwan', '🇯🇵 Japan', '🇰🇷 Korea', '🇸🇬 Singapore', '🇺🇸 United States', '🇨🇦 Canada', '🇬🇧 Great Britain', '🇹🇷 Turkey', '🇳🇱 Netherlands', '🇫🇷 France', '🇩🇪 Germany', '🇻🇳 Vietnam', '🇲🇾 Malaysia', '🇹🇭 Thailand', '🇮🇳 India', '🇵🇭 Philippines'], url: 'http://cp.cloudflare.com/generate_204', interval: 300 }
-    - { name: '🇭🇰 Hong Kong', type: select, proxies: ['🇭🇰 Hong Kong丨01', '🇭🇰 Hong Kong丨02', '🇭🇰 Hong Kong丨03', '🇭🇰 Hong Kong丨04', '🇭🇰 Hong Kong丨05', '🇭🇰 Hong Kong丨06', '🇭🇰 Hong Kong丨07', '🇭🇰 Hong Kong丨08', '🇭🇰 Hong Kong丨09', '🇭🇰 Hong Kong丨10'] }
-    - { name: '🇨🇳 Taiwan', type: select, proxies: ['🇨🇳 Taiwan丨01', '🇨🇳 Taiwan丨02', '🇨🇳 Taiwan丨03', '🇨🇳 Taiwan丨04', '🇨🇳 Taiwan丨05'] }
-    - { name: '🇯🇵 Japan', type: select, proxies: ['🇯🇵 Japan丨01', '🇯🇵 Japan丨02', '🇯🇵 Japan丨03', '🇯🇵 Japan丨04', '🇯🇵 Japan丨05'] }
-    - { name: '🇰🇷 Korea', type: select, proxies: ['🇰🇷 South Korea丨01'] }
-    - { name: '🇸🇬 Singapore', type: select, proxies: ['🇸🇬 Singapore丨01', '🇸🇬 Singapore丨02', '🇸🇬 Singapore丨03', '🇸🇬 Singapore丨04', '🇸🇬 Singapore丨05'] }
-    - { name: '🇨🇦 Canada', type: select, proxies: ['🇨🇦 Canada丨01'] }
-    - { name: '🇺🇸 United States', type: select, proxies: ['🇺🇸 United States丨01', '🇺🇸 United States丨02', '🇺🇸 United States丨03', '🇺🇸 United States丨04', '🇺🇸 United States丨05'] }
-    - { name: '🇬🇧 Great Britain', type: select, proxies: ['🇬🇧 Great Britain丨01'] }
-    - { name: '🇹🇷 Turkey', type: select, proxies: [此地區屬於高級套餐] }
-    - { name: '🇳🇱 Netherlands', type: select, proxies: [此地區屬於高級套餐] }
-    - { name: '🇫🇷 France', type: select, proxies: [此地區屬於高級套餐] }
-    - { name: '🇩🇪 Germany', type: select, proxies: [此地區屬於高級套餐] }
-    - { name: '🇻🇳 Vietnam', type: select, proxies: [此地區屬於高級套餐] }
-    - { name: '🇲🇾 Malaysia', type: select, proxies: [此地區屬於高級套餐] }
-    - { name: '🇹🇭 Thailand', type: select, proxies: [此地區屬於高級套餐] }
-    - { name: '🇮🇳 India', type: select, proxies: [此地區屬於高級套餐] }
-    - { name: '🇵🇭 Philippines', type: select, proxies: [此地區屬於高級套餐] }
+  - name: 20.63 GB | 150 GB
+    type: ss
+    server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+    port: '16001'
+    cipher: aes-256-gcm
+    password: 144ff133-0857-42dd-8daa-a00574220339
+    udp: true
+  - name: 'Traffic Reset: 17 Days Left'
+    type: ss
+    server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+    port: '16001'
+    cipher: aes-256-gcm
+    password: 144ff133-0857-42dd-8daa-a00574220339
+    udp: true
 
-rule-providers:
-    YouTube: { type: http, behavior: classical, url: 'https://api-gz.hosbbq.com/nus74f89st1/Y.yml', interval: 86400, path: ./ruleset/YouTube.yml }
-    SteamCN: { type: http, behavior: classical, url: 'https://api-gz.hosbbq.com/nus74f89st1/SC.yml', interval: 86400, path: ./ruleset/SteamCN.yml }
-    Bahamut: { type: http, behavior: classical, url: 'https://api-gz.hosbbq.com/nus74f89st1/Ba.yml', interval: 86400, path: ./ruleset/Bahamut.yml }
-    DMM: { type: http, behavior: classical, url: 'https://api-gz.hosbbq.com/nus74f89st1/DM.yml', interval: 86400, path: ./ruleset/DMM.yml }
-    ChinaMax: { type: http, behavior: classical, url: 'https://api-gz.hosbbq.com/nus74f89st1/C.yml', interval: 86400, path: ./ruleset/ChinaMax.yml }
+authentication:
+  - dp1_o849ej5j:5vVraS59gvf13MLr
+  - dp1_lwjeh6k0:uTte8XtwkSzNyvNE
+
 rules:
-    # 基于 HTTP 请求头的路由规则 - 必须放在最前面
-    - 'HTTP-HEADER,proxy_user_id:VIP_PROXY,VIP_PROXY'
-    - 'HTTP-HEADER,proxy_user_id:premium_user,🇺🇸 United States'
-    - 'HTTP-HEADER,proxy_user_id,SSRDOG'
-    
-    - 'DOMAIN,dog.ssrdog.com,SSRDOG'
-
-    - 'DOMAIN,ic.adobe.io,REJECT'
-    - 'DOMAIN,dyzt55url8.adobe.io,REJECT'
-    - 'DOMAIN,gw8gfjbs05.adobe.io,REJECT'
-    - 'DOMAIN,0mo5a70cqa.adobe.io,REJECT'
-    - 'DOMAIN,ij0gdyrfka.adobe.io,REJECT'
-    - 'DOMAIN,dxyeyf6ecy.adobe.io,REJECT'
-    - 'DOMAIN,1hzopx6nz7.adobe.io,REJECT'
-    - 'DOMAIN,ph0f2h2csf.adobe.io,REJECT'
-    - 'DOMAIN,23ynjitwt5.adobe.io,REJECT'
-    - 'DOMAIN,crs.cr.adobe.com,REJECT'
-    - 'DOMAIN,www.photoshop.com,REJECT'
-    - 'DOMAIN,cc-cdn.adobe.com,REJECT'
-    - 'DOMAIN,photos.adobe.io,REJECT'
-    - 'DOMAIN,cc-api-data.adobe.io,REJECT'
-    - 'DOMAIN,lcs-cops.adobe.io,REJECT'
-    - 'DOMAIN,cai-splunk-proxy.adobe.io,REJECT'
-    - 'DOMAIN-KEYWORD,sjtu.edu.cn,DIRECT'
-    - 'DOMAIN-KEYWORD,linkedin,SSRDOG'
-    - 'DOMAIN-SUFFIX,okex.com,SSRDOG'
-    - 'DOMAIN-SUFFIX,oklink.com,SSRDOG'
-    - 'DOMAIN-SUFFIX,okx.com,SSRDOG'
-    - 'DOMAIN-SUFFIX,google.com,SSRDOG'
-    - 'DOMAIN-SUFFIX,googleapis.com,SSRDOG'
-    - 'DOMAIN-SUFFIX,googleusercontent.com,SSRDOG'
-    - 'RULE-SET,SteamCN,DIRECT'
-    - 'RULE-SET,Bahamut,🇨🇳 Taiwan'
-    - 'RULE-SET,DMM,🇯🇵 Japan'
-    - 'RULE-SET,ChinaMax,DIRECT'
-    - 'DOMAIN,local.adguard.org,DIRECT'
-    - 'DOMAIN-SUFFIX,local,DIRECT'
-    - 'IP-CIDR,127.0.0.0/8,DIRECT'
-    - 'IP-CIDR,172.16.0.0/12,DIRECT'
-    - 'IP-CIDR,192.168.0.0/16,DIRECT'
-    - 'IP-CIDR,10.0.0.0/8,DIRECT'
-    - 'IP-CIDR,17.0.0.0/8,DIRECT'
-    - 'IP-CIDR,100.64.0.0/10,DIRECT'
-    - 'IP-CIDR,224.0.0.0/4,DIRECT'
-    - 'IP-CIDR,203.0.113.0/24,DIRECT'
-    - 'IP-CIDR,192.0.2.0/24,DIRECT'
-    - 'IP-CIDR6,fe80::/10,DIRECT'
-    - 'GEOIP,CN,DIRECT'
-    - 'GEOIP,LAN,DIRECT'
-    - 'MATCH,SSRDOG'
+  - PROXY-USER,dp1_o849ej5j,20.63 GB | 150 GB
+  - 'PROXY-USER,dp1_lwjeh6k0,Traffic Reset: 17 Days Left'

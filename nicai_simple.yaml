@@ -9,10 +9,10 @@ ipv6: false
 
 
 department-secrets:
-  "dept001_secret_key": "tech_dept"      # 技术部门
-  "dept002_secret_key": "sales_dept"     # 销售部门
-  "dept003_secret_key": "hr_dept"        # 人事部门
-  "dept004_secret_key": "finance_dept"   # 财务部门
+  "1": "tech_dept"      # 技术部门
+  "2": "sales_dept"     # 销售部门
+  "3": "hr_dept"        # 人事部门
+  "4": "finance_dept"   # 财务部门
 
 profile:
   store-selected: true
@@ -790,7 +790,6 @@ authentication:
   - dp2_gmkbet69:52GKQVAKl2tEqX9d
   - dp2_pivq9ebk:suMrYImiPDRHVzt6
 rules:
-  - '# 基于代理用户认证的路由规则 - 必须放在最前面'
   - PROXY-USER,dp1_o849ej5j,20.63 GB | 150 GB
   - 'PROXY-USER,dp1_lwjeh6k0,Traffic Reset: 17 Days Left'
   - 'PROXY-USER,dp1_3l63lqp8,Expire Date: 2025-08-21'
@@ -884,12 +883,9 @@ rules:
   - PROXY-USER,dp2_5uu59njl,🇫🇷France 03 | IPLC | BGP
   - PROXY-USER,dp2_gmkbet69,🇹🇷Türkiye 01
   - PROXY-USER,dp2_pivq9ebk,🇹🇷Türkiye 02
-  - '# 测试域名'
   - DOMAIN-SUFFIX,httpbin.org,20.63 GB | 150 GB
   - DOMAIN-SUFFIX,google.com,20.63 GB | 150 GB
-  - '# 本地直连'
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
-  - '# 默认规则'
   - MATCH,20.63 GB | 150 GB

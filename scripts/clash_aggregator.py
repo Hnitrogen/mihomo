@@ -82,6 +82,7 @@ class ClashAggregator:
             
             # 提取现有的PROXY-USER规则
             proxy_user_rules = self.extract_existing_proxy_user_rules(config)
+            print(f"已有的rule配置条数：{len(proxy_user_rules)}")
             existing_proxy_user_rules.extend(proxy_user_rules)
             print(f"  - 提取到 {len(proxy_user_rules)} 个PROXY-USER规则")
         
@@ -203,7 +204,7 @@ class ClashAggregator:
         
         # 添加基于代理用户认证的路由规则 - 必须放在最前面
         if new_user_rules:
-            rules.append("# 基于代理用户认证的路由规则 - 必须放在最前面")
+#             rules.append("# 基于代理用户认证的路由规则 - 必须放在最前面")
             rules.extend(new_user_rules)
         
         # 添加现有的PROXY-USER规则
@@ -213,14 +214,11 @@ class ClashAggregator:
         # 添加固定的测试和默认规则
         default_proxy = self.aggregated_proxies[0].get('name', 'DIRECT') if self.aggregated_proxies else 'DIRECT'
         rules.extend([
-            "# 测试域名",
             f"DOMAIN-SUFFIX,httpbin.org,{default_proxy}",
             f"DOMAIN-SUFFIX,google.com,{default_proxy}",
-            "# 本地直连", 
             "IP-CIDR,127.0.0.0/8,DIRECT",
             "IP-CIDR,192.168.0.0/16,DIRECT",
             "IP-CIDR,10.0.0.0/8,DIRECT",
-            "# 默认规则",
             f"MATCH,{default_proxy}"
         ])
         

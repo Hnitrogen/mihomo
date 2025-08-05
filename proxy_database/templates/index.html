@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代理用户管理系统</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .upload-form {
+            border: 2px dashed #ddd;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="file"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .nav-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .result h4 {
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .result ul {
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        .result li {
+            margin-bottom: 8px;
+            padding: 5px;
+            background-color: #f8f9fa;
+            border-radius: 3px;
+        }
+
+        .result code {
+            background-color: #e9ecef;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🚀 代理用户管理系统</h1>
+
+        <div class="upload-form">
+            <h2>📁 上传YAML配置文件</h2>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">选择YAML文件:</label>
+                    <input type="file" id="file" name="file" accept=".yaml,.yml" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="source_type">机场名称:</label>
+                    <input type="text" id="source_type" name="source_type" placeholder="例如: xxai, userdog" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="department_id">部门ID (可选):</label>
+                    <select id="department_id" name="department_id">
+                        <option value="">请选择部门 (可选)</option>
+                        <option value="1">技术部门 (1)</option>
+                        <option value="2">销售部门 (2)</option>
+                        <option value="3">人事部门 (3)</option>
+                        <option value="4">财务部门 (4)</option>
+                    </select>
+                </div>
+
+                <button type="submit">🚀 上传并解析</button>
+            </form>
+
+            <div id="result" class="result"></div>
+        </div>
+
+        <div class="nav-buttons">
+            <button onclick="window.location.href='/ui'" class="btn-secondary">
+                📊 查看代理数据管理界面
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            const fileInput = document.getElementById('file');
+            const sourceType = document.getElementById('source_type').value;
+            const departmentId = document.getElementById('department_id').value;
+
+            if (!fileInput.files[0]) {
+                alert('请选择一个文件');
+                return;
+            }
+
+            if (!sourceType.trim()) {
+                alert('请输入机场名称');
+                return;
+            }
+
+            formData.append('file', fileInput.files[0]);
+            formData.append('source_type', sourceType);
+            formData.append('department_id', departmentId || '');
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '⏳ 正在处理文件...';
+            resultDiv.className = 'result';
+
+            try {
+                const response = await fetch('/upload-yaml/', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+
+                    let resultHTML = `<h3>✅ ${data.message}</h3>`;
+
+                    // 显示新创建的代理
+                    if (data.created_proxies && data.created_proxies.length > 0) {
+                        resultHTML += `
+                            <h4>🆕 新创建的代理节点 (${data.created_proxies.length}个):</h4>
+                            <ul>
+                                ${data.created_proxies.map(p => `
+                                    <li><strong>${p.proxy_name}</strong> - 用户名: <code>${p.username}</code>, 密码: <code>${p.password}</code></li>
+                                `).join('')}
+                            </ul>
+                        `;
+                    }
+
+                    // 显示更新的代理
+                    if (data.updated_proxies && data.updated_proxies.length > 0) {
+                        resultHTML += `
+                            <h4>🔄 更新的代理节点 (${data.updated_proxies.length}个):</h4>
+                            <ul>
+                                ${data.updated_proxies.map(p => `
+                                    <li><strong>${p.proxy_name}</strong> - 用户名: <code>${p.username}</code>, 密码: <code>${p.password}</code></li>
+                                `).join('')}
+                            </ul>
+                        `;
+                    }
+
+                    resultDiv.innerHTML = resultHTML;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `❌ 错误: ${data.detail}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `❌ 网络错误: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+
+</html>
