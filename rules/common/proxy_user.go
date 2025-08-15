@@ -16,8 +16,8 @@ type ProxyUser struct {
 
 func (p *ProxyUser) Match(metadata *C.Metadata, helper C.RuleMatchHelper) (bool, string) {
 	// 添加调试日志
-	fmt.Printf("[DEBUG] ProxyUser.Match called: InUser=%s, ExpectedUsers=%v\n",
-		metadata.InUser, p.users)
+	//fmt.Printf("[DEBUG] ProxyUser.Match called: InUser=%s, ExpectedUsers=%v\n",
+	//	metadata.InUser, p.users)
 
 	// 检查代理认证用户名是否匹配 (users配置文件解析得到的，metadata.InUser是请求携带的ProxyUser数据)
 	for _, user := range p.users {
@@ -27,7 +27,7 @@ func (p *ProxyUser) Match(metadata *C.Metadata, helper C.RuleMatchHelper) (bool,
 		}
 	}
 
-	fmt.Printf("[DEBUG] ProxyUser.Match: No match found for user %s\n", metadata.InUser)
+	//fmt.Printf("[DEBUG] ProxyUser.Match: No match found for user %s\n", metadata.InUser)
 	return false, ""
 }
 

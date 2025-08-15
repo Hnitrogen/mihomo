@@ -1,0 +1,24 @@
+{
+  "scenario": "light",
+  "timestamp": "20250811_101623",
+  "test_results": {},
+  "system_stats_summary": {
+    "duration_seconds": 301.953655,
+    "cpu": {
+      "avg": 12.110256410256412,
+      "max": 19.7,
+      "min": 6.4
+    },
+    "memory": {
+      "avg": 61.10256410256412,
+      "max": 63.1,
+      "min": 59.2
+    },
+    "clash_processes_detected": true
+  },
+  "files": {
+    "monitoring_data": "monitoring_stats_light_20250811_101623.json",
+    "html_report": "report_light.html",
+    "csv_stats": "results_light_stats.csv"
+  }
+}

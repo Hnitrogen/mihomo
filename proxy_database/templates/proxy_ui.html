@@ -155,11 +155,14 @@
             <button onclick="window.location.href='/'" class="btn-secondary">
                 ⬅️ 返回上传页面
             </button>
+            <button onclick="window.location.href='/config-ui'" class="btn-secondary">
+                ⚙️ 系统配置
+            </button>
             <button onclick="loadData()" class="btn-secondary">
                 🔄 刷新数据
             </button>
             <button onclick="generateConfig()" style="background-color: #28a745;">
-                📄 生成配置文件
+                📄 生成配置文件-没有部门id则不会生成对应的UserProxy
             </button>
             <button onclick="downloadConfig()" style="background-color: #17a2b8;">
                 ⬇️ 下载配置文件
@@ -180,6 +183,18 @@
             <div class="filter-group">
                 <label>机场名称:</label>
                 <input type="text" id="sourceTypeFilter" placeholder="过滤机场名称">
+            </div>
+            <div class="filter-group">
+                <label>机场名称下拉筛选:</label>
+                <select id="sourceTypeFilterOptions">
+                    <option value="">全部</option>
+                    <option value="xxai">xxai</option>
+                    <option value="ssrdog">ssrdog</option>
+                    <option value="chongdong">chongdong</option>
+                    <option value="青云梯">青云梯</option>
+                    <option value="xsus">xsus</option>
+                    <option value="桔子云">桔子云</option>
+                </select>
             </div>
             <div class="filter-group">
                 <label>部门ID:</label>
@@ -240,18 +255,21 @@
         async function loadData() {
             const sourceType = document.getElementById('sourceTypeFilter').value;
             const departmentId = document.getElementById('departmentFilter').value;
+            const sourceTypeOptions = document.getElementById('sourceTypeFilterOptions').value;
             pageSize = parseInt(document.getElementById('pageSize').value);
             
             document.getElementById('loading').style.display = 'block';
             document.getElementById('proxyTable').style.display = 'none';
             document.getElementById('pagination').style.display = 'none';
+
             
             try {
                 // 获取总数
                 const countParams = new URLSearchParams();
                 if (sourceType) countParams.append('source_type', sourceType);
                 if (departmentId) countParams.append('department_id', departmentId);
-                
+                if (sourceTypeOptions) countParams.append('source_type', sourceTypeOptions);
+
                 const countResponse = await fetch(`/proxies/count?${countParams}`);
                 const countData = await countResponse.json();
                 totalCount = countData.count;
@@ -265,6 +283,7 @@
                 });
                 if (sourceType) params.append('source_type', sourceType);
                 if (departmentId) params.append('department_id', departmentId);
+                if (sourceTypeOptions) params.append('source_type', sourceTypeOptions);
                 
                 const response = await fetch(`/proxies/?${params}`);
                 const data = await response.json();

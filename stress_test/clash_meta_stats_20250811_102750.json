@@ -1,0 +1,152 @@
+[
+  {
+    "timestamp": "2025-08-11T10:17:32.290781",
+    "system_cpu": 8.9,
+    "system_memory_percent": 62.4,
+    "system_memory_used_mb": 19983.0390625,
+    "clash_process": {
+      "name": "clash-verge-service.exe",
+      "cpu_percent": 0.0,
+      "pid": 5360,
+      "memory_info": [
+        4345856,
+        1880064,
+        1453,
+        5046272,
+        4345856,
+        36768,
+        34320,
+        8328,
+        7408,
+        1880064,
+        1998848,
+        1880064
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-08-11T10:27:18.710385",
+    "system_cpu": 10.2,
+    "system_memory_percent": 61.5,
+    "system_memory_used_mb": 19698.41796875,
+    "clash_process": {
+      "name": "clash-verge-service.exe",
+      "cpu_percent": 0.0,
+      "pid": 5360,
+      "memory_info": [
+        4345856,
+        1880064,
+        1453,
+        5046272,
+        4345856,
+        36768,
+        34320,
+        8328,
+        7408,
+        1880064,
+        1998848,
+        1880064
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-08-11T10:27:25.467859",
+    "system_cpu": 9.5,
+    "system_memory_percent": 61.6,
+    "system_memory_used_mb": 19734.02734375,
+    "clash_process": {
+      "name": "clash-verge-service.exe",
+      "cpu_percent": 0.0,
+      "pid": 5360,
+      "memory_info": [
+        4345856,
+        1880064,
+        1453,
+        5046272,
+        4345856,
+        36768,
+        34320,
+        8328,
+        7408,
+        1880064,
+        1998848,
+        1880064
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-08-11T10:27:32.199929",
+    "system_cpu": 8.3,
+    "system_memory_percent": 61.5,
+    "system_memory_used_mb": 19714.5390625,
+    "clash_process": {
+      "name": "clash-verge-service.exe",
+      "cpu_percent": 0.0,
+      "pid": 5360,
+      "memory_info": [
+        4345856,
+        1880064,
+        1453,
+        5046272,
+        4345856,
+        36768,
+        34320,
+        8328,
+        7408,
+        1880064,
+        1998848,
+        1880064
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-08-11T10:27:38.983520",
+    "system_cpu": 11.4,
+    "system_memory_percent": 62.0,
+    "system_memory_used_mb": 19868.28125,
+    "clash_process": {
+      "name": "clash-verge-service.exe",
+      "cpu_percent": 0.0,
+      "pid": 5360,
+      "memory_info": [
+        4345856,
+        1880064,
+        1453,
+        5046272,
+        4345856,
+        36768,
+        34320,
+        8328,
+        7408,
+        1880064,
+        1998848,
+        1880064
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-08-11T10:27:45.808802",
+    "system_cpu": 6.6,
+    "system_memory_percent": 61.9,
+    "system_memory_used_mb": 19849.02734375,
+    "clash_process": {
+      "name": "clash-verge-service.exe",
+      "cpu_percent": 0.0,
+      "pid": 5360,
+      "memory_info": [
+        4345856,
+        1880064,
+        1453,
+        5046272,
+        4345856,
+        36768,
+        34320,
+        8328,
+        7408,
+        1880064,
+        1998848,
+        1880064
+      ]
+    }
+  }
+]

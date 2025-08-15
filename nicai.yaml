@@ -1,19 +1,15 @@
 mixed-port: 7891
 allow-lan: true
 external-controller: 0.0.0.0:9093
-secret: "seo-pinkman"
 bind-address: '*'
 mode: rule
 log-level: info
 ipv6: false
-
-
 department-secrets:
-  "1": "tech_dept"      # 技术部门
-  "2": "sales_dept"     # 销售部门
-  "3": "hr_dept"        # 人事部门
-  "4": "finance_dept"   # 财务部门
-
+  '1': tech_dept
+  '2': sales_dept
+  '3': hr_dept
+  '4': finance_dept
 profile:
   store-selected: true
   tracing: false
@@ -27,42 +23,2846 @@ dns:
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
   default-nameserver:
-    - 223.5.5.5
+  - 223.5.5.5
   nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+  - 119.29.29.29
+  - 223.5.5.5
+  - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
+  - 114.114.114.114
+  - 156.154.70.1
+  - 1.0.0.1
+  - 8.8.4.4
   fake-ip-filter:
-    - '*.lan'
-    - localhost.ptlogin2.qq.com
-    - dns.msftncsi.com
+  - '*.lan'
+  - localhost.ptlogin2.qq.com
+  - dns.msftncsi.com
   fallback:
-    - 1.1.1.1
-    - 8.8.8.8
+  - 208.67.222.222:5353
+  - 208.67.220.220:5353
+  - 208.67.222.220:5353
+  - 208.67.220.222:5353
+  - https://1.1.1.1/dns-query
+  - https://1.1.1.2/dns-query
+  - https://1.1.1.3/dns-query
+  - https://1.0.0.1/dns-query
+  - https://1.0.0.2/dns-query
+  - https://1.0.0.3/dns-query
+  - https://45.11.45.11/dns-query
+  - https://146.112.41.2/dns-query
+  - https://162.159.36.1/dns-query
+  - https://162.159.46.1/dns-query
+  - https://9.9.9.11:5053/dns-query
+  - https://101.6.6.6:8443/dns-query
+  - https://208.67.222.222/dns-query
+  - https://208.67.220.220/dns-query
+  - https://185.222.222.222/dns-query
+  - https://101.101.101.101/dns-query
+  - https://149.112.112.11:5053/dns-query
   fallback-filter:
     geoip: true
     geoip-code: CN
     ipcidr:
-      - 240.0.0.0/4
+    - 240.0.0.0/4
 proxies:
-  - name: 20.63 GB | 150 GB
-    type: ss
-    server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-    port: '16001'
-    cipher: aes-256-gcm
-    password: 144ff133-0857-42dd-8daa-a00574220339
-    udp: true
-  - name: 'Traffic Reset: 17 Days Left'
-    type: ss
-    server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
-    port: '16001'
-    cipher: aes-256-gcm
-    password: 144ff133-0857-42dd-8daa-a00574220339
-    udp: true
-
+- name: Asia 01 | Mix IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 20001
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: Asia 02 | Mix IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 20002
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇭🇰Hong Kong 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 38715
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇭🇰Hong Kong 02 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 38716
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇭🇰Hong Kong 03 | IEPL + UDP
+  type: ss
+  server: cmcc.xxality.cn
+  port: 50001
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇭🇰Hong Kong [BGP] | Direct 02
+  type: ss
+  server: 185.244.208.121
+  port: 8899
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇸🇬Singapore 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 44161
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇸🇬Singapore 03 | IEPL + UDP
+  type: ss
+  server: cmcc.xxality.cn
+  port: 31001
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇸🇬Singapore 04 | IEPL + UDP | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 31001
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇸🇬Singapore 05 | Direct
+  type: ss
+  server: 45.135.228.65
+  port: 8899
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇨🇳Taiwan 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 37601
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇨🇳Taiwan 03 | IEPL + UDP
+  type: ss
+  server: cmcc.xxality.cn
+  port: 32001
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇨🇳Taiwan 04 | IEPL + UDP | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 32001
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇨🇳Taiwan 05 | Direct
+  type: ss
+  server: hinet.xx-ai.io
+  port: 15552
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇯🇵Japan 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 32796
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇯🇵Japan 03 | IEPL + UDP
+  type: ss
+  server: cmcc.xxality.cn
+  port: 33001
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇯🇵Japan 04 | IEPL + UDP | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 33001
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇯🇵Japan 05 | Direct
+  type: ss
+  server: 85.234.83.72
+  port: 8899
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇰🇷Korea  01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 32791
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇰🇷Korea  02 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 32792
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇰🇷Korea  05 | IEPL + UDP
+  type: ss
+  server: cmcc.xxality.cn
+  port: 32795
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇰🇷Korea  06 | IEPL + UDP
+  type: ss
+  server: cmcc.xxality.cn
+  port: 32796
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇰🇷Korea  07 | IEPL + UDP | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 32795
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇰🇷Korea  08 | IEPL + UDP | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 32797
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇰🇷Korea  09 | Direct
+  type: ss
+  server: 158.247.215.230
+  port: 8899
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇰🇷Korea  10 | Direct
+  type: ss
+  server: 141.164.48.214
+  port: 8899
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇹🇭Thailand 01
+  type: ss
+  server: cmcc.xxality.cn
+  port: 41467
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇹🇭Thailand 02
+  type: ss
+  server: bgp.xxality.cn
+  port: 41467
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇺🇸United States 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 11670
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇺🇸United States 03 | IEPL + UDP
+  type: ss
+  server: cmcc.xxality.cn
+  port: 34001
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇺🇸United States 04 | IEPL + UDP | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 34001
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇺🇸United States 05 | Direct
+  type: ss
+  server: 87.120.252.137
+  port: 8899
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇬🇧United Kingdom 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 49631
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇬🇧United Kingdom 03 | IEPL | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 49633
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇬🇧United Kingdom 04 | Direct
+  type: ss
+  server: 45.142.244.234
+  port: 8899
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇨🇦Canada 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 65349
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇨🇦Canada 03 | IPLC | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 65349
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇨🇦Canada 04 | Direct
+  type: ss
+  server: 46.3.80.66
+  port: 8899
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇩🇪Germany 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 48632
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇩🇪Germany 03 | IPLC | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 48632
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇷🇺Russia 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 13498
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇷🇺Russia 03 | IPLC | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 13498
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇮🇪Ireland 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 55367
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇮🇪Ireland 03 | IPLC | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 55367
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇿🇦South Africa 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 54651
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇿🇦South Africa 03 | IPLC | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 54651
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇳🇱Netherlands 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 31117
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇳🇱Netherlands 03 | IPLC | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 31117
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇫🇷France 01 | IEPL
+  type: ss
+  server: cmcc.xxality.cn
+  port: 63306
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇫🇷France 03 | IPLC | BGP
+  type: ss
+  server: bgp.xxality.cn
+  port: 63306
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇹🇷Türkiye 01
+  type: ss
+  server: cmcc.xxality.cn
+  port: 64306
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 🇹🇷Türkiye 02
+  type: ss
+  server: bgp.xxality.cn
+  port: 64306
+  cipher: chacha20-ietf-poly1305
+  password: faeb050a-7b79-4b63-8549-9ef5abe1e3c4
+  udp: true
+- name: 20.63 GB | 150 GB
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 'Traffic Reset: 17 Days Left'
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 'Expire Date: 2025-08-21'
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨02
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16002'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨03
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16003'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨04
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16004'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨05
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16005'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨06
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16006'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨07
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16007'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨08
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16008'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨09
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16009'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇭🇰 Hong Kong丨10
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16010'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇨🇳 Taiwan丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '17001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇨🇳 Taiwan丨02
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '17002'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇨🇳 Taiwan丨03
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '17003'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇨🇳 Taiwan丨04
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '17004'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇨🇳 Taiwan丨05
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '17005'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇸🇬 Singapore丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '18001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇸🇬 Singapore丨02
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '18002'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇸🇬 Singapore丨03
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '18003'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇸🇬 Singapore丨04
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '18004'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇸🇬 Singapore丨05
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '18005'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇯🇵 Japan丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '19001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇯🇵 Japan丨02
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '19002'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇯🇵 Japan丨03
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '19003'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇯🇵 Japan丨04
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '19004'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇯🇵 Japan丨05
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '19005'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇺🇸 United States丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '20001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇺🇸 United States丨02
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '20002'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇺🇸 United States丨03
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '20003'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇺🇸 United States丨04
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '20004'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇺🇸 United States丨05
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '20005'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇰🇷 South Korea丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '21001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇨🇦 Canada丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '22002'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 🇬🇧 Great Britain丨01
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '23001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 此地區屬於高級套餐
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '10086'
+  cipher: chacha20-ietf-poly1305
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 20.68 GB | 150 GB
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 'Traffic Reset: 16 Days Left'
+  type: ss
+  server: 1tc89a5asbgsltthz4x4yub.a8otvhxbiy6.userbb.userdog.sbs
+  port: '16001'
+  cipher: aes-256-gcm
+  password: 144ff133-0857-42dd-8daa-a00574220339
+  udp: true
+- name: 香港-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39001
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-02
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39002
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-03
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39003
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-04
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39004
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-05
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39005
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-06
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39006
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-07
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39007
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-08
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39008
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-09
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39009
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-10
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39010
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-11
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39011
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-12
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39012
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-13
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39013
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-14
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39014
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-15
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39015
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-16
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39016
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-17
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39017
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-18
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39018
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-19
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39019
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 香港-20
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-hk.qytnode.com
+  port: 39020
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 台湾-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-tw.qytnode.com
+  port: 39021
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 台湾-02
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-tw.qytnode.com
+  port: 39022
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 台湾-03
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-tw.qytnode.com
+  port: 39023
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 台湾-04
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-tw.qytnode.com
+  port: 39024
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 台湾-05
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-tw.qytnode.com
+  port: 39025
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 台湾-06
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-tw.qytnode.com
+  port: 39026
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 台湾-07
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-tw.qytnode.com
+  port: 39027
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 台湾-08
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-tw.qytnode.com
+  port: 39028
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 台湾-09
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-tw.qytnode.com
+  port: 39029
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 台湾-10
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-tw.qytnode.com
+  port: 39030
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 新加坡-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-sg.qytnode.com
+  port: 39031
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 新加坡-02
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-sg.qytnode.com
+  port: 39032
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 新加坡-03
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-sg.qytnode.com
+  port: 39033
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 新加坡-04
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-sg.qytnode.com
+  port: 39034
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 新加坡-05
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-sg.qytnode.com
+  port: 39035
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 新加坡-06
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-sg.qytnode.com
+  port: 39036
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 新加坡-07
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-sg.qytnode.com
+  port: 39037
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 新加坡-08
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-sg.qytnode.com
+  port: 39038
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 新加坡-09
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-sg.qytnode.com
+  port: 39039
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 新加坡-10
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-sg.qytnode.com
+  port: 39040
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 日本-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-jp.qytnode.com
+  port: 39041
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 日本-02
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-jp.qytnode.com
+  port: 39042
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 日本-03
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-jp.qytnode.com
+  port: 39043
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 日本-04
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-jp.qytnode.com
+  port: 39044
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 日本-05
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-jp.qytnode.com
+  port: 39045
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 日本-06
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-jp.qytnode.com
+  port: 39046
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 日本-07
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-jp.qytnode.com
+  port: 39047
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 日本-08
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-jp.qytnode.com
+  port: 39048
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 日本-09
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-jp.qytnode.com
+  port: 39049
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 日本-10
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-jp.qytnode.com
+  port: 39050
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 韩国-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-kr.qytnode.com
+  port: 39051
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 韩国-02
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-kr.qytnode.com
+  port: 39052
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 马来西亚-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-my.qytnode.com
+  port: 39053
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 马来西亚-02
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-my.qytnode.com
+  port: 39054
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 马来西亚-03
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-my.qytnode.com
+  port: 39055
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 美国-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-us.qytnode.com
+  port: 39061
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 美国-02
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-us.qytnode.com
+  port: 39062
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 美国-03
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-us.qytnode.com
+  port: 39063
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 美国-04
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-us.qytnode.com
+  port: 39064
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 美国-05
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-us.qytnode.com
+  port: 39065
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 美国-06
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-us.qytnode.com
+  port: 39066
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 美国-07
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-us.qytnode.com
+  port: 39067
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 美国-08
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-us.qytnode.com
+  port: 39068
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 美国-09
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-us.qytnode.com
+  port: 39069
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 美国-10
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-us.qytnode.com
+  port: 39070
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 越南-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-vn.qytnode.com
+  port: 39071
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 菲律宾-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-ph.qytnode.com
+  port: 39073
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 泰国-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-th.qytnode.com
+  port: 39075
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 印度-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-in.qytnode.com
+  port: 39077
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 德国-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-de.qytnode.com
+  port: 39079
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 法国-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-fr.qytnode.com
+  port: 39081
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 英国-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-uk.qytnode.com
+  port: 39083
+  cipher: aes-128-gcm
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 阿根廷-01
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-ar.qytnode.com
+  port: 39085
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 阿根廷-02
+  type: ss
+  server: office-39fe4f34d7.f2um5igcm0awo7n-ar.qytnode.com
+  port: 39086
+  cipher: chacha20-ietf-poly1305
+  password: 43fdea84-b50b-4f4e-92d2-4c220022ecdb
+  udp: true
+- name: 🇭🇰 香港 01 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 10101
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇭🇰 香港 02 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 10102
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇭🇰 香港 03 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 10103
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇭🇰 香港 04 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 10104
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇭🇰 香港 05 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 10105
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇭🇰 香港 06 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 10106
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇭🇰 香港 07 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 10107
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇭🇰 香港 08 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 10108
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇸🇬 狮城 02 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12012
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: tr.yuanul.com
+- name: 🇸🇬 狮城 03 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12013
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: sg.yuanul.com
+- name: 🇸🇬 狮城 04 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12014
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: sg4.yuanul.com
+- name: 🇸🇬 狮城 05 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12015
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: sg5.yuanul.com
+- name: 🇸🇬 狮城 06 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12016
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: sg6.yuanul.com
+- name: 🇸🇬 狮城 07 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12017
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 63.yuanul.com
+- name: 🇸🇬 狮城 08 TR
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12018
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 64.yuanul.com
+- name: 🇨🇳 台湾 01
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12101
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 104.yuanul.com
+- name: 🇨🇳 台湾 02
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12102
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 106.yuanul.com
+- name: 🇨🇳 台湾 03
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12103
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 116.yuanul.com
+- name: 🇨🇳 台湾 04
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12104
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 108.yuanul.com
+- name: 🇨🇳 台湾 05
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12105
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  skip-cert-verify: true
+- name: 🇨🇳 台湾 06
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12106
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 110.yuanul.com
+- name: 🇨🇳 台湾 IEPL CM 1.2X
+  type: trojan
+  server: iepl01.twplink.xyz
+  port: 12107
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇯🇵 日本 01
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12201
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 149.yuanul.com
+- name: 🇯🇵 日本 02
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12202
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 119.yuanul.com
+- name: 🇯🇵 日本 03
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12203
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 120.yuanul.com
+- name: 🇯🇵 日本 04
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12204
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 121.yuanul.com
+- name: 🇯🇵 日本 05
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12205
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 122.yuanul.com
+- name: 🇯🇵 日本 06
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12206
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 123.yuanul.com
+- name: 🇯🇵 日本 07
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12207
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 124.yuanul.com
+- name: 🇯🇵 日本 08
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 12208
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 125.yuanul.com
+- name: 🇺🇸 美国 01
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 13201
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 133.yuanul.com
+- name: 🇺🇸 美国 02
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 13202
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 135.yuanul.com
+- name: 🇺🇸 美国 03
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 13203
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 136.yuanul.com
+- name: 🇺🇸 美国 04
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 13204
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 137.yuanul.com
+- name: 🇺🇸 美国 05
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 13205
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 138.yuanul.com
+- name: 🇺🇸 美国 06
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 13206
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 139.yuanul.com
+- name: 🇺🇸 美国 07
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 13207
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 140.yuanul.com
+- name: 🇺🇸 美国 08
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 13208
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 141.yuanul.com
+- name: 🇺🇸 美国 IEPL CM 1.2X
+  type: trojan
+  server: iepl01.usalink.xyz
+  port: 13209
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇲🇾 马来西亚 01
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 14101
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 152.yuanul.com
+- name: 🇲🇾 马来西亚 02
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 14102
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 154.yuanul.com
+- name: 🇲🇾 马来西亚 03
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 14103
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 155.yuanul.com
+- name: 🇲🇾 马来西亚 04
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 14104
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 156.yuanul.com
+- name: 🇲🇾 马来西亚 05
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 14105
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 157.yuanul.com
+- name: 🇲🇾 马来西亚 06
+  type: trojan
+  server: 2c6f2139-838e-4478-9e47-55140df12640.hkglink.xyz
+  port: 14106
+  password: 25fa9fd6-5071-4ddb-8119-996104a56733
+  udp: true
+  sni: 162.yuanul.com
+- name: 🇧🇷 IEPL 巴西
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23018
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇦🇷 IEPL 阿根廷
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23019
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇨🇦 IEPL 加拿大
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23000
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 73.yuanul.com
+- name: 🇰🇷 IEPL 韩国
+  type: trojan
+  server: kr.node1link.xyz
+  port: 23016
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 150.yuanul.com
+- name: 🇩🇪 IEPL 德国
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23001
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 75.yuanul.com
+- name: 🇺🇦 IEPL 乌克兰
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23002
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 76.yuanul.com
+- name: 🇵🇱 IEPL 波兰
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23003
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇹🇭 IEPL 泰国
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23004
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 81.yuanul.com
+- name: 🇻🇳 IEPL 越南
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23005
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇮🇳 IEPL 印度
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23006
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 84.yuanul.com
+- name: 🇷🇺 IEPL 俄罗斯
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23007
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 84.yuanul.com
+- name: 🇹🇷 IEPL 土耳其
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23008
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: 🇬🇧 IEPL 英国
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23009
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 93.yuanul.com
+- name: 🇪🇸 IEPL 西班牙
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23012
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 97.yuanul.com
+- name: 🇮🇩 IEPL 印度尼尼亚
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23013
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 99.yuanul.com
+- name: 🇨🇭 IEPL 瑞士
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23014
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 101.yuanul.com
+- name: 🇦🇺 IEPL 澳大利亚
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23015
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 102.yuanul.com
+- name: 🇳🇬 IEPL 尼日利亚
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23020
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 168.yuanul.com
+- name: 🇫🇷 IEPL 法国
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23017
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: 169.yuanul.com
+- name: 🇵🇭 IEPL 菲律宾
+  type: trojan
+  server: tr.node1link.xyz
+  port: 23021
+  password: 28180915-1440-4962-bc5e-cd500ba5dfa4
+  udp: true
+  sni: sni.eos-suzhou-4.cmecloud.cn
+- name: V4-414|日本|x2.0
+  type: vmess
+  server: jzrbjp.cdn.node.a.cndjjkinetra.xyz
+  port: 40414
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: jp
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-376|香港|x2.0
+  type: ssr
+  server: vsw60g.cdn.node.a.cndjjkinetra.xyz
+  port: 40376
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: hk
+- name: V4-48|新加坡|x2.0
+  type: ssr
+  server: dtbv9a56r.cdn.node.a.cndjjkinetra.xyz
+  port: 40048
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: sg
+- name: V4-187|日本|x1.0
+  type: vmess
+  server: zjjps3.cdn.node.a.cndjjkinetra.xyz
+  port: 40187
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: jp
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-196|香港|x1.5
+  type: vmess
+  server: sshnyrgw.cdn.node.a.cndjjkinetra.xyz
+  port: 40196
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: hk
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-19|香港|x1.0
+  type: vmess
+  server: cngh1.cdn.node.a.cndjjkinetra.xyz
+  port: 40019
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: hk
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-248|香港|x1.0
+  type: vmess
+  server: blg768.cdn.node.a.cndjjkinetra.xyz
+  port: 40248
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: hk
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-249|香港x2.0
+  type: vmess
+  server: blg768.cdn.node.a.cndjjkinetra.xyz
+  port: 40249
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: hk
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-251|香港|x2.0
+  type: vmess
+  server: mhfv46.cdn.node.a.cndjjkinetra.xyz
+  port: 40251
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: hk
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-299|香港|x1.5
+  type: vmess
+  server: sshnyrgw.cdn.node.a.cndjjkinetra.xyz
+  port: 40299
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: hk
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-300|香港|x1.5
+  type: vmess
+  server: jzygy.cdn.node.a.cndjjkinetra.xyz
+  port: 40300
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: hk
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-325|台湾|x2.0
+  type: vmess
+  server: bga5c1.cdn.node.a.cndjjkinetra.xyz
+  port: 40325
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: tw
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-326|台湾|x2.0
+  type: vmess
+  server: bga5c1.cdn.node.a.cndjjkinetra.xyz
+  port: 40326
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: tw
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-340|台湾|x2.0
+  type: vmess
+  server: bga5c1.cdn.node.a.cndjjkinetra.xyz
+  port: 40340
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: tw
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-356|马来西亚x1.5
+  type: vmess
+  server: wshgy12.cdn.node.a.cndjjkinetra.xyz
+  port: 40356
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: my
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-383|香港|x2.0
+  type: vmess
+  server: jzhkv2r1.cdn.node.a.cndjjkinetra.xyz
+  port: 40383
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: hk
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-384|香港|x1.5
+  type: vmess
+  server: sshnyrgw.cdn.node.a.cndjjkinetra.xyz
+  port: 40384
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: hk
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-411|日本|x2.0
+  type: vmess
+  server: jzrbjp.cdn.node.a.cndjjkinetra.xyz
+  port: 40411
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: jp
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-412|日本|x2.0
+  type: vmess
+  server: jzrbjp.cdn.node.a.cndjjkinetra.xyz
+  port: 40412
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: jp
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-413|日本|x2.0
+  type: vmess
+  server: jzrbjp.cdn.node.a.cndjjkinetra.xyz
+  port: 40413
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: jp
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-415|日本|x1.0
+  type: vmess
+  server: jzrbjp.cdn.node.a.cndjjkinetra.xyz
+  port: 40415
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: jp
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-41|日本|x1.0
+  type: vmess
+  server: zjjps3.cdn.node.a.cndjjkinetra.xyz
+  port: 40041
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: jp
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-43|香港|x2.0
+  type: vmess
+  server: jzhkv2r1.cdn.node.a.cndjjkinetra.xyz
+  port: 40043
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: hk
+  network: ws
+  ws-opts:
+    path: /d1af668b-cff6-464a-9415-a7782ead72d5.j.live003.m3u8
+  skip-cert-verify: false
+- name: V4-451|香港|x1.5
+  type: vmess
+  server: sshnyrgw.cdn.node.a.cndjjkinetra.xyz
+  port: 40451
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: hk
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-454|香港|x1.0
+  type: vmess
+  server: blg768.cdn.node.a.cndjjkinetra.xyz
+  port: 40454
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: hk
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-45|新加坡|x2.0
+  type: vmess
+  server: dtbv9a56r.cdn.node.a.cndjjkinetra.xyz
+  port: 40045
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: sg
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-49|新加坡|x2.0
+  type: vmess
+  server: dtbv9a56r.cdn.node.a.cndjjkinetra.xyz
+  port: 40049
+  uuid: 4ed12b40-a58d-3e33-b415-42347c81ca93
+  alterId: 0
+  cipher: auto
+  udp: true
+  tags: sg
+  network: ws
+  ws-opts:
+    path: /80b48db1-7a27-4d2b-a12b-009feb033b04.j.live001.m3u8
+  skip-cert-verify: false
+- name: V4-186|日本|x1.0
+  type: ssr
+  server: zjjps3.cdn.node.a.cndjjkinetra.xyz
+  port: 40186
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: jp
+- name: V4-18|香港|x1.0
+  type: ssr
+  server: cngh1.cdn.node.a.cndjjkinetra.xyz
+  port: 40018
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: hk
+- name: V4-195|香港|x1.5
+  type: ssr
+  server: mdhdac.cdn.node.a.cndjjkinetra.xyz
+  port: 40195
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: hk
+- name: V4-243|香港|x1.0
+  type: ssr
+  server: mhf6.cdn.node.a.cndjjkinetra.xyz
+  port: 40243
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: hk
+- name: V4-244|香港|x2.0
+  type: ssr
+  server: mhf6.cdn.node.a.cndjjkinetra.xyz
+  port: 40244
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: hk
+- name: V4-246|香港|x2.0
+  type: ssr
+  server: mhf6.cdn.node.a.cndjjkinetra.xyz
+  port: 40246
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: hk
+- name: V4-283|香港|x1.5
+  type: ssr
+  server: mdhdac.cdn.node.a.cndjjkinetra.xyz
+  port: 40283
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: hk
+- name: V4-284|香港|x1.5
+  type: ssr
+  server: jzygy.cdn.node.a.cndjjkinetra.xyz
+  port: 40284
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: hk
+- name: V4-318|台湾|x2.0
+  type: ssr
+  server: bga5c1.cdn.node.a.cndjjkinetra.xyz
+  port: 40318
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: tw
+- name: V4-339|台湾|x2.0
+  type: ssr
+  server: bga5c1.cdn.node.a.cndjjkinetra.xyz
+  port: 40339
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: tw
+- name: V4-354|马来西亚|x1.5
+  type: ssr
+  server: wshgy12.cdn.node.a.cndjjkinetra.xyz
+  port: 40354
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: my
+- name: V4-357|台湾|x2.0
+  type: ssr
+  server: bga5c1.cdn.node.a.cndjjkinetra.xyz
+  port: 40357
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: tw
+- name: V4-377|香港|x1.5
+  type: ssr
+  server: mdhdac.cdn.node.a.cndjjkinetra.xyz
+  port: 40377
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: hk
+- name: V4-396|日本|x2.0
+  type: ssr
+  server: jzrbjp.cdn.node.a.cndjjkinetra.xyz
+  port: 40396
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: jp
+- name: V4-397|日本|x2.0
+  type: ssr
+  server: jzrbjp.cdn.node.a.cndjjkinetra.xyz
+  port: 40397
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: jp
+- name: V4-398|日本|x2.0
+  type: ssr
+  server: jzrbjp.cdn.node.a.cndjjkinetra.xyz
+  port: 40398
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: jp
+- name: V4-399|日本|x2.0
+  type: ssr
+  server: jzrbjp.cdn.node.a.cndjjkinetra.xyz
+  port: 40399
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: jp
+- name: V4-400|日本|x1.0
+  type: ssr
+  server: jzrbjp.cdn.node.a.cndjjkinetra.xyz
+  port: 40400
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: jp
+- name: V4-40|日本|x1.0
+  type: ssr
+  server: zjjps3.cdn.node.a.cndjjkinetra.xyz
+  port: 40040
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: jp
+- name: V4-42|香港|x2.0
+  type: ssr
+  server: vsw60g.cdn.node.a.cndjjkinetra.xyz
+  port: 40042
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: hk
+- name: V4-440|香港|x1.5
+  type: ssr
+  server: mdhdac.cdn.node.a.cndjjkinetra.xyz
+  port: 40440
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: hk
+- name: V4-443|香港|x1.0
+  type: ssr
+  server: mhf6.cdn.node.a.cndjjkinetra.xyz
+  port: 40443
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: hk
+- name: V4-44|新加坡|x2.0
+  type: ssr
+  server: dtbv9a56r.cdn.node.a.cndjjkinetra.xyz
+  port: 40044
+  cipher: chacha20-ietf
+  password: jL76UJd
+  protocol: auth_aes128_sha1
+  protocol-param: 598526:yNUd4z
+  obfs: tls1.2_ticket_auth
+  obfs-param: 648e6598526.cloudfront.com,cloudflare.com,itunes.apple.com,www.icloud.com,ajax.microsoft.com,apps.bdimg.com,www.bing.com
+  udp: true
+  tags: sg
 authentication:
-  - dp1_o849ej5j:5vVraS59gvf13MLr
-  - dp1_lwjeh6k0:uTte8XtwkSzNyvNE
-
+- woxb69:WiBOtwuTepC8
+- 8a51ra:wJeaxnYW7MdQ
+- zesuwa:ZAEM66DzunVD
+- i8sdhd:bPU3dVjAOqL2
+- qfdsni:KTmNxoPWeUHF
+- 43x7mn:GQRUK5eVykjC
+- pmxa11:FaifJW8ozczA
+- n87v8u:ixnURsA8Q1Sc
+- ifhgc2:Hm7gSCCQRuKw
+- xldlwr:7zAvEsEdec1w
+- ghdity:AwX3T9wnWIFQ
+- ate1zt:dsvglkL3iFv6
+- ri3vjp:To8e8Vl7NVr2
+- 0w0hea:12CATdtOcvD4
+- uueurg:94U5prYqVplE
+- e1g1gy:YhQcg7FloURd
+- xzc5px:aItnAMn0oono
+- 2rfzhg:nEoyQTeHjT7R
+- 4e4hsk:IyAMWboH1IYq
+- vc9ryg:YyfTzKCfAnQQ
+- dhc011:F7vslrMvbvwm
+- b9ur79:dhVYF4JSoy9W
+- 4m9p3z:XEtS1rSWuo5m
+- zen4re:7dzVfeehqL5t
+- oz30ar:FDoPlQ9ebVrP
+- 3jn04x:GHvmH8087jNu
+- t5lbk1:eRD8kRES38eh
+- 7w3o98:rp90XKtkukr4
+- v907wb:h3zEJ1RHnX37
+- fjm8ni:z5pZ8TbGzdmR
+- vlfd6n:a39b1pf7FtgQ
+- iudfvj:yPkizSk7bP8U
+- zecipi:8Cmof06fAeRz
+- ikexcy:K9FYNVtidFlO
+- myqwqd:Ej0IMggam3aw
+- uwhh6g:Is7B3Z6HDh92
+- 0sl36r:RIqDRIZlrzQk
+- v556oo:NhJuVxSUWD1L
+- 2jjdqv:9kGSTIDOYVER
+- tkasd4:4kHIslzYzAUH
+- wlwi9h:8hAUyQD8JYUS
+- 38hn8k:SFQhafHavu1n
+- wypfv8:oLNJF0RLcXSq
+- cptlh3:ur82iCbctb4I
+- e6v7pg:mDpmbGLUOGXZ
+- vj5nmi:ylcNnkrXBqu1
+- s06rj4:JzAQZO6M2RJp
+- 68srkd:ClwNH6lv3jRk
+- ghj55p:Gq2TtWAql9Hk
+- g01uy2:rD84QI7JX0Se
+- dtiuvq:Kv1E6s8JiX7p
+- m0qrrz:OLWSr8f6lCGM
+- kucp3u:tGbzpOeaYZKj
+- t7idk0:w0dIFNlXEyHN
+- oq3eke:wcUAvc9Vxr9A
+- 097hj5:PlJ4dtH89qlw
+- rgtgfg:czTHZq4Ofpjm
+- ezkm4z:h5XWZ3x5rwbP
+- 3iq6pn:IYVfnXCFIOTc
+- 9g95l8:Ys8gGEqVBirt
+- bhum2c:vSlMPQqK2XZE
+- bo1ym5:ZGCIbPyLGCJ1
+- f5ej3a:Ysa3yyDRPg3H
+- etgaoc:ELwTtBQwXaMH
+- ospbry:mL81B5s9AWaA
+- u2lqnc:8TQLTgPDb0rO
+- c7ol0g:sZz9Yz5csPtX
+- xjffjh:WOUWfkLQaMUG
+- x1xxxk:6PHEwmKk5xgh
+- m66bt9:ERRtmC7h9jXe
+- 0o9r7f:5EPUbAg3tRML
+- tqs3gc:n3fFT4toTjPy
+- ldsd4s:x1MTBIjwZqbk
+- 7b1jyh:kabdJTwLgoym
+- m1dcne:j11fq8UZywUO
+- ml46md:7ug3VnAKcAcO
+- u95te1:h0HCnJyRAMRX
+- xfsqzm:C1CX0TEwgZJg
+- 1algah:BpctQjllPl3K
+- 6ggyy3:06h6IlhkSdaY
+- 1pyc4h:S2dqwpoc7H9F
+- qnalbi:70ynPW2AieQu
+- 0o4bhj:P4Nn8sTPRvu7
+- gb5irn:aeveb0VZ9cPz
+- t28yqd:6HKCYKu3AeoO
+- 5ocsdm:jG0WPqcMVfUw
+- y33f9r:UXUwMzVft8FG
+- 2ysumc:oGgPuI14Sa3S
+- 1vpmfo:MYW5gzM6BFsE
+- o76lop:5YOdZ952QfhK
+- lbmc7c:zTLhKrrP2qo4
+- e89c7d:DsfTOvsUrtFs
+- lvdjk5:2DHBNTOgpsAH
+- w6zr2x:zU2ybEyfdO0H
+- cwljrw:HidDDDcf0eR4
+- holij1:78wuwqOUshbw
+- cw6af4:ZrT7hS8bptQX
+- 0iy6ot:qZ73umSQNuOm
+- 5auof3:MFB5b8jWZoli
+- 3oquii:oX2NlKBpsaS5
+- r86hyn:BO1UZ8aL0P69
+- q2992u:1PcOfG583Rhi
+- wbunls:7j9SXYMHa2e7
+- p9tw6k:NtTEHDS4bWdQ
+- gpeyz4:jd2C1ldoahjX
+- vpsn08:UjbXVS6OOlTf
+- k6mt3t:mixv7fPrA0F2
+- mvf85h:l7FRXPJ8tUDW
+- 504khe:GGMjie8iWTBQ
+- m0aajn:PRA2px72q8YQ
+- lubsym:cF5X9xd5okGA
+- 0uon3a:lAjDMoLZ4TjS
+- p96qha:i3ReykTM7fwY
+- 03qgwl:W2LXy5qERpwz
+- abp6hy:C4ghVCQRxepV
+- 3htcuw:mLAiVTBT5a9w
+- j8j2u5:N8S9mZQMRpaV
+- 84wdcz:mo7HSvwcqsoO
+- bsw94d:XbSbyw4hZ7Ra
+- s2mypp:FIXpfMp2yCIp
+- eiviag:qGJMjhb9WQCe
+- jg7ttt:eJNEaV3NjTME
+- xa2kq9:jjhKOSbjTHh6
+- 9m03k7:k0lRfab9BBsl
+- 70w0o7:QNzTdoQT8WRE
+- tnm8vv:F52oU4xq6o0F
+- 4yu31s:6yzEbRdJYZiX
+- emkt1h:N7dNQl75JYuz
+- 05x7ij:1ubqL4f2Ccl6
+- y0mjii:IlY2Ers2DY1N
+- z1sz54:tKV8tjfhAba9
+- mbapba:KhkzHdXIBAbd
+- euqpw3:kKXvRc9THvbB
+- xqgvll:ZgutQTZTNMVC
+- rohznj:fdApfnmMpub5
+- tgw4hl:GRZtPXv90Xi4
+- t9mtbm:b4xUTsH72IYG
+- n773tz:qMC3VCUhYPcq
+- tqrluw:QBIbasK3wTHl
+- iqjxk7:80WEn21byFa1
+- 11ljr6:USmGNID9lRuu
+- b30ipt:qlT7MpSUnxv1
+- s429kl:rJymQXqISvYN
+- 1mf655:6HIrqQX44Yas
+- fx0lt9:2UpIpOj5VV0h
+- nlpuf7:lnPVM9REW9Po
+- o4wb31:2g1zrel1agBZ
+- nhhcob:1uC4myQ5UeTN
+- smjesa:JZlrb8dkE55M
+- ldvt0d:XQ34Ss719K9M
+- 050iq0:vkm7mhzb4fYq
+- 1eijk2:lfb97Xysxgoq
+- 59e6dd:3X092yz5m4ze
+- df05yw:Ye3UVFXzS15Y
+- myzm15:sYQRPUAbFPjM
+- lgpc10:AJ2z9erucsLj
+- h6xbce:l7XN95S8CMCr
+- 1xnm8n:LH2XMeRz1K7Z
+- 2febzl:qgjACsbFEcAD
+- axqlyv:8Zq7468Krhmk
+- i9m8mh:oG983FCvJ7vU
+- rpi2cg:civ0TplM7h6W
+- 7lhh9x:f1Nshpvlf7Nd
+- 2xuwvg:1H7glsg9Z5sz
+- i48rpb:7DzcfflT2TDQ
+- ur25hm:IowsAF0ffLHE
+- 6qw473:zyy3IYwxLxTn
+- ay09vy:HyuE89In07ra
+- kar84o:d9rLTzyE4tPq
+- pl43ac:9PklKDTgrQLq
+- gc22a1:SHNqQPkTp5Xx
+- 3t9xuf:Va9OSdt8K20N
+- mvootg:u4MvyJiKG9zK
+- w9pjob:VMOc6TPvAQyo
+- ae5dtu:aX4EwmamUCBK
+- 7o8gw2:KDuUBhe87anf
+- 0g4jtm:rtTPxKTEhlZH
+- w6dqwl:h1dWBzO79iKy
+- g930mt:76nFI2E8gIr8
+- wrvn4h:A0GJX7CfDamW
+- qp9qne:TPy90PbeLkU3
+- uto3hz:kxqlPOT9AkQz
+- u3suse:URU8POhG8wV6
+- cbby9x:0hoFWWYY0OqN
+- xlai7m:ksbap9HnnxNU
+- rteank:DHy6itJMh1hN
+- 8do5gd:Juf9BtKY14xR
+- 9atnae:A1AdTIM9097c
+- 8t0sqk:HVUD8oVZgUiU
+- dkrntl:BMMKPKNnmqkx
+- bu0eez:u9TK84nQGnRX
+- p05t9n:SW4GoBXksmco
+- 9ogtao:yVjw7On2J9HL
+- wouhq5:aZdUeHgrxRIY
+- entaal:cvH1fdOqFgn9
+- q57wx4:tzur02xsKfK8
+- 7qn13q:oTFNP7boRcR8
+- 2qofrn:VY24jW3DTYEM
+- if8fvx:XMpKUYo64wqv
+- b8tthv:hdU7vQfUyicO
+- 7itzdk:JBwnLC3TMi7T
+- rlr7s7:wJD3sWvPF4wo
+- j78ao1:I0LsR1ofSMhi
+- rgabh3:GGA1LGzGSYul
+- 0vxyit:CR0fN245vDwP
+- xytelf:S8K4H9ENiaHY
+- hlv337:5ovByqSCRzp5
+- tfwzj8:5iAnIP4S5hcv
+- v7faow:uMtpn2k40GB9
+- apdqiz:XdIm9zuQEb2I
+- 8wm9fd:acCSCkIdxNua
+- krin74:Ryb6lRgDIPXX
+- mc8h6i:RooFjVUJlOio
+- jpee9r:YqpbV6kibZcp
+- 68r3ep:clM03OahhPNh
+- t4vvvm:HWKd0DovxqFD
+- wep0gp:V4ZJib4PIIqw
+- pi9qj3:66Khci7yjE99
+- rfe2bt:7LJnFV6FSXHX
+- ykd92x:dcdhuy6saueR
+- attrhi:iFcVyVsbIM9S
+- g7pgih:mp89EH0zN5z6
+- yxhkpk:Y2EPwBYhyiKm
+- ulockv:wSxxdZf8vNCO
+- d9gkns:wqf4LiZYpn3J
+- cafv9y:zTTYkpd0GyVU
+- xz0i8q:WyXiie2BhN7q
+- yu7jxn:xDYzCJe2P7DK
+- u00g47:xuDO77nsfXOG
+- j0qd2x:XBeSTZocar6w
+- hnitro:hnitro66
+- hnitro22:hnitro22
+- hnitro11:hnitro11
+- 0j9bjg:UwOUpkK8yWRy
+- utxjml:pKZWhEoAR2sF
+- bv61jp:EJos4cH6f5w7
+- 9xccxz:n61SXT3kQ0JN
+- ar84kj:KLy6sGkxGYBA
+- ldprbr:i9QUfdXxdUWm
+- 3y4555:zlGUjtNPFa0h
+- r5xd5v:0VocoLaJdzA0
+- d6o99n:RBlbVKmazUuz
+- ymvq98:1xMl2ktVOx0C
+- gv9df2:DCptY33w4oHC
+- 1pzbf1:o6TVKiQN4aSU
+- ufw66f:CbpEiodrQe8o
+- z6609r:ybHrT44DZCL6
+- 58vw0w:7Fu86DffOuKq
+- 09zrkd:rZvsSKNjUz1t
+- ssoqc4:VehlR3gW6Qd8
+- k5r14m:1zncOhukVPUk
+- nnzkkg:wwXfsAy8Kffu
+- 5n12kf:2Icbnatw5JZd
+- 2s2kcd:nbGH71QQ8GBP
+- 0xabt5:WwkA9TMy6K0F
+- kipyuh:43WBI0CbXFOn
+- xd7kwu:RmxibPDJpbNv
+- kdo1o8:piUmJuL7SByS
+- ylhlzh:UtuKpFbsEVQ1
+- tcxowi:S81zfafIvBGj
+- x692vy:0klIIWnrVxfr
+- p721fs:Hr0in9ZUeaQV
+- iqzktg:KCggpsWoGgpw
+- 658wnl:Af7cLgIoB5PP
+- ajhiej:zJUGh6ZQKcjr
+- u5b9i9:AzDubRxtOkRe
+- 1ha3ov:rFlfrltcSiNK
+- azneg0:3AZHdj70AgWw
+- w1x3d6:F7kEelH7OlAl
+- t7jbc6:QADIeGNArnOl
+- 5fk2h1:txBdIZC8whVp
+- 3zw722:Vlmj4bWqeKMx
+- vqnhiu:Xu1mcIWqVivU
+- ctjcco:t4WnOn5IQh09
+- 38smbu:Yygo7DEPKWsR
+- c1zrl5:M8TUCWvdOcEV
+- va780s:4a1ZDIYXKkmv
+- j7bsxd:AnMuxvzyPAdn
+- yh4a1b:N7YylCgmqC4i
+- ocz32w:8t6uvUJ6T4Wa
 rules:
-  - PROXY-USER,dp1_o849ej5j,20.63 GB | 150 GB
-  - 'PROXY-USER,dp1_lwjeh6k0,Traffic Reset: 17 Days Left'
+- IP-CIDR,192.168.0.0/16,DIRECT
+- IP-CIDR,10.0.0.0/8,DIRECT
+- IP-CIDR,172.16.0.0/12,DIRECT
+- IP-CIDR,127.0.0.0/8,DIRECT
+- PROXY-USER,woxb69,Asia 01 | Mix IEPL
+- PROXY-USER,8a51ra,Asia 02 | Mix IEPL
+- PROXY-USER,zesuwa,🇭🇰Hong Kong 01 | IEPL
+- PROXY-USER,i8sdhd,🇭🇰Hong Kong 02 | IEPL
+- PROXY-USER,qfdsni,🇭🇰Hong Kong 03 | IEPL + UDP
+- PROXY-USER,43x7mn,🇭🇰Hong Kong [BGP] | Direct 02
+- PROXY-USER,pmxa11,🇸🇬Singapore 01 | IEPL
+- PROXY-USER,n87v8u,🇸🇬Singapore 03 | IEPL + UDP
+- PROXY-USER,ifhgc2,🇸🇬Singapore 04 | IEPL + UDP | BGP
+- PROXY-USER,xldlwr,🇸🇬Singapore 05 | Direct
+- PROXY-USER,ghdity,🇨🇳Taiwan 01 | IEPL
+- PROXY-USER,ate1zt,🇨🇳Taiwan 03 | IEPL + UDP
+- PROXY-USER,ri3vjp,🇨🇳Taiwan 04 | IEPL + UDP | BGP
+- PROXY-USER,0w0hea,🇨🇳Taiwan 05 | Direct
+- PROXY-USER,uueurg,🇯🇵Japan 01 | IEPL
+- PROXY-USER,e1g1gy,🇯🇵Japan 03 | IEPL + UDP
+- PROXY-USER,xzc5px,🇯🇵Japan 04 | IEPL + UDP | BGP
+- PROXY-USER,2rfzhg,🇯🇵Japan 05 | Direct
+- PROXY-USER,4e4hsk,🇰🇷Korea  01 | IEPL
+- PROXY-USER,vc9ryg,🇰🇷Korea  02 | IEPL
+- PROXY-USER,dhc011,🇰🇷Korea  05 | IEPL + UDP
+- PROXY-USER,b9ur79,🇰🇷Korea  06 | IEPL + UDP
+- PROXY-USER,4m9p3z,🇰🇷Korea  07 | IEPL + UDP | BGP
+- PROXY-USER,zen4re,🇰🇷Korea  08 | IEPL + UDP | BGP
+- PROXY-USER,oz30ar,🇰🇷Korea  09 | Direct
+- PROXY-USER,3jn04x,🇰🇷Korea  10 | Direct
+- PROXY-USER,t5lbk1,🇹🇭Thailand 01
+- PROXY-USER,7w3o98,🇹🇭Thailand 02
+- PROXY-USER,v907wb,🇺🇸United States 01 | IEPL
+- PROXY-USER,fjm8ni,🇺🇸United States 03 | IEPL + UDP
+- PROXY-USER,vlfd6n,🇺🇸United States 04 | IEPL + UDP | BGP
+- PROXY-USER,iudfvj,🇺🇸United States 05 | Direct
+- PROXY-USER,zecipi,🇬🇧United Kingdom 01 | IEPL
+- PROXY-USER,ikexcy,🇬🇧United Kingdom 03 | IEPL | BGP
+- PROXY-USER,myqwqd,🇬🇧United Kingdom 04 | Direct
+- PROXY-USER,uwhh6g,🇨🇦Canada 01 | IEPL
+- PROXY-USER,0sl36r,🇨🇦Canada 03 | IPLC | BGP
+- PROXY-USER,v556oo,🇨🇦Canada 04 | Direct
+- PROXY-USER,2jjdqv,🇩🇪Germany 01 | IEPL
+- PROXY-USER,tkasd4,🇩🇪Germany 03 | IPLC | BGP
+- PROXY-USER,wlwi9h,🇷🇺Russia 01 | IEPL
+- PROXY-USER,38hn8k,🇷🇺Russia 03 | IPLC | BGP
+- PROXY-USER,wypfv8,🇮🇪Ireland 01 | IEPL
+- PROXY-USER,cptlh3,🇮🇪Ireland 03 | IPLC | BGP
+- PROXY-USER,e6v7pg,🇿🇦South Africa 01 | IEPL
+- PROXY-USER,vj5nmi,🇿🇦South Africa 03 | IPLC | BGP
+- PROXY-USER,s06rj4,🇳🇱Netherlands 01 | IEPL
+- PROXY-USER,68srkd,🇳🇱Netherlands 03 | IPLC | BGP
+- PROXY-USER,ghj55p,🇫🇷France 01 | IEPL
+- PROXY-USER,g01uy2,🇫🇷France 03 | IPLC | BGP
+- PROXY-USER,dtiuvq,🇹🇷Türkiye 01
+- PROXY-USER,m0qrrz,🇹🇷Türkiye 02
+- PROXY-USER,kucp3u,20.63 GB | 150 GB
+- 'PROXY-USER,t7idk0,Traffic Reset: 17 Days Left'
+- 'PROXY-USER,oq3eke,Expire Date: 2025-08-21'
+- PROXY-USER,097hj5,🇭🇰 Hong Kong丨01
+- PROXY-USER,rgtgfg,🇭🇰 Hong Kong丨02
+- PROXY-USER,ezkm4z,🇭🇰 Hong Kong丨03
+- PROXY-USER,3iq6pn,🇭🇰 Hong Kong丨04
+- PROXY-USER,9g95l8,🇭🇰 Hong Kong丨05
+- PROXY-USER,bhum2c,🇭🇰 Hong Kong丨06
+- PROXY-USER,bo1ym5,🇭🇰 Hong Kong丨07
+- PROXY-USER,f5ej3a,🇭🇰 Hong Kong丨08
+- PROXY-USER,etgaoc,🇭🇰 Hong Kong丨09
+- PROXY-USER,ospbry,🇭🇰 Hong Kong丨10
+- PROXY-USER,u2lqnc,🇨🇳 Taiwan丨01
+- PROXY-USER,c7ol0g,🇨🇳 Taiwan丨02
+- PROXY-USER,xjffjh,🇨🇳 Taiwan丨03
+- PROXY-USER,x1xxxk,🇨🇳 Taiwan丨04
+- PROXY-USER,m66bt9,🇨🇳 Taiwan丨05
+- PROXY-USER,0o9r7f,🇸🇬 Singapore丨01
+- PROXY-USER,tqs3gc,🇸🇬 Singapore丨02
+- PROXY-USER,ldsd4s,🇸🇬 Singapore丨03
+- PROXY-USER,7b1jyh,🇸🇬 Singapore丨04
+- PROXY-USER,m1dcne,🇸🇬 Singapore丨05
+- PROXY-USER,ml46md,🇯🇵 Japan丨01
+- PROXY-USER,u95te1,🇯🇵 Japan丨02
+- PROXY-USER,xfsqzm,🇯🇵 Japan丨03
+- PROXY-USER,1algah,🇯🇵 Japan丨04
+- PROXY-USER,6ggyy3,🇯🇵 Japan丨05
+- PROXY-USER,1pyc4h,🇺🇸 United States丨01
+- PROXY-USER,qnalbi,🇺🇸 United States丨02
+- PROXY-USER,0o4bhj,🇺🇸 United States丨03
+- PROXY-USER,gb5irn,🇺🇸 United States丨04
+- PROXY-USER,t28yqd,🇺🇸 United States丨05
+- PROXY-USER,5ocsdm,🇰🇷 South Korea丨01
+- PROXY-USER,y33f9r,🇨🇦 Canada丨01
+- PROXY-USER,2ysumc,🇬🇧 Great Britain丨01
+- PROXY-USER,1vpmfo,此地區屬於高級套餐
+- PROXY-USER,o76lop,20.68 GB | 150 GB
+- 'PROXY-USER,lbmc7c,Traffic Reset: 16 Days Left'
+- PROXY-USER,e89c7d,香港-01
+- PROXY-USER,lvdjk5,香港-02
+- PROXY-USER,w6zr2x,香港-03
+- PROXY-USER,cwljrw,香港-04
+- PROXY-USER,holij1,香港-05
+- PROXY-USER,cw6af4,香港-06
+- PROXY-USER,0iy6ot,香港-07
+- PROXY-USER,5auof3,香港-08
+- PROXY-USER,3oquii,香港-09
+- PROXY-USER,r86hyn,香港-10
+- PROXY-USER,q2992u,香港-11
+- PROXY-USER,wbunls,香港-12
+- PROXY-USER,p9tw6k,香港-13
+- PROXY-USER,gpeyz4,香港-14
+- PROXY-USER,vpsn08,香港-15
+- PROXY-USER,k6mt3t,香港-16
+- PROXY-USER,mvf85h,香港-17
+- PROXY-USER,504khe,香港-18
+- PROXY-USER,m0aajn,香港-19
+- PROXY-USER,lubsym,香港-20
+- PROXY-USER,0uon3a,台湾-01
+- PROXY-USER,p96qha,台湾-02
+- PROXY-USER,03qgwl,台湾-03
+- PROXY-USER,abp6hy,台湾-04
+- PROXY-USER,3htcuw,台湾-05
+- PROXY-USER,j8j2u5,台湾-06
+- PROXY-USER,84wdcz,台湾-07
+- PROXY-USER,bsw94d,台湾-08
+- PROXY-USER,s2mypp,台湾-09
+- PROXY-USER,eiviag,台湾-10
+- PROXY-USER,jg7ttt,新加坡-01
+- PROXY-USER,xa2kq9,新加坡-02
+- PROXY-USER,9m03k7,新加坡-03
+- PROXY-USER,70w0o7,新加坡-04
+- PROXY-USER,tnm8vv,新加坡-05
+- PROXY-USER,4yu31s,新加坡-06
+- PROXY-USER,emkt1h,新加坡-07
+- PROXY-USER,05x7ij,新加坡-08
+- PROXY-USER,y0mjii,新加坡-09
+- PROXY-USER,z1sz54,新加坡-10
+- PROXY-USER,mbapba,日本-01
+- PROXY-USER,euqpw3,日本-02
+- PROXY-USER,xqgvll,日本-03
+- PROXY-USER,rohznj,日本-04
+- PROXY-USER,tgw4hl,日本-05
+- PROXY-USER,t9mtbm,日本-06
+- PROXY-USER,n773tz,日本-07
+- PROXY-USER,tqrluw,日本-08
+- PROXY-USER,iqjxk7,日本-09
+- PROXY-USER,11ljr6,日本-10
+- PROXY-USER,b30ipt,韩国-01
+- PROXY-USER,s429kl,韩国-02
+- PROXY-USER,1mf655,马来西亚-01
+- PROXY-USER,fx0lt9,马来西亚-02
+- PROXY-USER,nlpuf7,马来西亚-03
+- PROXY-USER,o4wb31,美国-01
+- PROXY-USER,nhhcob,美国-02
+- PROXY-USER,smjesa,美国-03
+- PROXY-USER,ldvt0d,美国-04
+- PROXY-USER,050iq0,美国-05
+- PROXY-USER,1eijk2,美国-06
+- PROXY-USER,59e6dd,美国-07
+- PROXY-USER,df05yw,美国-08
+- PROXY-USER,myzm15,美国-09
+- PROXY-USER,lgpc10,美国-10
+- PROXY-USER,h6xbce,越南-01
+- PROXY-USER,1xnm8n,菲律宾-01
+- PROXY-USER,2febzl,泰国-01
+- PROXY-USER,axqlyv,印度-01
+- PROXY-USER,i9m8mh,德国-01
+- PROXY-USER,rpi2cg,法国-01
+- PROXY-USER,7lhh9x,英国-01
+- PROXY-USER,2xuwvg,阿根廷-01
+- PROXY-USER,i48rpb,阿根廷-02
+- PROXY-USER,ur25hm,🇭🇰 香港 01 TR
+- PROXY-USER,6qw473,🇭🇰 香港 02 TR
+- PROXY-USER,ay09vy,🇭🇰 香港 03 TR
+- PROXY-USER,kar84o,🇭🇰 香港 04 TR
+- PROXY-USER,pl43ac,🇭🇰 香港 05 TR
+- PROXY-USER,gc22a1,🇭🇰 香港 06 TR
+- PROXY-USER,3t9xuf,🇭🇰 香港 07 TR
+- PROXY-USER,mvootg,🇭🇰 香港 08 TR
+- PROXY-USER,w9pjob,🇸🇬 狮城 02 TR
+- PROXY-USER,ae5dtu,🇸🇬 狮城 03 TR
+- PROXY-USER,7o8gw2,🇸🇬 狮城 04 TR
+- PROXY-USER,0g4jtm,🇸🇬 狮城 05 TR
+- PROXY-USER,w6dqwl,🇸🇬 狮城 06 TR
+- PROXY-USER,g930mt,🇸🇬 狮城 07 TR
+- PROXY-USER,wrvn4h,🇸🇬 狮城 08 TR
+- PROXY-USER,qp9qne,🇨🇳 台湾 01
+- PROXY-USER,uto3hz,🇨🇳 台湾 02
+- PROXY-USER,u3suse,🇨🇳 台湾 03
+- PROXY-USER,cbby9x,🇨🇳 台湾 04
+- PROXY-USER,xlai7m,🇨🇳 台湾 05
+- PROXY-USER,rteank,🇨🇳 台湾 06
+- PROXY-USER,8do5gd,🇨🇳 台湾 IEPL CM 1.2X
+- PROXY-USER,9atnae,🇯🇵 日本 01
+- PROXY-USER,8t0sqk,🇯🇵 日本 02
+- PROXY-USER,dkrntl,🇯🇵 日本 03
+- PROXY-USER,bu0eez,🇯🇵 日本 04
+- PROXY-USER,p05t9n,🇯🇵 日本 05
+- PROXY-USER,9ogtao,🇯🇵 日本 06
+- PROXY-USER,wouhq5,🇯🇵 日本 07
+- PROXY-USER,entaal,🇯🇵 日本 08
+- PROXY-USER,q57wx4,🇺🇸 美国 01
+- PROXY-USER,7qn13q,🇺🇸 美国 02
+- PROXY-USER,2qofrn,🇺🇸 美国 03
+- PROXY-USER,if8fvx,🇺🇸 美国 04
+- PROXY-USER,b8tthv,🇺🇸 美国 05
+- PROXY-USER,7itzdk,🇺🇸 美国 06
+- PROXY-USER,rlr7s7,🇺🇸 美国 07
+- PROXY-USER,j78ao1,🇺🇸 美国 08
+- PROXY-USER,rgabh3,🇺🇸 美国 IEPL CM 1.2X
+- PROXY-USER,0vxyit,🇲🇾 马来西亚 01
+- PROXY-USER,xytelf,🇲🇾 马来西亚 02
+- PROXY-USER,hlv337,🇲🇾 马来西亚 03
+- PROXY-USER,tfwzj8,🇲🇾 马来西亚 04
+- PROXY-USER,v7faow,🇲🇾 马来西亚 05
+- PROXY-USER,apdqiz,🇲🇾 马来西亚 06
+- PROXY-USER,8wm9fd,🇧🇷 IEPL 巴西
+- PROXY-USER,krin74,🇦🇷 IEPL 阿根廷
+- PROXY-USER,mc8h6i,🇨🇦 IEPL 加拿大
+- PROXY-USER,jpee9r,🇰🇷 IEPL 韩国
+- PROXY-USER,68r3ep,🇩🇪 IEPL 德国
+- PROXY-USER,t4vvvm,🇺🇦 IEPL 乌克兰
+- PROXY-USER,wep0gp,🇵🇱 IEPL 波兰
+- PROXY-USER,pi9qj3,🇹🇭 IEPL 泰国
+- PROXY-USER,rfe2bt,🇻🇳 IEPL 越南
+- PROXY-USER,ykd92x,🇮🇳 IEPL 印度
+- PROXY-USER,attrhi,🇷🇺 IEPL 俄罗斯
+- PROXY-USER,g7pgih,🇹🇷 IEPL 土耳其
+- PROXY-USER,yxhkpk,🇬🇧 IEPL 英国
+- PROXY-USER,ulockv,🇪🇸 IEPL 西班牙
+- PROXY-USER,d9gkns,🇮🇩 IEPL 印度尼尼亚
+- PROXY-USER,cafv9y,🇨🇭 IEPL 瑞士
+- PROXY-USER,xz0i8q,🇦🇺 IEPL 澳大利亚
+- PROXY-USER,yu7jxn,🇳🇬 IEPL 尼日利亚
+- PROXY-USER,u00g47,🇫🇷 IEPL 法国
+- PROXY-USER,j0qd2x,🇵🇭 IEPL 菲律宾
+- PROXY-USER,hnitro,V4-414|日本|x2.0
+- PROXY-USER,hnitro22,V4-376|香港|x2.0
+- PROXY-USER,hnitro11,V4-48|新加坡|x2.0
+- PROXY-USER,0j9bjg,V4-187|日本|x1.0
+- PROXY-USER,utxjml,V4-196|香港|x1.5
+- PROXY-USER,bv61jp,V4-19|香港|x1.0
+- PROXY-USER,9xccxz,V4-248|香港|x1.0
+- PROXY-USER,ar84kj,V4-249|香港x2.0
+- PROXY-USER,ldprbr,V4-251|香港|x2.0
+- PROXY-USER,3y4555,V4-299|香港|x1.5
+- PROXY-USER,r5xd5v,V4-300|香港|x1.5
+- PROXY-USER,d6o99n,V4-325|台湾|x2.0
+- PROXY-USER,ymvq98,V4-326|台湾|x2.0
+- PROXY-USER,gv9df2,V4-340|台湾|x2.0
+- PROXY-USER,1pzbf1,V4-356|马来西亚x1.5
+- PROXY-USER,ufw66f,V4-383|香港|x2.0
+- PROXY-USER,z6609r,V4-384|香港|x1.5
+- PROXY-USER,58vw0w,V4-411|日本|x2.0
+- PROXY-USER,09zrkd,V4-412|日本|x2.0
+- PROXY-USER,ssoqc4,V4-413|日本|x2.0
+- PROXY-USER,k5r14m,V4-415|日本|x1.0
+- PROXY-USER,nnzkkg,V4-41|日本|x1.0
+- PROXY-USER,5n12kf,V4-43|香港|x2.0
+- PROXY-USER,2s2kcd,V4-451|香港|x1.5
+- PROXY-USER,0xabt5,V4-454|香港|x1.0
+- PROXY-USER,kipyuh,V4-45|新加坡|x2.0
+- PROXY-USER,xd7kwu,V4-49|新加坡|x2.0
+- PROXY-USER,kdo1o8,V4-186|日本|x1.0
+- PROXY-USER,ylhlzh,V4-18|香港|x1.0
+- PROXY-USER,tcxowi,V4-195|香港|x1.5
+- PROXY-USER,x692vy,V4-243|香港|x1.0
+- PROXY-USER,p721fs,V4-244|香港|x2.0
+- PROXY-USER,iqzktg,V4-246|香港|x2.0
+- PROXY-USER,658wnl,V4-283|香港|x1.5
+- PROXY-USER,ajhiej,V4-284|香港|x1.5
+- PROXY-USER,u5b9i9,V4-318|台湾|x2.0
+- PROXY-USER,1ha3ov,V4-339|台湾|x2.0
+- PROXY-USER,azneg0,V4-354|马来西亚|x1.5
+- PROXY-USER,w1x3d6,V4-357|台湾|x2.0
+- PROXY-USER,t7jbc6,V4-377|香港|x1.5
+- PROXY-USER,5fk2h1,V4-396|日本|x2.0
+- PROXY-USER,3zw722,V4-397|日本|x2.0
+- PROXY-USER,vqnhiu,V4-398|日本|x2.0
+- PROXY-USER,ctjcco,V4-399|日本|x2.0
+- PROXY-USER,38smbu,V4-400|日本|x1.0
+- PROXY-USER,c1zrl5,V4-40|日本|x1.0
+- PROXY-USER,va780s,V4-42|香港|x2.0
+- PROXY-USER,j7bsxd,V4-440|香港|x1.5
+- PROXY-USER,yh4a1b,V4-443|香港|x1.0
+- PROXY-USER,ocz32w,V4-44|新加坡|x2.0

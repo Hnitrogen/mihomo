@@ -1,0 +1,54 @@
+# 代理用户管理系统配置文件
+# Proxy User Management System Configuration
+
+# Clash Meta 配置
+clash_meta:
+  # Clash Meta API 地址
+  api_url: "http://192.168.132.58:9093"
+  # Clash Meta API 端点
+  config_endpoint: "/configs"
+  # API 认证令牌
+  auth_token: "seo-pinkman"
+  # 请求超时时间（秒）
+  timeout: 10
+
+# 配置文件路径
+config_paths:
+  # Clash Meta 配置文件保存目录
+  clash_config_dir: "~/.config/mihomo"
+  # 配置文件名
+  clash_config_filename: "aggregated_clash_config.yaml"
+
+# 数据库配置
+database:
+  # MySQL 数据库连接配置
+  type: "mysql"
+  host: "localhost"
+  port: 3306
+  username: "root"
+  password: "7212"
+  database: "ugc"
+  charset: "utf8mb4"
+  # 完整的数据库连接URL
+  url: "mysql+pymysql://root:7212@localhost:3306/ugc?charset=utf8mb4"
+
+# 服务器配置
+server:
+  # 服务监听地址
+  host: "0.0.0.0"
+  # 服务监听端口
+  port: 8202
+
+# 用户生成配置
+user_generation:
+  # 用户名长度
+  username_length: 6
+  # 密码长度
+  password_length: 12
+
+# 部门配置
+departments:
+  "1": "tech_dept"
+  "2": "sales_dept"
+  "3": "hr_dept"
+  "4": "finance_dept"

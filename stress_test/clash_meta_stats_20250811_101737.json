@@ -1,0 +1,27 @@
+[
+  {
+    "timestamp": "2025-08-11T10:17:32.290781",
+    "system_cpu": 8.9,
+    "system_memory_percent": 62.4,
+    "system_memory_used_mb": 19983.0390625,
+    "clash_process": {
+      "name": "clash-verge-service.exe",
+      "cpu_percent": 0.0,
+      "pid": 5360,
+      "memory_info": [
+        4345856,
+        1880064,
+        1453,
+        5046272,
+        4345856,
+        36768,
+        34320,
+        8328,
+        7408,
+        1880064,
+        1998848,
+        1880064
+      ]
+    }
+  }
+]

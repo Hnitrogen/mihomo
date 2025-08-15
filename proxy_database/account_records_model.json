@@ -1,0 +1,76 @@
+{
+  "model_name": "AccountRecordsModel",
+  "table_name": "account_records",
+  "description": "账号记录表，用于存储各种账号信息",
+  "fields": {
+    "id": {
+      "type": "Integer",
+      "description": "主键ID",
+      "constraints": ["PRIMARY KEY", "AUTO_INCREMENT"]
+    },
+    "account": {
+      "type": "String",
+      "description": "账号",
+      "constraints": ["NOT NULL"],
+      "required": true
+    },
+    "account_password": {
+      "type": "String", 
+      "description": "账号密码",
+      "constraints": ["NOT NULL"],
+      "required": true
+    },
+    "auxiliary_email": {
+      "type": "String",
+      "description": "辅助邮箱",
+      "constraints": [],
+      "required": false
+    },
+    "two_fa": {
+      "type": "String",
+      "description": "2FA认证信息",
+      "constraints": [],
+      "required": false
+    },
+    "hubstudio_container_id": {
+      "type": "String",
+      "description": "账号对应的hubstudio容器ID",
+      "constraints": [],
+      "required": false
+    },
+    "createtime": {
+      "type": "DateTime",
+      "description": "创建时间",
+      "constraints": ["DEFAULT CURRENT_TIMESTAMP"],
+      "auto_generated": true
+    },
+    "updatetime": {
+      "type": "DateTime", 
+      "description": "更新时间（触发器自动更新）",
+      "constraints": ["DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"],
+      "auto_generated": true
+    },
+    "init_account_time": {
+      "type": "DateTime",
+      "description": "初始化账号时间",
+      "constraints": [],
+      "required": false
+    }
+  },
+  "api_endpoints": {
+    "create": "POST /account-records/",
+    "list": "GET /account-records/",
+    "get_by_id": "GET /account-records/{record_id}",
+    "update": "PUT /account-records/{record_id}",
+    "delete": "DELETE /account-records/{record_id}",
+    "count": "GET /account-records/count"
+  },
+  "example_data": {
+    "account": "user123",
+    "account_password": "password123",
+    "auxiliary_email": "backup@example.com",
+    "two_fa": "TOTP_SECRET_KEY",
+    "hubstudio_container_id": "container_abc123",
+    "init_account_time": "2025-01-15T10:30:00"
+  }
+}

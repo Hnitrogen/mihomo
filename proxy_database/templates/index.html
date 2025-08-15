@@ -130,6 +130,67 @@
             font-family: 'Courier New', monospace;
             font-size: 14px;
         }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 15px 25px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            color: #007bff;
+            border-bottom-color: #007bff;
+            font-weight: bold;
+        }
+
+        .tab-button:hover {
+            color: #007bff;
+            background-color: #f8f9fa;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            min-height: 200px;
+        }
+
+        .format-info {
+            background-color: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .format-info h4 {
+            margin-top: 0;
+            color: #0066cc;
+        }
     </style>
 </head>
 
@@ -137,9 +198,15 @@
     <div class="container">
         <h1>🚀 代理用户管理系统</h1>
 
-        <div class="upload-form">
-            <h2>📁 上传YAML配置文件</h2>
-            <form id="uploadForm" enctype="multipart/form-data">
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('yaml-tab')">📁 上传YAML配置</button>
+            <button class="tab-button" onclick="switchTab('account-tab')">👤 上传账号信息</button>
+        </div>
+
+        <div id="yaml-tab" class="tab-content active">
+            <div class="upload-form">
+                <h2>📁 上传YAML配置文件</h2>
+                <form id="uploadForm" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="file">选择YAML文件:</label>
                     <input type="file" id="file" name="file" accept=".yaml,.yml" required>
@@ -165,11 +232,41 @@
             </form>
 
             <div id="result" class="result"></div>
+            </div>
+        </div>
+
+        <div id="account-tab" class="tab-content">
+            <div class="upload-form">
+                <h2>👤 上传账号信息</h2>
+                
+                <div class="format-info">
+                    <h4>📋 格式说明</h4>
+                    <p>每行一个账号记录，使用 <code>----</code> 分隔字段，格式为：</p>
+                    <p><strong>账号----密码----辅助邮箱</strong></p>
+                    <p>示例：</p>
+                    <code>vyb0064@gmail.com----nTU944RUecBS----builanix1nl@disbox.org</code><br>
+                    <code>tranthimai86149@gmail.com----QT4enLr2----tranthoibtpd@moakt.cc</code>
+                </div>
+
+                <form id="accountForm">
+                    <div class="form-group">
+                        <label for="accounts_data">账号数据:</label>
+                        <textarea id="accounts_data" name="accounts_data" placeholder="请输入账号数据，每行一个账号记录...&#10;格式：账号----密码----辅助邮箱&#10;&#10;示例：&#10;vyb0064@gmail.com----nTU944RUecBS----builanix1nl@disbox.org&#10;tranthimai86149@gmail.com----QT4enLr2----tranthoibtpd@moakt.cc" required></textarea>
+                    </div>
+
+                    <button type="submit">👤 批量创建账号</button>
+                </form>
+
+                <div id="accountResult" class="result"></div>
+            </div>
         </div>
 
         <div class="nav-buttons">
             <button onclick="window.location.href='/ui'" class="btn-secondary">
                 📊 查看代理数据管理界面
+            </button>
+            <button onclick="window.location.href='/config-ui'" class="btn-secondary">
+                ⚙️ 系统配置管理
             </button>
         </div>
     </div>
@@ -234,6 +331,106 @@
                             <ul>
                                 ${data.updated_proxies.map(p => `
                                     <li><strong>${p.proxy_name}</strong> - 用户名: <code>${p.username}</code>, 密码: <code>${p.password}</code></li>
+                                `).join('')}
+                            </ul>
+                        `;
+                    }
+
+                    resultDiv.innerHTML = resultHTML;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `❌ 错误: ${data.detail}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `❌ 网络错误: ${error.message}`;
+            }
+        });
+
+        // Tab切换功能
+        function switchTab(tabId) {
+            // 隐藏所有tab内容
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 移除所有tab按钮的active状态
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 显示选中的tab内容
+            document.getElementById(tabId).classList.add('active');
+            
+            // 激活对应的tab按钮
+            event.target.classList.add('active');
+        }
+
+        // 账号上传表单处理
+        document.getElementById('accountForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const accountsData = document.getElementById('accounts_data').value.trim();
+            
+            if (!accountsData) {
+                alert('请输入账号数据');
+                return;
+            }
+
+            const resultDiv = document.getElementById('accountResult');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '⏳ 正在处理账号数据...';
+            resultDiv.className = 'result';
+
+            try {
+                const response = await fetch('/upload-accounts/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        accounts_data: accountsData
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+
+                    let resultHTML = `<h3>✅ ${data.message}</h3>`;
+
+                    // 显示创建成功的账号
+                    if (data.created_accounts && data.created_accounts.length > 0) {
+                        resultHTML += `
+                            <h4>🆕 成功创建的账号 (${data.created_accounts.length}个):</h4>
+                            <ul>
+                                ${data.created_accounts.map(acc => `
+                                    <li><strong>${acc.account}</strong> - 辅助邮箱: <code>${acc.auxiliary_email || '无'}</code></li>
+                                `).join('')}
+                            </ul>
+                        `;
+                    }
+
+                    // 显示跳过的账号
+                    if (data.skipped_accounts && data.skipped_accounts.length > 0) {
+                        resultHTML += `
+                            <h4>⚠️ 跳过的账号 (已存在) (${data.skipped_accounts.length}个):</h4>
+                            <ul>
+                                ${data.skipped_accounts.map(acc => `
+                                    <li><strong>${acc}</strong> - 账号已存在</li>
+                                `).join('')}
+                            </ul>
+                        `;
+                    }
+
+                    // 显示错误的行
+                    if (data.error_lines && data.error_lines.length > 0) {
+                        resultHTML += `
+                            <h4>❌ 格式错误的行 (${data.error_lines.length}个):</h4>
+                            <ul>
+                                ${data.error_lines.map(line => `
+                                    <li><code>${line}</code></li>
                                 `).join('')}
                             </ul>
                         `;

@@ -1,0 +1,12 @@
+Method,Name,Error,Occurrences
+GET,simple_get,CatchResponseError('×´Ì¬Âë: 0'),26
+GET,get_with_headers,CatchResponseError('×´Ì¬Âë: 403'),11
+GET,simple_get,CatchResponseError('×´Ì¬Âë: 406'),10
+GET,simple_get,CatchResponseError('×´Ì¬Âë: 403'),70
+GET,simple_get,CatchResponseError('×´Ì¬Âë: 502'),5
+GET,simple_get,CatchResponseError('×´Ì¬Âë: 520'),5
+GET,get_with_headers,CatchResponseError('×´Ì¬Âë: 502'),1
+GET,get_with_headers,CatchResponseError('×´Ì¬Âë: 0'),11
+GET,get_with_headers,CatchResponseError('×´Ì¬Âë: 504'),1
+GET,get_with_headers,CatchResponseError('×´Ì¬Âë: 429'),1
+GET,simple_get,CatchResponseError('×´Ì¬Âë: 202'),1

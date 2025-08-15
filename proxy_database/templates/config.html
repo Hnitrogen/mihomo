@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统配置管理</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        .btn-success {
+            background-color: #28a745;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .config-section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .config-section h3 {
+            margin-top: 0;
+            color: #495057;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚙️ 系统配置管理</h1>
+        
+        <div class="nav-buttons">
+            <button onclick="window.location.href='/ui'" class="btn-secondary">
+                ⬅️ 返回代理管理
+            </button>
+            <button onclick="loadConfig()" class="btn-secondary">
+                🔄 刷新配置
+            </button>
+            <button onclick="saveConfig()" class="btn-success">
+                💾 保存配置
+            </button>
+        </div>
+        
+        <div id="alert" style="display: none;"></div>
+        
+        <div id="loading" class="loading" style="display: none;">
+            ⏳ 加载中...
+        </div>
+        
+        <div id="configForm" style="display: none;">
+            <!-- Clash Meta 配置 -->
+            <div class="config-section">
+                <h3>🚀 Clash Meta 配置</h3>
+                <div class="form-group">
+                    <label for="clash_api_url">API 地址:</label>
+                    <input type="text" id="clash_api_url" placeholder="http://192.168.132.58:9093">
+                </div>
+                <div class="form-group">
+                    <label for="clash_config_endpoint">配置端点:</label>
+                    <input type="text" id="clash_config_endpoint" placeholder="/configs">
+                </div>
+                <div class="form-group">
+                    <label for="clash_auth_token">认证令牌:</label>
+                    <input type="text" id="clash_auth_token" placeholder="seo-pinkman">
+                </div>
+                <div class="form-group">
+                    <label for="clash_timeout">请求超时时间 (秒):</label>
+                    <input type="number" id="clash_timeout" placeholder="10">
+                </div>
+            </div>
+            
+            <!-- 配置文件路径 -->
+            <div class="config-section">
+                <h3>📁 配置文件路径</h3>
+                <div class="form-group">
+                    <label for="clash_config_dir">Clash 配置目录:</label>
+                    <input type="text" id="clash_config_dir" placeholder="~/.config/mihomo">
+                </div>
+                <div class="form-group">
+                    <label for="clash_config_filename">配置文件名:</label>
+                    <input type="text" id="clash_config_filename" placeholder="aggregated_clash_config.yaml">
+                </div>
+            </div>
+            
+            <!-- 数据库配置 -->
+            <div class="config-section">
+                <h3>🗄️ 数据库配置</h3>
+                <div class="form-group">
+                    <label for="database_url">数据库 URL:</label>
+                    <input type="text" id="database_url" placeholder="sqlite:///./proxy_database.db">
+                </div>
+            </div>
+            
+            <!-- 服务器配置 -->
+            <div class="config-section">
+                <h3>🌐 服务器配置</h3>
+                <div class="form-group">
+                    <label for="server_host">监听地址:</label>
+                    <input type="text" id="server_host" placeholder="0.0.0.0">
+                </div>
+                <div class="form-group">
+                    <label for="server_port">监听端口:</label>
+                    <input type="number" id="server_port" placeholder="8202">
+                </div>
+            </div>
+            
+            <!-- 用户生成配置 -->
+            <div class="config-section">
+                <h3>👤 用户生成配置</h3>
+                <div class="form-group">
+                    <label for="username_length">用户名长度:</label>
+                    <input type="number" id="username_length" placeholder="6">
+                </div>
+                <div class="form-group">
+                    <label for="password_length">密码长度:</label>
+                    <input type="number" id="password_length" placeholder="12">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentConfig = {};
+
+        async function loadConfig() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('configForm').style.display = 'none';
+            hideAlert();
+            
+            try {
+                const response = await fetch('/config');
+                const config = await response.json();
+                currentConfig = config;
+                
+                // 填充表单
+                document.getElementById('clash_api_url').value = config.clash_meta?.api_url || '';
+                document.getElementById('clash_config_endpoint').value = config.clash_meta?.config_endpoint || '';
+                document.getElementById('clash_auth_token').value = config.clash_meta?.auth_token || '';
+                document.getElementById('clash_timeout').value = config.clash_meta?.timeout || '';
+                
+                document.getElementById('clash_config_dir').value = config.config_paths?.clash_config_dir || '';
+                document.getElementById('clash_config_filename').value = config.config_paths?.clash_config_filename || '';
+                
+                document.getElementById('database_url').value = config.database?.url || '';
+                
+                document.getElementById('server_host').value = config.server?.host || '';
+                document.getElementById('server_port').value = config.server?.port || '';
+                
+                document.getElementById('username_length').value = config.user_generation?.username_length || '';
+                document.getElementById('password_length').value = config.user_generation?.password_length || '';
+                
+                document.getElementById('configForm').style.display = 'block';
+                
+            } catch (error) {
+                console.error('加载配置失败:', error);
+                showAlert('加载配置失败: ' + error.message, 'error');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        async function saveConfig() {
+            try {
+                // 构建新配置
+                const newConfig = {
+                    clash_meta: {
+                        api_url: document.getElementById('clash_api_url').value,
+                        config_endpoint: document.getElementById('clash_config_endpoint').value,
+                        auth_token: document.getElementById('clash_auth_token').value,
+                        timeout: parseInt(document.getElementById('clash_timeout').value) || 10
+                    },
+                    config_paths: {
+                        clash_config_dir: document.getElementById('clash_config_dir').value,
+                        clash_config_filename: document.getElementById('clash_config_filename').value
+                    },
+                    database: {
+                        url: document.getElementById('database_url').value
+                    },
+                    server: {
+                        host: document.getElementById('server_host').value,
+                        port: parseInt(document.getElementById('server_port').value) || 8202
+                    },
+                    user_generation: {
+                        username_length: parseInt(document.getElementById('username_length').value) || 6,
+                        password_length: parseInt(document.getElementById('password_length').value) || 12
+                    },
+                    departments: currentConfig.departments || {}
+                };
+                
+                const response = await fetch('/config', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newConfig)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showAlert('✅ 配置保存成功！重启服务后生效。', 'success');
+                } else {
+                    showAlert('❌ 保存配置失败: ' + result.detail, 'error');
+                }
+                
+            } catch (error) {
+                console.error('保存配置失败:', error);
+                showAlert('❌ 保存配置失败: ' + error.message, 'error');
+            }
+        }
+
+        function showAlert(message, type) {
+            const alertDiv = document.getElementById('alert');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.innerHTML = message;
+            alertDiv.style.display = 'block';
+            
+            // 3秒后自动隐藏成功消息
+            if (type === 'success') {
+                setTimeout(() => {
+                    hideAlert();
+                }, 3000);
+            }
+        }
+
+        function hideAlert() {
+            document.getElementById('alert').style.display = 'none';
+        }
+
+        // 页面加载时自动加载配置
+        document.addEventListener('DOMContentLoaded', function() {
+            loadConfig();
+        });
+    </script>
+</body>
+</html>
